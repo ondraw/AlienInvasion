@@ -1,0 +1,407 @@
+/*
+ Localizable.strings
+ AlienInvasion
+ 
+ Created by itsme on 12. 10. 24..
+ Copyright (c) 2012년 itsme. All rights reserved.
+ */
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "रद्द करें";
+"MBuy"              = "खरीदना(%@)";
+"MError"            = "त्रुटि";
+"MOK"               = "अच्छा";
+"MErrorRequest"     = "नेटवर्क से कनेक्ट करने में असमर्थ है, या मिलान उत्पादों नहीं मिला";
+"MFailRequest"      = "अनुरोध नहीं कर सकते %@";
+"MFailBuy"          = "खरीद करने में विफल.";
+"MNo"               = "नहीं";
+"MYes"              = "हां";
+
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"            = "मेनू";
+"M_Menu_Map"             = "एमएपी";
+"M_Menu_Tank"            = "टैंक";
+//"M_Menu_BombItem"        = "बम/आइटम";
+"M_Menu_BombItem"        = "सर्वश्रेष्ठ स्कोर";
+"M_Menu_Shop"            = "दुकान";
+//"M_Rank_Title"           = "आपका कल";
+"M_Menu_Multi1"          = "login";
+"M_Menu_Multi2"          = "Signing in ...";
+"M_Menu_Multi3"          = "Multiplayer";
+"M_Menu_Multi4"          = "Singleplayer";
+
+"M_Tap_Item"             = "मद";
+"M_Tap_Bomb"             = "बम";
+"M_Start"                = "प्रारंभ";
+"M_Map_Desc_Title"            = "वर्तमान मानचित्र";
+"M_Map_Desc_Dificulty"   = "कठिनाई";
+"M_Tank_Desc_Title"            = "वर्तमान टैंक";
+"M_Tank_Desc_Level" = "स्तर";
+"M_Tank_Desc_Seed"      = "गति";
+"M_Tank_Desc_Power"      = "बिजली";
+"M_Tank_Desc_Defense"      = "रक्षा";
+
+"M_Tank_Desc_Select" = "चयन";
+"M_Tank_Desc_Buy" = "खरीदना";
+"M_Tank_Desc_Requested" = "निवेदित";
+"M_Tank_Desc_Rank" = "पद";
+
+
+"M_IB_BUY"          = "खरीदें";
+"M_IB_OK"           = "अच्छा";
+"M_IB_CANCEL"       = "रद्द";
+"M_IB_SAVE"         = "बचाओ";
+"M_IB_YES"          = "हाँ";
+
+"M_IB_Power"        = "बिजली";
+"M_IB_Range"        = "सीमा";
+"M_IB_Ammo"        = "बारूद";
+
+"M_Slot_Bomb" = "बम";
+"M_Slot_Item" = "मद";
+"M_Slot_BLZ"  = "मीनार";
+
+
+"B_GDDesc" = "गाइडेड बम";
+"B_HEDesc" = "विस्फोटक बम";
+"B_HEGDDesc" = "ऍक्स्प गाइडेड";
+"B_DIV2Des" = "फटका बमX2";
+"B_DIV4Des" = "फटका बॉबx4";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "सोना";
+
+"I_Radia" = "राडार";
+"I_RadiaDesc1" = "रडार के लिए टैब";
+"I_RadiaDesc2" = "    स्वचालित हमले";
+
+"I_A-PWD Cap." = "हमले की शक्ति कैप्सूल";
+"I_A-PWD Cap.Desc1" = "हमला अपग्रेड";
+"I_A-PWD Cap.Desc2" = "पावर %d%% उन्नयन";
+
+"I_D-PWD Cap." = "रक्षा शक्ति कैप्सूल";
+"I_D-PWD Cap.Desc1" = "उन्नत सुरक्षा";
+"I_D-PWD Cap.Desc2" = "पावर %d%% उन्नयन";
+
+"I_Life Cap." = "जीवन कैप्सूल.";
+"I_Life Cap.Desc1" = "भरा बनाने (100%)";
+"I_Life Cap.Desc2" = "         ऊर्जा शक्ति";
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       टैंक";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     एक मशीन गन से लैस है.";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       एक मशीन गन और दो ​​बैरल से ^                          सुसज्जित है.";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1     एक लेजर बंदूक के साथ सुसज्जित है.";
+"T_L3"              = "L3";
+"T_L3_Des"          = "L3     सबसे अच्छा टैंक.";
+"T_Ambu"              = "मरम्मत";
+"T_Ambu_Des"          = "      क्षतिग्रस्त क्षेत्र चंगा.";
+"T_ArmC"              = "बख़्तरबंद";
+"T_ArmC_Des"          = "       मशीन गन से हमला.";
+"T_ArmT"              = "स्वयं प्रेरित";
+"T_ArmT_Des"          = "       जबकि आगे बढ़ दुश्मन पर हमला.";
+"T_Mis"              = "मिसाइल";
+"T_Mis_Des"          = "       आप कई मिसाइलों का शुभारंभ कर सकते हैं.";
+
+
+"T_T001"            = "गार्ड टावर";
+"T_T001_Des"        = "यह केवल दुश्मन की जमीन पर ^                          हमला कर सकते हैं.";
+"T_T002"            = "मिसाइल टॉवर";
+"T_T002_Des"        = "यह निर्देशित मिसाइलों से दुश्मन की जमीन या ^                          विमान हमला कर सकते हैं";
+"T_T003"            = "मशीनगन";
+"T_T003_Des"        = "इस मशीन गन से दुश्मन की जमीन या ^                          विमान हमला कर सकते हैं";
+"T_T004"            = "ऊर्जा टॉवर";
+"T_T004_Des"        = "आप आसपास के सहयोगी दलों को ^                          ठीक कर सकते हैं.";
+"R_Upgrade"         = "स्तर का उन्नयन";
+"R_Upgrade_Des"         = "अपने कवच और नुकसान ^                          शक्ति का उन्नयन.";
+"R_Rng_Upgrade"     = "उन्नयन रेंज";
+"R_Rng_Upgrade_Des" = "अधिक दूर तोप आग.";
+"R_Repaire"         = "मरम्मत";
+"R_Repaire_Des"     = "मरम्मत और अपनी ऊर्जा की ^                          भरपाई होगी.";
+"R_Remove"         = "निष्कासन";
+"R_Remove_Des"     = "टॉवर निकालें. गोल्ड लौटा ^                          दी जाएगी.";
+"R_Amor_Upgrade"         = "शील्ड ";
+"R_Amor_Upgrade_Des"     = "20% द्वारा अपने कवच का उन्नयन.";
+"R_Raser_Upgrade"         = "लेज़र";
+"R_Raser_Upgrade_Des"     = "30% से लेजर शक्ति का उन्नयन.";
+"R_MGun_Upgrade"         = "मशीनगन ";
+"R_MGun_Upgrade_Des"     = "एक मशीन गन स्थापित करें.";
+"R_Po_Upgrade"         = "बैरल अपग्रेड";
+"R_Po_Upgrade_Des"     = "यह अधिक बैरल बनाओ.";
+
+
+"I_Magnet" = "चुंबकीय";
+"I_MagnetDesc1" = "दूर से खींचो";
+"I_MagnetDesc2" = "        आइटम.";
+
+
+"I_DTowerUP" = "गार्ड टावर";
+"I_DTowerUPDesc1" = "गार्ड टावरों";
+"I_DTowerUPDesc2" = "%d%% में नवीनीकृत कर रहे हैं.";
+
+"I_DMTowerUP" = "मिसाइल टॉवर";
+"I_DMTowerUPDesc1" = "मिसाइल टावरों ";
+"I_DMTowerUPDesc2" = "%d%% में नवीनीकृत कर रहे हैं.";
+
+
+"I_Gold4000" = "सोना 4000";
+"I_Gold4000Desc1" = "प्रभारी गोल्ड";
+"I_Gold4000Desc2" = "(+4000)";
+
+"I_RAD" = "विज्ञापन निकालें";
+"I_RADDesc1" = "असहज विज्ञापन ";
+"I_RADDesc2" = "निकालें.";
+
+"I_Gold9000" = "सोना 9000";
+"I_Gold9000Desc1" = "प्रभारी गोल्ड";
+"I_Gold9000Desc2" = "(+9000)";
+
+"I_FastGold" = "तेजी से सोने कमाने ";
+"I_FastGoldDesc1" = "दर सोने में बहुत ";
+"I_FastGoldDesc2" = "तेजी से कर रही है. ";
+
+"I_FastBlz" = "जल्दी का निर्माण ";
+"I_FastBlzDesc1" = "अधिक जल्दी से";
+"I_FastBlzDesc2" = "इमारत का निर्माण.";
+
+"I_UpPack1" = "पैकेज का उन्नयन";
+"I_UpPack1Desc1" = "रक्षा और हमले की शक्ति ";
+"I_UpPack1Desc2" = "चरण 3 पर ही उगता है.";
+
+"I_Ambu"              = "मरम्मत";
+"I_Ambu_Des1"          = "क्षतिग्रस्त क्षेत्र चंगा.";
+"I_Ambu_Des2"          = "";
+"I_ArmC"              = "बख़्तरबंद";
+"I_ArmC_Des1"          = "मशीन गन से हमला.";
+"I_ArmC_Des2"          = "";
+"I_ArmT"              = "स्वयं प्रेरित";
+"I_ArmT_Des1"          = "जबकि आगे बढ़ दुश्मन पर हमला.";
+"I_ArmT_Des2"          = "";
+"I_Mis"              = "मिसाइल";
+"I_Mis_Des1"          = "आप कई मिसाइलों का ";
+"I_Mis_Des2"          = "शुभारंभ कर सकते हैं.";
+
+"Map_Training Center" = "प्रशिक्षण केंद्र";
+"Map_Coast Defense" = "कोस्ट रक्षा";
+"Map_Mountain Terrain" = "पहाड़ी इलाके";
+"Map_The Sahara" = "सहारा";
+"Map_Heavy SnowFall" = "भारी बर्फबारी";
+
+"Map_Training Center_Des" = "प्रशिक्षण";
+"Map_Coast Defense_Des" = "तट";
+"Map_Mountain Terrain_Des" = "पहाड़";
+"Map_The Sahara_Des" = "सहारा";
+"Map_Heavy SnowFall_Des" = "हिमपात";
+
+"Map_Swamp" = "जलमग्न";
+"Map_Swamp_Des" = "जलमग्न";
+
+"Map_Ruins" = "खंडहर";
+"Map_Ruins_Des" = "खंडहर";
+
+"Map_Town" = "शहर";
+"Map_Town_Des" = "शहर";
+
+"Map_Maze" = "भूल भुलैया";
+"Map_Maze_Des" = "भूल भुलैया";
+
+"Map_Moon" = "चांद";
+"Map_Moon_Des" = "चांद";
+
+
+
+"S_Title" = "खेल सेटिंग्स";
+"S_Music" = "संगीत";
+"S_SoundFX" = "ध्वनि प्रभाव";
+"S_Vibration" = "कंपन";
+
+
+
+
+"HMove" = "चाल";
+"HAttack" = "आक्रमण";
+"HBomb" = "बम";
+"HItem" = "मद";
+"HMission" = "मिशन";
+
+"HMoveDesc"         = "आप को स्थानांतरित करने की कोशिश जहां झंडा रखो.";
+"HDes_1"            = "एक दिन";
+"HAttackDesc"       = "हमला करने की कोशिश यहां क्लिक करें";
+"HDes_2"            = "का दरवाजा खोला";
+"HDes_2_1"          = "विदेशी के आयाम,";
+"HBombDesc"         = "अपने हथियार बदलने के लिए क्लिक करें.";
+"HDes_3"            = "आयामी फाटक बंद कर दिया जाना चाहिए";
+"HItemDesc"         = "अपने मद की जाँच करने के लिए यहां क्लिक करें";
+"HDes_4"            = "पृथ्वी की crsis को बचाने के क्रम में.";
+"HMissionDesc"      = "आयामी फाटक से छुटकारा.";
+"HMissionDesc2"     = "मिशन में सफलता";
+"PSCORE"            = "एससीओआरई";
+
+
+"MissBox_Title_S"       = "मिशन की सफलता";
+"MissBox_Title_E"       = "मिशन विफल";
+"MissBox_Score"         = "स्कोर";
+"MissBox_Bonus"         = "बोनस";
+"MissBox_Gold"          = "सोना";
+"MissBox_Total"         = "संपूर्ण";
+"MissBox_OK"            = "अच्छा";
+
+
+"ExitBox_Msg"           = "आप मिशन से बाहर निकलें है?";
+
+
+"Prom_Title"           = "अपनी तरक्की के लिए बधाई.";
+"Prom_Msg1"            = "हमले और रक्षा पावर, गोल्ड";
+"Prom_Msg2"            = "%d%% अपग्रेड";
+
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+
+"Trn_Introduce_Msg_T1" = "प्रशिक्षण शिविर में आपका स्वागत है.";
+"Trn_Introduce_Msg_T2" = "सज्जनों, आप प्रत्येक मिशन को ";
+"Trn_Introduce_Msg_T3" = "रा करना होगा.";
+"Trn_Introduce_Msg_T4" = "स्नातक 4000 सोना प्राप्त होगा.";
+
+"Tran_Step1_MoveT" = "चलती ट्रेन";
+"Tran_Step1_MoveDes1" = "टंकी पर अपनी उंगली डाल दिया.";
+"Tran_Step1_MoveDes2" = "लक्ष्य मुद्दे पर अपनी उंगली कदम";
+"Tran_Step1_MoveDes3" = "बढ़ रोकने के लिए, टैंक पर क्लिक करें.";
+
+
+
+"Tran_Step2_AttackT" = "हमला सफर";
+"Tran_Step2_AttackDes1" = "दुश्मन के टैंकों पर क्लिक करें";
+"Tran_Step2_AttackDes2" = "टैंक रडार पर दिखाई देते हैं पर क्लिक करें";
+
+"Tran_Step2_ChSlotT" = "बदले स्लॉट";
+"Tran_Step2_ChSlotTDes1" = "बटन पर क्लिक करें, बम बदल दिया है.";
+"Tran_Step2_ChSlotTDes2" = "बटन पर क्लिक करें, आइटम बदला गया.";
+"Tran_Step2_ChSlotTDes3" = "बटन पर क्लिक करें, इमारतों बदल दिया है.";
+
+
+"Tran_Step3_MissionT" = "मिशन सफर";
+"Tran_Step3_MissionDes1" = "आयाम गेट का हमला";
+
+"Tran_Step3_END" = "बधाई हो.";
+"Tran_Step3_ENDDes1" = "खेल का आनंद लें.";
+
+
+"Tran_Step6_MakeTowerT" = "भवन की स्थापना";
+"Tran_Step6_MakeTowerDes1" = "खींचें और इमारत आइकन ड्रॉप.";
+"Tran_Step6_MakeTowerDes2" = "इमारत की साजिश रचने में है.";
+
+"Tran_Step6_Upgrade" = "क्षति का उन्नयन. ";
+"Tran_Step6_UpgradeDes1" = "इमारत पर क्लिक करें. ";
+"Tran_Step6_UpgradeDes2" = "उन्नत करें बटन पर क्लिक करें.";
+
+"Tran_Shot_Msg_T" = "चेतावनी#";
+"Tran_Shot_Msg_Des1" = "के स्नातक#";
+"Tran_Shot_Msg_Des2" = "एक प्रशिक्षण केंद्र.#";
+
+"NoGold_Shot_Msg_Des1" = "यह सोने से बाहर है.#";
+"NoGold_Shot_Msg_Des2" = ".#";
+
+"World_Shop" = "दुकान";
+
+"Tran_Com_Msg_Des1" = "मानचित्र पर बंद कर दिया है.#";
+"Tran_Com_Msg_Des2" = "एक अलग नक्शा का चयन करें.#";
+
+
+"Menu_Comp_Msg_T1" = "बधाई हो.   ";
+"Menu_Comp_Msg_T2" = "सभी दरवाजों को नष्ट कर दिया गया. शांति आ गया है.";
+"Menu_Comp_Msg_T3" = "लेकिन, 10 साल बाद ...";
+"Menu_Comp_Msg_T4" = "एक विदेशी आक्रमण, अधिक शक्तिशाली नहीं था.";
+
+
+//"Rating_Report" = "Hellow.\nI will try to make a better game.\nYour ratings are required.\nThank you.";
+"Rating_Report_T" = "आपकी समीक्षा आवश्यक हैं";
+"Rating_Report_R" = "मैं आप आइटम रडार दे देंगे.\n----------------------------\nमैं एक बेहतर खेल बनाने की कोशिश करेंगे.\nधन्यवाद.";
+"Rating_Report_G" = "मैं आप आइटम गोल्ड 2000 में दे देंगे.\n----------------------------\nमैं एक बेहतर खेल बनाने की कोशिश करेंगे.\nधन्यवाद.";
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "उपनाम";
+"B_LeaveMessage" = "बातें छोड़ दें.";
+"B_Save" = "बचाना";
+"B_BestScore" = "बेस्ट स्कोर";
+//--
+
+"Completed Rng Upgrade" = " पूरा हो चुका है.";
+"Completed Repare"  = " मरम्मत की गई है.";
+"Completed Level Upgrade" = "+5 स्तर में सुधार किया गया है.";
+
+
+"MNoRecPurchase" = "खरीद का कोई रिकॉर्ड नहीं है.";
+"MRestoreTitle" = "खरीद (पुनर्स्थापना)";
+"MResotreMessage" = "आप खरीदना चाहेंगे?";
+"MRestore" = "पुनर्स्थापित";
+
+
+"Multi_MLoginT" = "लॉगिन ";
+"Multi_MLoginDes1" = "आप खेल केंद्र के लिए लॉग ";
+"Multi_MLoginDes2" = "इन करना होगा.";
+
+"Multi_MMatchT" = "मिलान ";
+"Multi_MMatchDes1" = "खिलाड़ियों पाया. ";
+"Multi_MMatchDes2" = "कृपया प्रतीक्षा करें.";
+
+"AlianceBox_Msg" = "मैं गठबंधन का अनुरोध.";
+"AlianceBox_Msg2" = "आप एक गठबंधन चाहते हैं?";
+
+"MulPlay_Start" = "looking for players.";
+"MulPlay_Start2" = "start after %d sec";
+
+"NewViewTitle" = "एक नया संस्करण है.";
+"NewViewMSG" = "आप उन्नयन करना चाहते हैं?";
+
+"IsHackedMsg" = "I can not buy a product with a cracked iOS.";

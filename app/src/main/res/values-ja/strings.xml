@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, AlienInvasion!</string>
+    <string name="app_name">タンク育てる(AD)</string>
+    <string name="unpackmsg">圧縮を解除しています。少々お待ちください。</string>
+    <string name="local_dir">ja.lproj</string>
+    
+    <string name="nickname">ニックネーム</string>
+    <string name="leavemessage">名言を残してください。</string>
+    <string name="save">保存</string>
+    
+    
+    <string name="ratingreportT">貴下の評価が必要です。</string>
+    <string name="ratingreportR">レーダーアイテムを差し上げます。\n----------------------------\n良いゲームを作るために努力します。\nありがとうございます</string>
+    <string name="ratingreportG">ゴールド2000アイテムを差し上げます。\n----------------------------\n良いゲームを作るために努力します。\nありがとうございます</string>
+    
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    
+    
+    <string name="sign_in_failed">ログイン失敗。ネットワークをチェックした後、再び試みてください.</string>
+    <string name="app_misconfigured">ログイン失敗。ネットワークをチェックした後、再び試みてください.</string>
+    <string name="license_failed">ライセンスチェックに失敗しました.</string>
+    <string name="unknown_error">知られていないエラーです.</string>
+    <string name="SNSContents">私たち一緒にゲームします.</string>
+    <string name="SNSMsgTitle">共有</string>
+</resources>

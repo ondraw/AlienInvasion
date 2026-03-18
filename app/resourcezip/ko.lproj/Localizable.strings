@@ -1,0 +1,416 @@
+/*
+ Localizable.strings
+ AlienInvasion
+ 
+ Created by itsme on 12. 10. 24..
+ Copyright (c) 2012년 itsme. All rights reserved.
+ */
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "취소";
+"MBuy"              = "구매하기(%@)";
+"MError"            = "에러";
+"MOK"               = "확인";
+"MErrorRequest"     = "Unable to connect to the network, or Not found matching products";
+"MFailRequest"      = "%@을 요청할수 없습니다.";
+"MFailBuy"          = "구매 실패";
+"MNo"               = "아니오";
+"MYes"              = "예";
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"                 = "메뉴";
+"M_Menu_Map"             = "지도";
+"M_Menu_Tank"            = "탱크";
+//"M_Menu_BombItem"        = "폭탄/아이템";
+"M_Menu_BombItem"        = "   최고 점수";
+"M_Menu_Shop"            = "상점";
+"M_Menu_Multi1"          = "로그인";
+"M_Menu_Multi2"          = "로그인중 ...";
+"M_Menu_Multi3"          = "멀티플레이어";
+"M_Menu_Multi4"          = "싱글플레이어";
+//"M_Rank_Title"           = "당신의 계급";
+
+
+"M_Tap_Item"             = "아이템";
+"M_Tap_Bomb"             = "폭탄";
+"M_Start"                = "시 작";
+"M_Map_Desc_Title"            = "선택된 지도";
+"M_Map_Desc_Dificulty"   = "난위도";
+"M_Tank_Desc_Title"            = "선택된 탱크";
+"M_Tank_Desc_Level" = "레벨";
+"M_Tank_Desc_Seed"      = "스피드";
+"M_Tank_Desc_Power"      = "공격력";
+"M_Tank_Desc_Defense"      = "방어력";
+
+"M_Tank_Desc_Select" = "선 택";
+"M_Tank_Desc_Buy" = "구 매";
+"M_Tank_Desc_Requested" = "요구되는";
+"M_Tank_Desc_Rank" = "계급";
+
+
+"M_IB_BUY"          = "구매";
+"M_IB_OK"           = "확인";
+"M_IB_CANCEL"       = "취소";
+"M_IB_SAVE"         = "저장";
+"M_IB_YES"          = "예";
+
+"M_IB_Power"        = "파워";
+"M_IB_Range"        = "범위";
+"M_IB_Ammo"        = "묶음";
+
+"M_Slot_Bomb" = "폭탄";
+"M_Slot_Item" = "아이템";
+"M_Slot_BLZ" =  "타워";
+
+
+"B_GDDesc" = "유도탄";
+"B_HEDesc" = "고폭탄";
+"B_HEGDDesc" = "하이유도탄";
+"B_DIV2Des" = "분산탄x2";
+"B_DIV4Des" = "분산탄x4";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "골드";
+
+"I_Radia" = "레이다";
+"I_RadiaDesc1" = "공격하려는 지점을";
+"I_RadiaDesc2" = "   클릭하면 공격함.";
+
+"I_A-PWD Cap." = "A-PWD Cap.";
+"I_A-PWD Cap.Desc1" = "공격력 향상으로";
+"I_A-PWD Cap.Desc2" = "공격파워 %d%% 업"; 
+
+"I_D-PWD Cap." = "D-PWD Cap.";
+"I_D-PWD Cap.Desc1" = "방어력 향상으로";
+"I_D-PWD Cap.Desc2" = "방어파워 %d%% 업";
+
+"I_Life Cap." = "Life Cap.";
+"I_Life Cap.Desc1" = "생명이 다하면";
+"I_Life Cap.Desc2" = "     다시 살아날수 있음.";
+
+"I_Magnet" = "아이템 자석";
+"I_MagnetDesc1" = "멀리 떨어져 있는";
+"I_MagnetDesc2" = "아이템을 끌어 당긴다.";
+
+"I_DTowerUP" = "가드타워";
+"I_DTowerUPDesc1" = "가드타워를";
+"I_DTowerUPDesc2" = "%d%% 업그레이드";
+
+"I_DMTowerUP" = "미사일타워";
+"I_DMTowerUPDesc1" = "미사일타워를";
+"I_DMTowerUPDesc2" = "%d%% 업그레이드";
+
+"I_Gold4000" = "Gold 4000";
+"I_Gold4000Desc1" = "골드 4000을";
+"I_Gold4000Desc2" = "      채워줍니다.";
+
+"I_Gold9000" = "Gold 9000";
+"I_Gold9000Desc1" = "골드 9000을";
+"I_Gold9000Desc2" = "      채워줍니다.";
+
+"I_RAD" = "광고 제거";
+"I_RADDesc1" = "광고가 있어 많이 불편";
+"I_RADDesc2" = "하셨죠? 제거하세요.";
+
+"I_FastGold" = "골드벌기속도업";
+"I_FastGoldDesc1" = "좀더 빨리 골드를";
+"I_FastGoldDesc2" = "모을 수 있습니다.";
+
+"I_FastBlz" = "건물짓기속도업";
+"I_FastBlzDesc1" = "건물을 짓는 ";
+"I_FastBlzDesc2" = "속도를 빠르게 합니다.";
+
+"I_UpPack1" = "업그레이드팩";
+"I_UpPack1Desc1" = "공격,벙어 각각";
+"I_UpPack1Desc2" = "3단계 업그레이드 해줍니다.";
+
+"I_Ambu"              = "수리차";
+"I_Ambu_Des1"          = "고장난 것을 ";
+"I_Ambu_Des2"          = "수리를 해줍니다.";
+"I_ArmC"              = "장갑차";
+"I_ArmC_Des1"          = "기관총으로.";
+"I_ArmC_Des2"          = "공격을 합니다.";
+"I_ArmT"              = "자주포";
+"I_ArmT_Des1"          = "폭탄으로 ";
+"I_ArmT_Des2"          = "공격합니다.";
+"I_Mis"              = "미사일탱크";
+"I_Mis_Des1"          = "이동하면서";
+"I_Mis_Des2"          = "미사일을 발사합니다.";
+
+
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       탱크";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     기관총이 탑제되어 있습니다.";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       기관총과 포신이 두개입니다.";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1     레이저가 탑제되어 있습니다.";
+"T_L3"              = "L3";
+"T_L3_Des"          = "L3     최고의 탱크입니다.";
+"T_Ambu"              = "수리차";
+"T_Ambu_Des"          = "수리를 해줍니다.";
+"T_ArmC"              = "장갑차";
+"T_ArmC_Des"          = "기관총으로 공격합니다.";
+"T_ArmT"              = "자주포";
+"T_ArmT_Des"          = "지상군을 공격합니다.";
+"T_Mis"              = "미사일탱크";
+"T_Mis_Des"          = "이동하면서 미사일을 발사합니다.";
+
+
+
+
+
+
+"T_T001"            = "가드타워";
+"T_T001_Des"        = "지상의 적들만 공격할 수 있습니다.";
+"T_T002"            = "미사일타워";
+"T_T002_Des"        = "전투기 및 지상의 적들을 유도미사일로 공격합니다.";
+"T_T003"            = "기관총발사대";
+"T_T003_Des"        = "전투기 및 지상의 적들을 기관총으로 공격합니다.";
+"T_T004"            = "에너지타워";
+"T_T004_Des"        = "범위 안쪽에 있는 아군을 수리합니다.";
+"R_Upgrade"         = "레벨업그레이드";
+"R_Upgrade_Des"         = "공격력 + 방어력을 업그레이드 합니다.";
+"R_Rng_Upgrade"     = "방어범위업그레이드";
+"R_Rng_Upgrade_Des" = "좀더 멀리 포를 발사 합니다.";
+"R_Repaire"         = "수리";
+"R_Repaire_Des"     = "수리하여 에너지를 보충합니다.";
+"R_Remove"         = "제거";
+"R_Remove_Des"     = "타워를 제거 합니다. 골드가 리턴됩니다.";
+
+"R_Amor_Upgrade"         = "보호막";
+"R_Amor_Upgrade_Des"     = "방어력을 20% 업그레이드합니다.";
+
+"R_Raser_Upgrade"         = "레이져업그레이드";
+"R_Raser_Upgrade_Des"     = "레이져 공격력 30% 업그레이드 합니다.";
+
+"R_MGun_Upgrade"         = "기관총탑제";
+"R_MGun_Upgrade_Des"     = "탱크에 기관총을 탑제합니다.";
+
+"R_Po_Upgrade"         = "포신업그레이드";
+"R_Po_Upgrade_Des"     = "포신을 업그레이드 해줍니다.";
+
+
+"Map_Training Center" = "훈련소";
+"Map_Coast Defense" = "해안선 방어";
+"Map_Mountain Terrain" = "산악 지형";
+"Map_The Sahara" = "사하라 사막";
+"Map_Heavy SnowFall" = "폭풍 설원";
+
+"Map_Training Center_Des" = "훈련소";
+"Map_Coast Defense_Des" = "해안선..";
+"Map_Mountain Terrain_Des" = "산악 지형";
+"Map_The Sahara_Des" = "사하라..";
+"Map_Heavy SnowFall_Des" = "폭풍 설원";
+
+"Map_Swamp" = "늪지대";
+"Map_Swamp_Des" = "늪지대";
+
+"Map_Ruins" = "폐 허";
+"Map_Ruins_Des" = "폐 허";
+
+"Map_Town" = "소도시";
+"Map_Town_Des" = "소도시";
+
+"Map_Maze" = "미 로";
+"Map_Maze_Des" = "미 로";
+
+"Map_Maze" = "미 로";
+"Map_Maze_Des" = "미 로";
+
+"Map_Moon" = "달기지";
+"Map_Moon_Des" = "최후의공격";
+
+
+
+"S_Title" = "게임 설정";
+"S_Music" = "배경음악";
+"S_SoundFX" = "효과음";
+"S_Vibration" = "진 동";
+
+
+
+
+"HMove" = "이 동";
+"HAttack" = "공 격";
+"HBomb" = "폭 탄";
+"HItem" = "아이템";
+"HMission" = "미션";
+
+"HMoveDesc"         = "이동하려고 하는 위치에 깃발을 옮기세요.";
+"HDes_1"            = "어느날";
+"HAttackDesc"       = "공격하려는 곳을 클릭하세요.";
+"HDes_2"            = "차원의 외계문명의 문이";
+"HDes_2_1"          = "열렸다.";
+"HBombDesc"         = "무기 변경 방법.";
+"HDes_3"            = "지구의 위기를 구하려면";
+"HItemDesc"         = "아이템 변경 방법.";
+"HDes_4"            = "차원의 문을 닫아야만 한다.";
+"HMissionDesc"      = "차원의 문을 파괴하라.";
+"HMissionDesc2"     = "미션 성공";
+"PSCORE"            = "점수";
+
+
+"MissBox_Title_S"       = "미션 성공!!";
+"MissBox_Title_E"       = "미션 실패!!";
+"MissBox_Score"         = "점 수";
+"MissBox_Bonus"         = "보너스";
+"MissBox_Gold"          = "골드";
+"MissBox_Total"         = "총점";
+"MissBox_OK"            = "확인";
+"ExitBox_Msg"           = "미션을 종료하겠습니까?";
+
+"Prom_Title"           = "진급을 축하합니다.";
+"Prom_Msg1"            = "공격&방어력,골드획득률";
+"Prom_Msg2"            = "%d%%업그데이드됩";
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+
+"Trn_Introduce_Msg_T1" = "훈련소 입소를 축하한다.";
+"Trn_Introduce_Msg_T2" = "제군들은 각각의 미션을 완성";
+"Trn_Introduce_Msg_T3" = "해야한다.";
+"Trn_Introduce_Msg_T4" = "졸업생은 골드4000를 받는다.";
+
+"Tran_Step1_MoveT" = "이동 훈련";
+"Tran_Step1_MoveDes1" = "탱크위에 손가락을 놓으세요.";
+
+"Tran_Step1_MoveDes2" = "목표지점으로 손가락을 이동한다.";
+"Tran_Step1_MoveDes3" = "이동을 중지 하려면, 탱크를 클릭.";
+
+
+"Tran_Step2_AttackT" = "공격 훈련";
+"Tran_Step2_AttackDes1" = "적탱크를 클릭하시오.";
+"Tran_Step2_AttackDes2" = "레이더에 나타나는 탱크를 클릭.";
+
+"Tran_Step2_ChSlotT" = "슬롯 변경";
+"Tran_Step2_ChSlotTDes1" = "버튼을 클릭하면, 폭탄으로 변경됨.";
+"Tran_Step2_ChSlotTDes2" = "버튼을 클릭하면, 아이템으로 변경됨.";
+"Tran_Step2_ChSlotTDes3" = "버튼을 클릭하면, 건물으로 변경됨.";
+
+"Tran_Step3_MissionT" = "임무완성 훈련";
+"Tran_Step3_MissionDes1" = "차원의 문을 공격하세요.";
+
+"Tran_Step3_END" = "축하합니다.";
+"Tran_Step3_ENDDes1" = "즐거운 게임이 되세요.";
+
+"Tran_Step6_MakeTowerT" = "건물 세우기";
+"Tran_Step6_MakeTowerDes1" = "건물 아이콘을 드래그 드롭하세요.";
+"Tran_Step6_MakeTowerDes2" = "건물을 세우고 있는 중.";
+
+"Tran_Step6_Upgrade" = "공격&방어 업그레이드";
+"Tran_Step6_UpgradeDes1" = "건물을 클릭하세요.";
+"Tran_Step6_UpgradeDes2" = "업그레이드 아이템을 클릭하세요.";
+"Tran_Step6_UpgradeDes3" = "업그레이드중입니다.";
+
+
+"Tran_Shot_Msg_T" = "경 고#";
+"Tran_Shot_Msg_Des1" = "훈련병은 훈련소를 #";
+"Tran_Shot_Msg_Des2" = " 졸업 해야합니다.#";
+
+"NoGold_Shot_Msg_Des1" = "골드가 부족가 부족합니.#";
+"NoGold_Shot_Msg_Des2" = "다.#";
+
+
+"World_Shop" = "상점";
+
+"Tran_Com_Msg_Des1" = "잠겨진 맵입니다..#";
+"Tran_Com_Msg_Des2" = "다른 맵을 실행하세요.#";
+
+
+"Menu_Comp_Msg_T1" = "              축하합니다.   ";
+"Menu_Comp_Msg_T2" = "모든 문이 파괴되어 평화가 찾아왔다.";
+"Menu_Comp_Msg_T3" = "하지만, 10년후...";
+"Menu_Comp_Msg_T4" = "더 강력한 외계가 침공하였다.";
+
+"Rating_Report_T" = "귀하의 평가가 필요합니다.";
+"Rating_Report_R" = "레이더 아이템을 드립니다.\n----------------------------\n좋은 게임을 만들기 위해 노력하겠습니다.\n감사합니다.";
+"Rating_Report_G" = "Gold 2000 아이템을 드립니다.\n----------------------------\n좋은 게임을 만들기 위해 노력하겠습니다.\n감사합니다.";
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "닉네임";
+"B_LeaveMessage" = "명언을 남기세요.";
+"B_Save" = "저장";
+"B_BestScore" = "최고 점수";
+//--
+
+"Completed Rng Upgrade" = "가 완료되었습니다.";
+"Completed Repare"  = "를 수리 하였습니다.";
+"Completed Level Upgrade" = "+5레벨 향상 되었습니다.";
+
+
+"MNoRecPurchase" = "구매한 기록이 없습니다.";
+"MRestoreTitle" = "구매(복원)";
+"MResotreMessage" = "제품을 구매 하시겠습니까?";
+"MRestore" = "복원(구매확인)";
+
+"Multi_MLoginT" = "로그인";
+"Multi_MLoginDes1" = "게임센터에 로그인해야";
+"Multi_MLoginDes2" = "합니다.";
+
+
+"Multi_MMatchT" = "매칭중";
+"Multi_MMatchDes1" = "플레이어를 찾았습니다.";
+"Multi_MMatchDes2" = "잠시만 기다려주세요.";
+
+
+"AlianceBox_Msg" = "상대방이 동맹을 요청했습니다.";
+"AlianceBox_Msg2" = "동맹을 하겠습니까?";
+
+
+"MulPlay_Start" = "상대방을 찾고 있습니다.";
+"MulPlay_Start2" = "%d초 후 자동으로 시작.";
+
+
+"NewViewTitle" = "새로운 버전이 있습니다.";
+"NewViewMSG" = "업그레이드를 하시겠습니까?";
+
+"IsHackedMsg" = "크랙된 단말기는 제품을 살 수가 없습니다.";

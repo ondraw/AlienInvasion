@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Bonjour tout le monde, invasion extraterrestre!</string>
+    <string name="app_name">InvasionExtra(AD)</string>
+    <string name="unpackmsg">Déballez..S\'il vous plaît attendez un moment.</string>
+    <string name="local_dir">fr.lproj</string>
+    
+    <string name="nickname">Pseudo.</string>
+    <string name="leavemessage">S\'il vous plaît laissez énonciations.</string>
+    <string name="save">Sauver</string>
+    
+    <string name="ratingreportT">Vos commentaires sont requis</string>
+    <string name="ratingreportR">Je vais vous donner le radar de l\'article.\n----------------------------\nJe vais essayer de faire un meilleur match.\nMerci.</string>
+    <string name="ratingreportG">Je vais vous donner le point d\'or 2000.\n----------------------------\nJe vais essayer de faire un meilleur match.\nMerci.</string>
+    <string name="yes">Oui</string>
+    <string name="no">Pas</string>
+    
+</resources>

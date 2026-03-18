@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "kr.co.songs.android.AlienInvasion"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 100
+        versionName "5.00"
+        multiDexEnabled true
+        ndk {
+            moduleName "songgl"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            ndk {
+                abiFilters 'arm64-v8a','armeabi-v7a'
+            }
+        }
+        debug {
+            ndk {
+                abiFilters 'arm64-v8a','armeabi-v7a'
+            }
+            jniDebuggable true
+        }
+        customDebugType {
+            debuggable true
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        ignoreWarnings true //false
+    }
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/*'
+        pickFirst 'lib/armeabi-v7a/*'
+    }
+    //ndkVersion '21.0.6113669'
+
+}
+
+dependencies {
+    implementation 'com.google.android.gms:play-services:+'
+    //implementation 'com.google.firebase:firebase-messaging:20.1.6'
+    //implementation 'com.google.firebase:firebase-messaging:9.2.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation files('libs/jsoup-1.8.1.jar')
+    //implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    //implementation 'com.google.android.gms:play-services-ads:17+'
+
+}

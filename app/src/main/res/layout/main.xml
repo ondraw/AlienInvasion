@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 광고가 상단에 나오게 한다. 
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >    
+    <com.google.ads.AdView      
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="a150f9541ec932b"
+        ads:adSize="SMART_BANNER"
+        ads:loadAdOnCreate="false"
+        />
+    
+	<kr.co.songs.android.AlienInvasion.AlienInvasionView
+	    android:id="@+id/glViewMine"    
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    />
+	
+</LinearLayout>
+-->
+
+<!-- 광고가 섞여서 나오게 하나. 잘 그려지지 않. -->
+<!-- FrameLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <kr.co.songs.android.AlienInvasion.AlienInvasionView
+	    android:id="@+id/glViewMine"    
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    android:layout_gravity="top|left"/>
+    
+    
+    <com.google.ads.AdView      
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="a150f9541ec932b"
+        ads:adSize="SMART_BANNER"
+        ads:loadAdOnCreate="true"
+        android:layout_gravity="bottom|center"
+        />
+    
+</FrameLayout-->
+
+
+
+<!--
+2014.12.09 
+광고가 아래부분에 나오게 한다.
+admob 은 http://schemas.android.com/apk/lib/com.google.ads
+gogole service 는 http://schemas.android.com/apk/res-auto 
+-->
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <com.google.android.gms.ads.AdView      
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-2468045858112255/8860357461"
+        ads:adSize="BANNER"
+        android:layout_alignParentBottom="true"
+        />
+        
+	<kr.co.songs.android.AlienInvasion.AlienInvasionView
+	    android:id="@+id/glViewMine"    
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    android:layout_alignParentTop="true"
+    	android:layout_above="@id/adView"/>
+
+
+</RelativeLayout>

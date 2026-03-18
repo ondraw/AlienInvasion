@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, AlienInvasion!</string>
+    <string name="app_name">탱크 키우기(AD)</string>
+    <string name="unpackmsg">압축해제. 잠시만 기다려주세요.</string>
+    <string name="local_dir">ko.lproj</string>
+    
+    <string name="nickname">닉네임</string>
+    <string name="leavemessage">명언을 남기세요.</string>
+    <string name="save">저장</string>
+    
+    
+    <string name="ratingreportT">귀하의 평가가 필요합니다.</string>
+    <string name="ratingreportR">레이더 아이템을 드립니다.\n----------------------------\n좋은 게임을 만들기 위해 노력하겠습니다.\n감사합니다.</string>
+    <string name="ratingreportG">Gold 2000 아이템을 드립니다.\n----------------------------\n좋은 게임을 만들기 위해 노력하겠습니다.\n감사합니다.</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    
+    
+    <string name="sign_in_failed">로그인 실패. 네트워크를 체크한후에 다시 시도해주세요.</string>
+    <string name="app_misconfigured">잘못된 설정입니다. 패키지이름과 앱아이디를 매칭하세요.</string>
+    <string name="license_failed">라이센스체크에 실패하였습니다.</string>
+    <string name="unknown_error">알려지지 않은 오류입니다.</string>
+    <string name="SNSContents">우리 같이 게임 해요.</string>
+    <string name="SNSMsgTitle">공유</string>
+</resources>

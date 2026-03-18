@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, AlienInvasion!</string>
+    <string name="app_name">外星人入侵(AD)</string>
+    <string name="unpackmsg">减压。请稍等片刻。</string>
+    <string name="local_dir">zh-Hans.lproj</string>
+    
+    
+    <string name="nickname">昵称</string>
+    <string name="leavemessage">我想说的</string>
+    <string name="save">存储</string>
+    
+    
+    <string name="ratingreportT">你的评级是必需的。</string>
+    <string name="ratingreportR">我会给你的项目的雷达。\n----------------------------\n我会努力做出更好的游戏。\n谢谢</string>
+    <string name="ratingreportG">我会给你的项目金2000。\n----------------------------\n我会努力做出更好的游戏。\n谢谢</string>
+    
+    <string name="yes">例子</string>
+    <string name="no">没有</string>
+    
+    
+    <string name="sign_in_failed">没有登录，请检查您的网络连接，然后再试一次。</string>
+    <string name="app_misconfigured">该应用程序配置不正确。检查包名和签名证书相匹配的开发者控制台创建客户端ID。此外，如果应用程序尚未公布，请检查你的帐户试图登录同被列为测试帐号。请查看日志以获取更多信息。</string>
+    <string name="license_failed">许可证检查失败。</string>
+    <string name="unknown_error">未知错误。</string>
+   	<string name="SNSContents">让我们一起比赛。</string>
+    <string name="SNSMsgTitle">分享</string>
+    
+</resources>

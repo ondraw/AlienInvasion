@@ -1,0 +1,405 @@
+/*
+ Localizable.strings
+ AlienInvasion
+ 
+ Created by itsme on 12. 10. 24..
+ Copyright (c) 2012년 itsme. All rights reserved.
+ */
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "Annuler";
+"MBuy"              = "Acheter(%@)";
+"MError"            = "Erreur";
+"MOK"               = "Bien";
+"MErrorRequest"     = "Impossible de se connecter au réseau, ou Non trouvé les produits assortis";
+"MFailRequest"      = "Vous ne pouvez pas demander %@";
+"MFailBuy"          = "Impossible d'acheter.";
+"MNo"               = "Not";
+"MYes"              = "Oui";
+
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"            = "MENU";
+"M_Menu_Map"             = "Carte";
+"M_Menu_Tank"            = "Tank";
+//"M_Menu_BombItem"        = "BOMBE / ARTICLE";
+"M_Menu_BombItem"        = "Meilleur Score";
+"M_Menu_Shop"            = "Boutique";
+//"M_Rank_Title"           = "votre Classement";
+"M_Menu_Multi1"          = "Connexion";
+"M_Menu_Multi2"          = "Connexion ...";
+"M_Menu_Multi3"          = "Multijoueur";
+"M_Menu_Multi4"          = "Solo";
+
+"M_Tap_Item"             = "Article";
+"M_Tap_Bomb"             = "Bombe";
+"M_Start"                = "Démarrer";
+"M_Map_Desc_Title"            = "Carte actuelle";
+"M_Map_Desc_Dificulty"   = "Difficulté";
+"M_Tank_Desc_Title"            = "Réservoir courant";
+"M_Tank_Desc_Level" = "Niveau";
+"M_Tank_Desc_Seed"      = "Vites";
+"M_Tank_Desc_Power"      = "Puiss";
+"M_Tank_Desc_Defense"      = "Défense";
+
+"M_Tank_Desc_Select" = "Sélectionner";
+"M_Tank_Desc_Buy" = "Acheter";
+"M_Tank_Desc_Requested" = "Demandé";
+"M_Tank_Desc_Rank" = "Rang";
+
+
+"M_IB_BUY"          = "ACHETER";
+"M_IB_OK"           = "BIEN";
+"M_IB_CANCEL"       = "ANNULER";
+"M_IB_SAVE"         = "SAUVEZ";
+"M_IB_YES"          = "OUI";
+
+"M_IB_Power"        = "puissance";
+"M_IB_Range"        = "gamme";
+"M_IB_Ammo"        = "munitions";
+
+"M_Slot_Bomb" = "Bombe";
+"M_Slot_Item" = "Article";
+"M_Slot_BLZ"  = "Tour";
+
+
+"B_GDDesc" = "guidéBP";
+"B_HEDesc" = "explosifBP";
+"B_HEGDDesc" = "Exp guidée";
+"B_DIV2Des" = "BPx2 Plan";
+"B_DIV4Des" = "BPx4 Plan";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "or";
+
+"I_Radia" = "Radar";
+"I_RadiaDesc1" = "Tab pour le Radar";
+"I_RadiaDesc2" = "attaque automatique";
+
+"I_A-PWD Cap." = "A-PWD Cap.";
+"I_A-PWD Cap.Desc1" = "Mise à niveau d'attaque";
+"I_A-PWD Cap.Desc2" = "puissance %d%% jusqu'à";
+
+"I_D-PWD Cap." = "D-PWD Cap.";
+"I_D-PWD Cap.Desc1" = "Améliorez la Défense";
+"I_D-PWD Cap.Desc2" = "puissance %d%% jusqu'à";
+
+"I_Life Cap." = "vie Cap.";
+"I_Life Cap.Desc1" = "Assurez-puissance (100%)";
+"I_Life Cap.Desc2" = "énergétique complet";
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       Tank";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     est équipé d'une mitrailleuse.";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       est équipé d'une mitrailleuse, ^                          et deux corps.";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1     est équipé d'un canon laser.";
+"T_L3"              = "L3";
+"T_L3_Des"          = "L3     le meilleur réservoir.";
+"T_Ambu"              = "Réparation";
+"T_Ambu_Des"          = "         Guérir la zone endommagée.";
+"T_ArmC"              = "Panzer";
+"T_ArmC_Des"          = "       Mitrailleuse attaque.";
+"T_ArmT"              = "Autopropulsés";
+"T_ArmT_Des"          = "       attaquer l'ennemi tout en se déplaçant.";
+"T_Mis"              = "Missile";
+"T_Mis_Des"          = "       Vous pouvez lancer plusieurs missiles.";
+
+
+"T_T001"            = "Tour de garde";
+"T_T001_Des"        = "Cela ne peut attaquer sol ennemi.";
+"T_T002"            = "missile Tour";
+"T_T002_Des"        = "Cela peut attaquer terrain ennemi ^                          ou d'un aéronef par ^                          des missiles guidés";
+"T_T003"            = "Machine gun";
+"T_T003_Des"        = "Cela peut attaquer terrain ennemi ^                          ou d'un aéronef par ^                          Mitrailleuse";
+"T_T004"            = "Tour de l'énergie";
+"T_T004_Des"        = "Vous pouvez corriger les ^                          alliés environnantes.";
+"R_Upgrade"         = "Mise à jour du niveau";
+"R_Upgrade_Des"         = "Améliorez votre armure et les ^                          dégâts puissance.";
+"R_Rng_Upgrade"     = "Gamme de mise à niveau";
+"R_Rng_Upgrade_Des" = "Plus éloigné tirs de canon.";
+"R_Repaire"         = "Réparation";
+"R_Repaire_Des"     = "Réparer et refaire le plein ^                          d'énergie.";
+"R_Remove"         = "Enlèvement";
+"R_Remove_Des"     = "Retirer la tour. Or sera retourné.";
+"R_Amor_Upgrade"         = "Bouclier ";
+"R_Amor_Upgrade_Des"     = "Améliorez votre armure ^                          de 20%.";
+"R_Raser_Upgrade"         = "laser";
+"R_Raser_Upgrade_Des"     = "Améliorer la puissance du laser ^                          de 30%.";
+"R_MGun_Upgrade"         = "Mitrailleuse";
+"R_MGun_Upgrade_Des"     = "Installer une mitrailleuse.";
+"R_Po_Upgrade"         = "Améliorez Barrel";
+"R_Po_Upgrade_Des"     = "Rendre plus barils.";
+
+
+"I_Magnet" = "Magnétique";
+"I_MagnetDesc1" = "Il s'éloigner";
+"I_MagnetDesc2" = "  de l'article.";
+
+
+"I_DTowerUP" = "Tour de garde";
+"I_DTowerUPDesc1" = "Tours de garde sont";
+"I_DTowerUPDesc2" = "mis à niveau à %d%%.";
+
+"I_DMTowerUP" = "Missile Tour";
+"I_DMTowerUPDesc1" = "Tours de missiles sont";
+"I_DMTowerUPDesc2" = "mis à niveau à %d%%.";
+
+
+"I_Gold4000" = "Or 4000";
+"I_Gold4000Desc1" = "charge d'or";
+"I_Gold4000Desc2" = "(+4000)";
+
+"I_Gold9000" = "Or 9000";
+"I_Gold9000Desc1" = "charge d'or";
+"I_Gold9000Desc2" = "(+9000)";
+
+"I_RAD" = "Retirer annonces";
+"I_RADDesc1" = "Retirer annonces";
+"I_RADDesc2" = " mal à l'aise";
+
+"I_FastGold" = "Gagnez de l'or rapide ";
+"I_FastGoldDesc1" = "Faire de l'or beaucoup";
+"I_FastGoldDesc2" = "plus rapide taux. ";
+
+"I_FastBlz" = "Construire rapidement ";
+"I_FastBlzDesc1" = "Construire le bâtiment ";
+"I_FastBlzDesc2" = "plus rapidement.";
+
+"I_UpPack1" = "De mise à niveau";
+"I_UpPack1Desc1" = "Défense et la puissance";
+"I_UpPack1Desc2" = "d'attaque augmente à l'étape 3.";
+
+"I_Ambu"              = "Réparation";
+"I_Ambu_Des1"          = "Guérir la zone endommagée.";
+"I_Ambu_Des2"          = "";
+"I_ArmC"              = "Panzer";
+"I_ArmC_Des1"          = "Mitrailleuse attaque..";
+"I_ArmC_Des2"          = "";
+"I_ArmT"              = "Autopropulsés";
+"I_ArmT_Des1"          = "attaquer l'ennemi tout  ";
+"I_ArmT_Des2"          = "en se déplaçant.";
+"I_Mis"              = "Missile";
+"I_Mis_Des1"          = "Vous pouvez lancer";
+"I_Mis_Des2"          = "plusieurs missiles.";
+
+"Map_Training Center" = "Centre Form..";
+"Map_Coast Defense" = "Côte Défense";
+"Map_Mountain Terrain" = "MontagneTerrain";
+"Map_The Sahara" = "Le Sahara";
+"Map_Heavy SnowFall" = "Chute de neige";
+
+"Map_Training Center_Des" = "Formation";
+"Map_Coast Defense_Des" = "Côte";
+"Map_Mountain Terrain_Des" = "Montagne";
+"Map_The Sahara_Des" = "Sahara";
+"Map_Heavy SnowFall_Des" = "Chute de neige";
+
+"Map_Swamp" = "Marais";
+"Map_Swamp_Des" = "Marais";
+
+"Map_Ruins" = "Ruines";
+"Map_Ruins_Des" = "Ruines";
+
+"Map_Town" = "Ville";
+"Map_Town_Des" = "Ville";
+
+"Map_Maze" = "Labyrinthe";
+"Map_Maze_Des" = "Labyrinthe";
+
+"Map_Moon" = "Lune";
+"Map_Moon_Des" = "Lune";
+
+
+
+"S_Title" = "PARAMETRES DU JEU";
+"S_Music" = "Musique";
+"S_SoundFX" = "Son FX";
+"S_Vibration" = "Vibration";
+
+
+
+
+"HMove" = "Déménagement";
+"HAttack" = "Attaque";
+"HBomb" = "Bombe";
+"HItem" = "Item";
+"HMission" = "Mission";
+
+"HMoveDesc"         = "Mettez le drapeau où vous essayez de déplacer.";
+"HDes_1"            = "un jour";
+"HAttackDesc"       = "Cliquez heare essayant d'attaquer.";
+"HDes_2"            = "ouvert la porte de";
+"HDes_2_1"          = "la Dimession d'étranger,";
+"HBombDesc"         = "Cliquez heare pour changer votre arme.";
+"HDes_3"            = "porte dimensionnelle doit être fermé";
+"HItemDesc"         = "Cliquez heare de vérifier votre article";
+"HDes_4"            = "afin de sauver de la crise de la Terre.";
+"HMissionDesc"      = "Débarrassez-vous de la porte dimensionnelle.";
+"HMissionDesc2"     = "Le succès de la mission";
+"PSCORE"            = "SCORE";
+
+
+"MissBox_Title_S"       = "Succès de la mission";
+"MissBox_Title_E"       = "Mission Impossible";
+"MissBox_Score"         = "SCORE";
+"MissBox_Bonus"         = "PRIME";
+"MissBox_Gold"          = "OR";
+"MissBox_Total"         = "Total";
+"MissBox_OK"            = "BIEN";
+
+
+"ExitBox_Msg"           = "Vous quittez-vous la mission?";
+
+
+"Prom_Title"           = "Félicitations pour votre promotion.";
+"Prom_Msg1"            = "att&déf de puissance, or";
+"Prom_Msg2"            = "%d%% Mise à jour";
+
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+
+"Trn_Introduce_Msg_T1" = "Bienvenue au camp d'entraînement.";
+"Trn_Introduce_Msg_T2" = "Messieurs, vous devez remplir ";
+"Trn_Introduce_Msg_T3" = "chaque mission.";
+"Trn_Introduce_Msg_T4" = "Les diplômés recevront 4000 or.";
+
+"Tran_Step1_MoveT" = "Train en marche";
+"Tran_Step1_MoveDes1" = "Mettez votre doigt ^sur le réservoir.";
+"Tran_Step1_MoveDes2" = "Déplacez votre doigt ^vers le point cible";
+"Tran_Step1_MoveDes3" = "Pour arrêter le déplacement, ^cliquez sur le réservoir.";
+
+
+
+"Tran_Step2_AttackT" = "Train d'Attaque";
+"Tran_Step2_AttackDes1" = "Cliquez sur les chars ennemis";
+"Tran_Step2_AttackDes2" = "Cliquez réservoirs apparaissent ^sur ​​le radar";
+
+"Tran_Step2_ChSlotT" = "Changer de logement";
+"Tran_Step2_ChSlotTDes1" = "Cliquez sur le bouton, ^la bombe a changé.";
+"Tran_Step2_ChSlotTDes2" = "Cliquez sur le bouton, ^l'article modifié.";
+"Tran_Step2_ChSlotTDes3" = "Cliquez sur le bouton, ^la BLZ changé.";
+
+
+"Tran_Step3_MissionT" = "Train Mission";
+"Tran_Step3_MissionDes1" = "Attaque de la porte de dimension";
+
+"Tran_Step3_END" = "Félicitations.";
+"Tran_Step3_ENDDes1" = "Appréciez le jeu.";
+
+
+"Tran_Step6_MakeTowerT" = "établir BLZ";
+"Tran_Step6_MakeTowerDes1" = "Faites glisser et déposez ^l'icône du bâtiment.";
+"Tran_Step6_MakeTowerDes2" = "Le bâtiment est à tracer.";
+
+"Tran_Step6_Upgrade" = "mise à niveau des dommages. ";
+"Tran_Step6_UpgradeDes1" = "cliquez sur le bâtiment. ";
+"Tran_Step6_UpgradeDes2" = "cliquez sur le bouton Mettre à niveau.";
+
+"Tran_Shot_Msg_T" = "AVERTISSEMENT#";
+"Tran_Shot_Msg_Des1" = "Être diplômé d'#";
+"Tran_Shot_Msg_Des2" = "un centre de formation.#";
+
+"NoGold_Shot_Msg_Des1" = "Il est hors de l'or.#";
+"NoGold_Shot_Msg_Des2" = "#";
+
+"World_Shop" = "Boutique";
+
+"Tran_Com_Msg_Des1" = "La carte est verrouillée.#";
+"Tran_Com_Msg_Des2" = "Sélectionnez une autre carte.#";
+
+
+"Menu_Comp_Msg_T1" = "Félicitations.   ";
+"Menu_Comp_Msg_T2" = "Toutes les portes ont été détruites. La paix est venue.";
+"Menu_Comp_Msg_T3" = "Mais, 10 ans plus tard ...";
+"Menu_Comp_Msg_T4" = "Il y avait une invasion extraterrestre, plus puissant.";
+
+
+//"Rating_Report" = "Hellow.\nI will try to make a better game.\nYour ratings are required.\nThank you.";
+"Rating_Report_T" = "Vos commentaires sont requis";
+"Rating_Report_R" = "Je vais vous donner le radar de l'article.\n----------------------------\nJe vais essayer de faire un meilleur match.\nMerci.";
+"Rating_Report_G" = "Je vais vous donner le point d'or 2000.\n----------------------------\nJe vais essayer de faire un meilleur match.\nMerci.";
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "Pseudo";
+"B_LeaveMessage" = "S'il vous plaît laissez paroles.";
+"B_Save" = "sauver";
+"B_BestScore" = "Le meilleur score";
+//--
+
+"Completed Rng Upgrade" = " a été achevée.";
+"Completed Repare"  = " a été réparé.";
+"Completed Level Upgrade" = "+5 niveau a été amélioré.";
+
+"MNoRecPurchase" = "Il n'ya aucune trace de l'achat.";
+"MRestoreTitle" = "Achat (restauration)";
+"MResotreMessage" = "Souhaitez-vous acheter?";
+"MRestore" = "Restaurer";
+
+"Multi_MLoginT" = "Connexion";
+"Multi_MLoginDes1" = "Vous devez être connecté ";
+"Multi_MLoginDes2" = "pour Game Center.";
+
+"Multi_MMatchT" = "Appariement ";
+"Multi_MMatchDes1" = "Les joueurs ont trouvé. ";
+"Multi_MMatchDes2" = "S'il vous plaît, attendez.";
+
+"AlianceBox_Msg" = "Je demande l'alliance. .";
+"AlianceBox_Msg2" = "voulez-vous une alliance?";
+
+"MulPlay_Start" = "looking for players.";
+"MulPlay_Start2" = "start after %d sec";
+
+"NewViewTitle" = "Il est une nouvelle version. ";
+"NewViewMSG" = "Voulez-vous améliorer?";
+
+"IsHackedMsg" = "I can not buy a product with a cracked iOS.";

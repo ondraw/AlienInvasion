@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Привет мир, вторжение инопланетян!</string>
+    <string name="app_name">иностранецбак(pe)</string>
+    
+    <string name="unpackmsg">Распакуйте.....  Подождите.</string>
+    <string name="local_dir">ru.lproj</string>
+    
+    <string name="nickname">Ник.</string>
+    <string name="leavemessage">Пожалуйста, оставьте поговорки.</string>
+    <string name="save">экономить</string>
+    
+    <string name="ratingreportT">Ваши отзывы необходимы</string>
+    <string name="ratingreportR">Я дам вам пункт радар.\n----------------------------\nЯ постараюсь сделать лучшую игру.\nСпасибо.</string>
+    <string name="ratingreportG">Я дам вам пункт золото 2000.\n----------------------------\nЯ постараюсь сделать лучшую игру.\nСпасибо.</string>
+    <string name="yes">да</string>
+    <string name="no">не</string>
+    
+    <string name="sign_in_failed">Не удалось войти на сайт. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
+    <string name="app_misconfigured">Приложения, настроен неправильно. Убедитесь, что имя пакета и сертификат подписи совпадают идентификатор клиента, созданный в консоли разработчика. Кроме того, если приложение еще не опубликована, проверять, что учетная запись вы пытаетесь войти в систему с перечислено в качестве тестера счет См. журнал для получения дополнительной информации.</string>
+    <string name="license_failed">Проверка лицензии не удалось.</string>
+    <string name="unknown_error">Неизвестная ошибка.</string>
+    <string name="SNSContents">Давайте вместе игру.</string>
+    <string name="SNSMsgTitle">доля</string>
+</resources>

@@ -1,0 +1,8 @@
+app/.externalNativeBuild/*
+app/build/*
+.DS_Store
+.gradle/*
+app/libs/*
+product/release/*
+gradle/wrapper/*
+app/src/main/libs/*

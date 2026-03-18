@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">hola mundo, la invasión alienígena!</string>
+    <string name="app_name">InvasiónAlien(AD)</string>
+    <string name="unpackmsg">Desembale.... Por favor, espere un momento.</string>
+    <string name="local_dir">es.lproj</string>
+    
+    <string name="nickname">Apodo.</string>
+    <string name="leavemessage">Por favor, deje dichos.</string>
+    <string name="save">Guardar</string>
+    
+    <string name="ratingreportT">Sus comentarios son requeridos</string>
+    <string name="ratingreportR">Te voy a dar el radar ítem.\n----------------------------\nVoy a tratar de hacer un mejor juego.\nGracias.</string>
+    <string name="ratingreportG">Yo te daré las de oro 2000 ítem.\n----------------------------\nVoy a tratar de hacer un mejor juego.\nGracias.</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    
+</resources>

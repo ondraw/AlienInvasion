@@ -1,0 +1,14 @@
+//
+// Prefix header for all source files of the 'SongGL' target in the 'SongGL' project.
+//
+
+#ifdef MAC
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+#endif
+
+
+#ifdef IPHONE
+#define APPSTOREKIT //애플 스토어 킷을 사용하면 정의 한다.
+#endif

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hallo Welt, AlienInvasion!</string>
+    <string name="app_name">AlienInvasion(AD)</string>
+
+    <string name="unpackmsg">Unpack....Please wait a moment.</string>
+    <string name="local_dir">de.lproj</string>
+    
+    <string name="nickname">Spitzname.</string>
+    <string name="leavemessage">Bitte hinterlassen Sie Sprüche.</string>
+    <string name="save">Sparen</string>
+    
+    <string name="ratingreportT">Ihre Bewertungen sind erforderlich</string>
+    <string name="ratingreportR">Ich gebe Ihnen den Artikel Radar.\n----------------------------\nIch werde versuchen, ein besseres Spiel zu machen.\nDanke.</string>
+    <string name="ratingreportG">Ich gebe Ihnen das Element Gold-Jahr 2000.\n----------------------------\nIch werde versuchen, ein besseres Spiel zu machen.\nDanke.</string>
+    <string name="yes">Ja</string>
+    <string name="no">Not</string>
+</resources>

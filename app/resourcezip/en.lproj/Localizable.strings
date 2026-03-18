@@ -1,0 +1,410 @@
+/* 
+  Localizable.strings
+  AlienInvasion
+
+  Created by itsme on 12. 10. 24..
+  Copyright (c) 2012년 itsme. All rights reserved.
+*/
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "Cancel";
+"MBuy"              = "Buy(%@)";
+"MError"            = "Error";
+"MOK"               = "OK";
+"MErrorRequest"     = "Unable to connect to the network, or Not found matching products";
+"MFailRequest"      = "Can't request %@";
+"MFailBuy"          = "Failed to purchase.";
+"MNo"               = "No";
+"MYes"              = "Yes";
+
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"            = "MENU";
+"M_Menu_Map"             = "MAP";
+"M_Menu_Tank"            = "TANK";
+//"M_Menu_BombItem"        = "BOMB/ITEM";
+"M_Menu_BombItem"        = "BEST SCORE";
+"M_Menu_Shop"            = "SHOP";
+"M_Menu_Multi1"          = "LOGIN";
+"M_Menu_Multi2"          = "Signing in ...";
+"M_Menu_Multi3"          = "Multiplayer";
+"M_Menu_Multi4"          = "Singleplayer";
+//"M_Rank_Title"           = "Your Rank";
+
+"M_Tap_Item"             = "Item";
+"M_Tap_Bomb"             = "Bomb";
+"M_Start"                = "Start";
+"M_Map_Desc_Title"            = "Current Map";
+"M_Map_Desc_Dificulty"   = "Difficulty";
+"M_Tank_Desc_Title"            = "Current Tank";
+"M_Tank_Desc_Level" = "Level";
+"M_Tank_Desc_Seed"      = "Speed";
+"M_Tank_Desc_Power"      = "Power";
+"M_Tank_Desc_Defense"      = "Defense";
+
+"M_Tank_Desc_Select" = "Select";
+"M_Tank_Desc_Buy" = "Buy";
+"M_Tank_Desc_Requested" = "Requested";
+"M_Tank_Desc_Rank" = "Rank";
+
+
+"M_IB_BUY"          = "BUY";
+"M_IB_OK"           = "OK";
+"M_IB_CANCEL"       = "CANCEL";
+"M_IB_SAVE"         = "SAVE";
+"M_IB_YES"          = "YES";
+
+"M_IB_Power"        = "Power";
+"M_IB_Range"        = "Range";
+"M_IB_Ammo"        = "Ammo";
+
+"M_Slot_Bomb" = "Bomb";
+"M_Slot_Item" = "Item";
+"M_Slot_BLZ"  = "Tower";
+
+
+"B_GDDesc" = "GuidedBP";
+"B_HEDesc" = "ExplosiveBP";
+"B_HEGDDesc" = "Exp Guided";
+"B_DIV2Des" = "Shot BPx2";
+"B_DIV4Des" = "Shot BPx4";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "Gold";
+
+"I_Radia" = "Radar";
+"I_RadiaDesc1" = "Tab to the Radar";
+"I_RadiaDesc2" = "    automatic attack";
+
+"I_A-PWD Cap." = "A-PWD Cap.";
+"I_A-PWD Cap.Desc1" = "Upgrade Attack";
+"I_A-PWD Cap.Desc2" = "    PWD %d%% Up";
+
+"I_D-PWD Cap." = "D-PWD Cap.";
+"I_D-PWD Cap.Desc1" = "Upgrade Defence";
+"I_D-PWD Cap.Desc2" = "    PWD %d%% Up";
+
+"I_Life Cap." = "Life Cap.";
+"I_Life Cap.Desc1" = "Make Full (100%)";
+"I_Life Cap.Desc2" = "         Energy PW";
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       Tank";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     is equipped with a machine gun.";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       is equipped with a machine gun and two barrel.";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1     is equipped with a laser gun.";
+"T_L3"              = "L3";
+"T_L3_Des"          = "L3     The best tank.";
+"T_Ambu"              = "Repair";
+"T_Ambu_Des"          = "          Heal the damaged area.";
+"T_ArmC"              = "Panzer";
+"T_ArmC_Des"          = "          Machine gun attack.";
+"T_ArmT"              = "SelfPropelled";
+"T_ArmT_Des"          = "          Attack the enemy while moving.";
+"T_Mis"              = "Missile";
+"T_Mis_Des"          = "       You can launch multiple missiles.";
+
+
+
+"T_T001"            = "Guard Tower";
+"T_T001_Des"        = "This can only attack enemy ground.";
+"T_T002"            = "Missile Tower";
+"T_T002_Des"        = "This can attack enemy ground or aircraft ^                          by guided missiles";
+"T_T003"            = "Machine gun";
+"T_T003_Des"        = "This can attack enemy ground or aircraft ^                          by Machine gun";
+"T_T004"            = "Energy Tower";
+"T_T004_Des"        = "You can fix the surrounding allies.";
+"R_Upgrade"         = "Level upgrade";
+"R_Upgrade_Des"         = "Upgrade your armor and damage power.";
+"R_Rng_Upgrade"     = "Range upgrade";
+"R_Rng_Upgrade_Des" = "More distant cannon fire.";
+"R_Repaire"         = "Repair";
+"R_Repaire_Des"     = "Repair and replenish your energy.";
+"R_Remove"         = "Removal";
+"R_Remove_Des"     = "Remove the tower. Gold will be returned.";
+"R_Amor_Upgrade"         = "Shield";
+"R_Amor_Upgrade_Des"     = "Upgrade your armor ^                          by 20%.";
+"R_Raser_Upgrade"         = "Laser";
+"R_Raser_Upgrade_Des"     = "Upgrade laser power ^                          by 30%.";
+"R_MGun_Upgrade"         = "Machine gun";
+"R_MGun_Upgrade_Des"     = "Install a machine gun.";
+"R_Po_Upgrade"         = "Upgrade Barrel";
+"R_Po_Upgrade_Des"     = "Make it more barrels.";
+
+
+
+"I_Magnet" = "Magnetic";
+"I_MagnetDesc1" = "Pull away from";
+"I_MagnetDesc2" = "        the item.";
+
+
+"I_DTowerUP" = "Guard Tower";
+"I_DTowerUPDesc1" = "Guard towers are";
+"I_DTowerUPDesc2" = "upgraded to %d%%.";
+
+"I_DMTowerUP" = "Missile Tower";
+"I_DMTowerUPDesc1" = "Missile towers are";
+"I_DMTowerUPDesc2" = "upgraded to %d%%.";
+
+
+"I_Gold4000" = "Gold 4000";
+"I_Gold4000Desc1" = "Charge Gold";
+"I_Gold4000Desc2" = "(+4000)";
+
+"I_Gold9000" = "Gold 9000";
+"I_Gold9000Desc1" = "Charge Gold";
+"I_Gold9000Desc2" = "(+9000)";
+
+"I_RAD" = "Remove Ads";
+"I_RADDesc1" = "Remove ads";
+"I_RADDesc2" = "uncomfortable.";
+
+"I_FastGold" = "Earn gold faster";
+"I_FastGoldDesc1" = "Making gold ";
+"I_FastGoldDesc2" = "much faster rate. ";
+
+"I_FastBlz" = "Quickly build";
+"I_FastBlzDesc1" = "Build the building";
+"I_FastBlzDesc2" = "more quickly.";
+
+"I_UpPack1" = "Upgrade Package";
+"I_UpPack1Desc1" = "Defense & attack pw";
+"I_UpPack1Desc2" = "rises to step 3.";
+
+"I_Ambu"              = "Repair";
+"I_Ambu_Des1"          = "Heal the damaged";
+"I_Ambu_Des2"          = "            area.";
+"I_ArmC"              = "Panzer";
+"I_ArmC_Des1"          = "Machine gun attack.";
+"I_ArmC_Des2"          = "";
+"I_ArmT"              = "SelfPropelled";
+"I_ArmT_Des1"          = "Attack the enemy ";
+"I_ArmT_Des2"          = "  while moving.";
+"I_Mis"              = "Missile";
+"I_Mis_Des1"          = "You can launch ";
+"I_Mis_Des2"          = "   multiple missiles.";
+
+
+"Map_Training Center" = "Training Center";
+"Map_Coast Defense" = "Coast Defense";
+"Map_Mountain Terrain" = "Mountain Terrain";
+"Map_The Sahara" = "The Sahara";
+"Map_Heavy SnowFall" = "Heavy SnowFall";
+
+"Map_Training Center_Des" = "Training";
+"Map_Coast Defense_Des" = "Coast";
+"Map_Mountain Terrain_Des" = "Mountain";
+"Map_The Sahara_Des" = "Sahara";
+"Map_Heavy SnowFall_Des" = "SnowFall";
+
+"Map_Swamp" = "Swamp";
+"Map_Swamp_Des" = "Swamp";
+
+"Map_Ruins" = "Ruins";
+"Map_Ruins_Des" = "Ruins";
+
+"Map_Town" = "Town";
+"Map_Town_Des" = "Town";
+
+"Map_Maze" = "Maze";
+"Map_Maze_Des" = "Maze";
+
+"Map_Moon" = "Moon";
+"Map_Moon_Des" = "Moon";
+
+
+
+"S_Title" = "GAME SETTINGS";
+"S_Music" = "Music";
+"S_SoundFX" = "SoundFX";
+"S_Vibration" = "Vibration";
+
+
+
+
+"HMove" = "Move";
+"HAttack" = "Attack";
+"HBomb" = "Bomb";
+"HItem" = "Item";
+"HMission" = "Mission";
+
+"HMoveDesc"         = "Put the flag where you try to move.";
+"HDes_1"            = "One day";
+"HAttackDesc"       = "Click here trying to attack";
+"HDes_2"            = "opened the door of";
+"HDes_2_1"          = "the dimension of alien,";
+"HBombDesc"         = "Click here to change your weapon.";
+"HDes_3"            = "dimensional gate must be closed";
+"HItemDesc"         = "Click here to check out your item";
+"HDes_4"            = "in order to save the Earth's crisis.";
+"HMissionDesc"      = "Get rid of the dimensional gate.";
+"HMissionDesc2"     = "Success in the mission";
+"PSCORE"            = "SCORE";
+
+
+"MissBox_Title_S"       = "Mission Success";
+"MissBox_Title_E"       = "Mission Failed";
+"MissBox_Score"         = "Score";
+"MissBox_Bonus"         = "Bonus";
+"MissBox_Gold"          = "Gold";
+"MissBox_Total"         = "Total";
+"MissBox_OK"            = "OK";
+
+
+"ExitBox_Msg"           = "Do you exit the mission?";
+
+
+"Prom_Title"           = "Congratulations on your promotion.";
+"Prom_Msg1"            = "Att&Def Power,Gold";
+"Prom_Msg2"            = "%d%% Upgrade";
+
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+
+"Trn_Introduce_Msg_T1" = "Welcome to the training camp.";
+"Trn_Introduce_Msg_T2" = "Gentlemen, you must complete ";
+"Trn_Introduce_Msg_T3" = "each mission.";
+"Trn_Introduce_Msg_T4" = "Graduates will receive 4000 gold.";
+
+"Tran_Step1_MoveT" = "Moving train";
+"Tran_Step1_MoveDes1" = "Put your finger over the tank.";
+"Tran_Step1_MoveDes2" = "Move your finger to the target point";
+"Tran_Step1_MoveDes3" = "To stop moving, click on the tank.";
+
+
+
+"Tran_Step2_AttackT" = "Attack train";
+"Tran_Step2_AttackDes1" = "Click on the enemy tanks";
+"Tran_Step2_AttackDes2" = "Click tanks appear on the radar";
+
+"Tran_Step2_ChSlotT" = "Change slot";
+"Tran_Step2_ChSlotTDes1" = "Click the button, the bomb changed.";
+"Tran_Step2_ChSlotTDes2" = "Click the button, the item changed.";
+"Tran_Step2_ChSlotTDes3" = "Click the button, the blz changed.";
+
+
+"Tran_Step3_MissionT" = "Mission train";
+"Tran_Step3_MissionDes1" = "Attack of the dimension gate";
+
+"Tran_Step3_END" = "Congratulations.";
+"Tran_Step3_ENDDes1" = "Enjoy the game.";
+
+
+"Tran_Step6_MakeTowerT" = "Establish BLZ";
+"Tran_Step6_MakeTowerDes1" = "Drag and drop the building icon.";
+"Tran_Step6_MakeTowerDes2" = "The building is in plotting.";
+
+"Tran_Step6_Upgrade" = "Upgrade Damage";
+"Tran_Step6_UpgradeDes1" = "Click on the building.";
+"Tran_Step6_UpgradeDes2" = "Click on the Upgrade button.";
+
+
+"Tran_Shot_Msg_T" = "WARNING#";
+"Tran_Shot_Msg_Des1" = "Be a graduate of#";
+"Tran_Shot_Msg_Des2" = "a training center.#";
+
+"NoGold_Shot_Msg_Des1" = "It is out of #";
+"NoGold_Shot_Msg_Des2" = "the gold.#";
+
+"World_Shop" = "Shop";
+
+"Tran_Com_Msg_Des1" = "The map is locked. #";
+"Tran_Com_Msg_Des2" = "Select a different map.#";
+
+
+"Menu_Comp_Msg_T1" = "Congratulations.   ";
+"Menu_Comp_Msg_T2" = "All the doors were destroyed. Peace has come.";
+"Menu_Comp_Msg_T3" = "But, 10 years later ...";
+"Menu_Comp_Msg_T4" = "There was an alien invasion, more powerful.";
+
+
+//"Rating_Report" = "Hellow.\nI will try to make a better game.\nYour ratings are required.\nThank you.";
+"Rating_Report_T" = "Your reviews are required";
+"Rating_Report_R" = "I will give you the radar item.\n----------------------------\nI will try to make a better game.\nThank you.";
+"Rating_Report_G" = "I will give you the Gold 2000 item.\n----------------------------\nI will try to make a better game.\nThank you.";
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "NickName";
+"B_LeaveMessage" = "Please leave sayings.";
+"B_Save" = "Save";
+"B_BestScore" = "Best Score";
+//--
+
+"Completed Rng Upgrade" = " has been completed.";
+"Completed Repare"  = " has been repaired.";
+"Completed Level Upgrade" = "+5 level has been improved.";
+
+
+"MNoRecPurchase" = "There is no record of purchase.";
+"MRestoreTitle" = "Purchase (Restore)";
+"MResotreMessage" = "Would you like to buy?";
+"MRestore" = "Restore";
+
+"Multi_MLoginT" = "Login";
+"Multi_MLoginDes1" = "You must be logged";
+"Multi_MLoginDes2" = "in to Game Center.";
+
+"Multi_MMatchT" = "Matching";
+"Multi_MMatchDes1" = "Players found. ";
+"Multi_MMatchDes2" = "Please wait.";
+
+"AlianceBox_Msg" = "Party has requested alliance.";
+"AlianceBox_Msg2" = "Do you want a alliance?";
+
+"MulPlay_Start" = "looking for players.";
+"MulPlay_Start2" = "start after %d sec";
+
+"NewViewTitle" = "There is a new version.";
+"NewViewMSG" = "Do you want to upgrade?";
+
+"IsHackedMsg" = "I can not buy a product with a cracked iOS.";

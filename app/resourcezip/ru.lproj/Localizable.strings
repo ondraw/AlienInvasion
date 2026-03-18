@@ -1,0 +1,406 @@
+/*
+ Localizable.strings
+ AlienInvasion
+ 
+ Created by itsme on 12. 10. 24..
+ Copyright (c) 2012년 itsme. All rights reserved.
+ */
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "отменить";
+"MBuy"              = "купить(%@)";
+"MError"            = "ошибка";
+"MOK"               = "хорошо";
+"MErrorRequest"     = "Не удается подключиться к сети, или Не найдено соответствующие продукты";
+"MFailRequest"      = "Не можете запросить %@";
+"MFailBuy"          = "Не удалось приобрести.";
+"MNo"               = "нет";
+"MYes"              = "да";
+
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"            = "МЕНЮ";
+"M_Menu_Map"             = "КАРТА";
+"M_Menu_Tank"            = "Танк";
+//"M_Menu_BombItem"        = "БОМБА/ПУНКТ";
+"M_Menu_BombItem"        = "лучшийPезультат";
+"M_Menu_Shop"            = "МАГАЗИН";
+//"M_Rank_Title"           = "Ваш ранг";
+"M_Menu_Multi1"          = "Войти";
+"M_Menu_Multi2"          = "Войти ...";
+"M_Menu_Multi3"          = "Мультиплеер";
+"M_Menu_Multi4"          = "Oдиночная";
+
+"M_Tap_Item"             = "пункт";
+"M_Tap_Bomb"             = "бомба";
+"M_Start"                = "начало";
+"M_Map_Desc_Title"            = "Текущая карта";
+"M_Map_Desc_Dificulty"   = "трудность";
+"M_Tank_Desc_Title"            = "Текущий Танк";
+"M_Tank_Desc_Level" = "уровень";
+"M_Tank_Desc_Seed"      = "скорость";
+"M_Tank_Desc_Power"      = "мощность";
+"M_Tank_Desc_Defense"      = "защита";
+
+"M_Tank_Desc_Select" = "выбирать";
+"M_Tank_Desc_Buy" = "купить";
+"M_Tank_Desc_Requested" = "запрошенный";
+"M_Tank_Desc_Rank" = "разряд";
+
+
+"M_IB_BUY"          = "купить";
+"M_IB_OK"           = "хорошо";
+"M_IB_CANCEL"       = "otmeha";
+"M_IB_SAVE"         = "экономить";
+"M_IB_YES"          = "да";
+
+"M_IB_Power"        = "мощность";
+"M_IB_Range"        = "диапазон";
+"M_IB_Ammo"        = "боеприпасы";
+
+"M_Slot_Bomb" = "бомба";
+"M_Slot_Item" = "пункт";
+"M_Slot_BLZ"  = "башня";
+
+
+"B_GDDesc" = "руководствуясь бб";
+"B_HEDesc" = "фугасная бб";
+"B_HEGDDesc" = "Опыт руководствуясь";
+"B_DIV2Des" = "Выстрел ббx2";
+"B_DIV4Des" = "Выстрел ббx4";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "золото";
+
+"I_Radia" = "радар";
+"I_RadiaDesc1" = "Вкладка к Radar";
+"I_RadiaDesc2" = "автоматическая атака";
+
+"I_A-PWD Cap." = "атака Кап.";
+"I_A-PWD Cap.Desc1" = "нападение upgrade";
+"I_A-PWD Cap.Desc2" = "нападение %d%% вверх";
+
+"I_D-PWD Cap." = "Оборона Кап.";
+"I_D-PWD Cap.Desc1" = "Оборона upgrade";
+"I_D-PWD Cap.Desc2" = "нападение %d%% вверх";
+
+"I_Life Cap." = "Жизнь Кап.";
+"I_Life Cap.Desc1" = "Сделать Полный(100%)";
+"I_Life Cap.Desc2" = "электроэнергетика";
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       танк";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     оснащен пулеметом.";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       оснащен пулеметом и двумя баррель.";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1     оснащен лазерной пушки.";
+"T_L3"              = "L3";
+"T_L3_Des"          = "L3     лучший танк.";
+"T_Ambu"              = "ремонт";
+"T_Ambu_Des"          = "        Лечение поврежденный участок.";
+"T_ArmC"              = "танковый";
+"T_ArmC_Des"          = "       Пулемет атака.";
+"T_ArmT"              = "без ускорителей";
+"T_ArmT_Des"          = "       атаковать противника во время движения.";
+"T_Mis"              = "ракета";
+"T_Mis_Des"          = "       Вы можете запустить несколько ракет.";
+
+
+"T_T001"            = "сторожевая башня";
+"T_T001_Des"        = "Это может атаковать только ^                          врага земли.";
+"T_T002"            = "Противоракетная башня";
+"T_T002_Des"        = "Это может атаковать врага ^                          земли или воздушного ^                          управляемыми ракетами";
+"T_T003"            = "пулемет";
+"T_T003_Des"        = "Это может атаковать врага ^                          земли или воздушного ^                          пулеметным";
+"T_T004"            = "Энергетическая башня";
+"T_T004_Des"        = "Вы можете исправить ^                          окружающие союзников.";
+"R_Upgrade"         = "обновление Уровень";
+"R_Upgrade_Des"         = "Обновления брони и ^                          повреждения власть.";
+"R_Rng_Upgrade"     = "Расширение диапазона";
+"R_Rng_Upgrade_Des" = "Более отдаленные ^                          пушечный огонь.";
+"R_Repaire"         = "ремонт";
+"R_Repaire_Des"     = "Ремонт и набраться сил.";
+"R_Remove"         = "удаление";
+"R_Remove_Des"     = "Снимите башню. ^                          Золото будет возвращен.";
+"R_Amor_Upgrade"         = "Щит";
+"R_Amor_Upgrade_Des"     = "Обновите броню на 20%.";
+"R_Raser_Upgrade"         = "лазер";
+"R_Raser_Upgrade_Des"     = "обновить мощность ^                          лазера на 30%.";
+"R_MGun_Upgrade"         = "пулемет ";
+"R_MGun_Upgrade_Des"     = "установить пулемет.";
+"R_Po_Upgrade"         = "Обновление баррель";
+"R_Po_Upgrade_Des"     = "Сделать его более баррелей.";
+
+
+"I_Magnet" = "магнитный";
+"I_MagnetDesc1" = "Потяните от ";
+"I_MagnetDesc2" = "     пункта..";
+
+
+"I_DTowerUP" = "сторожевая башня";
+"I_DTowerUPDesc1" = "Охранные башни";
+"I_DTowerUPDesc2" = "повышен до  %d%%.";
+
+"I_DMTowerUP" = "Противоракетная башня";
+"I_DMTowerUPDesc1" = "Ракетные башни";
+"I_DMTowerUPDesc2" = "повышен до  %d%%.";
+
+
+"I_Gold4000" = "Золото 4000";
+"I_Gold4000Desc1" = "зарядка Золото";
+"I_Gold4000Desc2" = "(+4000)";
+
+"I_Gold9000" = "Золото 9000";
+"I_Gold9000Desc1" = "зарядка Золото";
+"I_Gold9000Desc2" = "(+9000)";
+
+"I_RAD" = "Убрать рекламу";
+"I_RADDesc1" = "Убрать рекламу";
+"I_RADDesc2" = " неудобно";
+
+"I_FastGold" = "Заработок золота быстрее ";
+"I_FastGoldDesc1" = "Оформление золото гораздо";
+"I_FastGoldDesc2" = "быстрее скорости.";
+
+"I_FastBlz" = "Быстро построить ";
+"I_FastBlzDesc1" = "Построить здание";
+"I_FastBlzDesc2" = "   быстрее.";
+
+"I_UpPack1" = "обновить пакет";
+"I_UpPack1Desc1" = "Оборона и сила атаки ";
+"I_UpPack1Desc2" = "повышается к шагу 3.";
+
+"I_Ambu"              = "ремонт";
+"I_Ambu_Des1"          = "Лечение поврежденный";
+"I_Ambu_Des2"          = "    участок.";
+"I_ArmC"              = "танковый";
+"I_ArmC_Des1"          = "Пулемет атака.";
+"I_ArmC_Des2"          = "";
+"I_ArmT"              = "без ускорителей";
+"I_ArmT_Des1"          = "атаковать противника ";
+"I_ArmT_Des2"          = "во время движения..";
+"I_Mis"              = "ракета";
+"I_Mis_Des1"          = " Вы можете запустить";
+"I_Mis_Des2"          = "несколько ракет.";
+
+"Map_Training Center" = "Учебный центр";
+"Map_Coast Defense" = "береговаяOборона";
+"Map_Mountain Terrain" = "Поверхность склонов";
+"Map_The Sahara" = "Сахара";
+"Map_Heavy SnowFall" = "Сильный снегопад";
+
+"Map_Training Center_Des" = "обучение";
+"Map_Coast Defense_Des" = "побережье";
+"Map_Mountain Terrain_Des" = "гора";
+"Map_The Sahara_Des" = "Сахара";
+"Map_Heavy SnowFall_Des" = "Снегопад";
+
+"Map_Swamp" = "болото";
+"Map_Swamp_Des" = "болото";
+
+"Map_Ruins" = "руины";
+"Map_Ruins_Des" = "руины";
+
+"Map_Town" = "город";
+"Map_Town_Des" = "город";
+
+"Map_Maze" = "лабиринт";
+"Map_Maze_Des" = "лабиринт";
+
+"Map_Moon" = "Луна";
+"Map_Moon_Des" = "Луна";
+
+
+
+"S_Title" = "Настройки игры";
+"S_Music" = "музыка";
+"S_SoundFX" = "звук эфф";
+"S_Vibration" = "вибрация";
+
+
+
+
+"HMove" = "движение";
+"HAttack" = "нападение";
+"HBomb" = "бомба";
+"HItem" = "пункт";
+"HMission" = "миссия";
+
+"HMoveDesc"         = "Поставьте флаг, где вы пытаетесь двигаться.";
+"HDes_1"            = "однажды";
+"HAttackDesc"       = "Нажмите heare пытаются атаковать";
+"HDes_2"            = "открыл дверь";
+"HDes_2_1"          = "dimession иностранца,";
+"HBombDesc"         = "Нажмите heare изменить ваше оружие.";
+"HDes_3"            = "мерное ворота должны быть закрыты";
+"HItemDesc"         = "Нажмите heare проверить ваш товар";
+"HDes_4"            = "в целях экономии кризис Земли.";
+"HMissionDesc"      = "Избавиться от одномерного ворот.";
+"HMissionDesc2"     = "Успех в миссии";
+"PSCORE"            = "СЧЕТ";
+
+
+"MissBox_Title_S"       = "Миссия Успех";
+"MissBox_Title_E"       = "Миссия удалось";
+"MissBox_Score"         = "счет";
+"MissBox_Bonus"         = "бонус";
+"MissBox_Gold"          = "золото";
+"MissBox_Total"         = "общий";
+"MissBox_OK"            = "хорошо";
+
+
+"ExitBox_Msg"           = "Вы выйти из миссии?";
+
+
+"Prom_Title"           = "Поздравляю с повышением.";
+"Prom_Msg1"            = "Ат&защ питания, золото";
+"Prom_Msg2"            = "%d%% модернизация";
+
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+
+"Trn_Introduce_Msg_T1" = "Добро пожаловать в тренировочном лагере.";
+"Trn_Introduce_Msg_T2" = "Господа, вы должны заполнить";
+"Trn_Introduce_Msg_T3" = "каждая миссия.";
+"Trn_Introduce_Msg_T4" = "Выпускники будут получать 4000 золота.";
+
+"Tran_Step1_MoveT" = "Перемещение поезд";
+"Tran_Step1_MoveDes1" = "Положите палец над танком.";
+"Tran_Step1_MoveDes2" = "Проведите пальцем в ^конечную точку";
+"Tran_Step1_MoveDes3" = "Чтобы прекратить движение, ^нажмите на танке.";
+
+
+
+"Tran_Step2_AttackT" = "Атака поезд";
+"Tran_Step2_AttackDes1" = "Атака Нажмите на ^вражеских танков";
+"Tran_Step2_AttackDes2" = "Нажмите появляются ^танки на радаре";
+
+"Tran_Step2_ChSlotT" = "Изменить слот";
+"Tran_Step2_ChSlotTDes1" = "Нажмите кнопку, ^бомба изменилось.";
+"Tran_Step2_ChSlotTDes2" = "Нажмите кнопку, ^пункт изменен.";
+"Tran_Step2_ChSlotTDes3" = "Нажмите кнопку, ^здания изменилось.";
+
+
+"Tran_Step3_MissionT" = "Миссия поезд";
+"Tran_Step3_MissionDes1" = "Атака размерности ворот";
+
+"Tran_Step3_END" = "Поздравляю.";
+"Tran_Step3_ENDDes1" = "Наслаждайтесь игрой.";
+
+
+"Tran_Step6_MakeTowerT" = "Установите здание";
+"Tran_Step6_MakeTowerDes1" = "Перетащите и отпустите ^иконку строительство.";
+"Tran_Step6_MakeTowerDes2" = "Здание находится в заговоре.";
+
+"Tran_Step6_Upgrade" = "обновить ущерб. ";
+"Tran_Step6_UpgradeDes1" = "нажмите на здании. ";
+"Tran_Step6_UpgradeDes2" = "нажать на кнопку Upgrade.";
+
+"Tran_Shot_Msg_T" = "ПРЕДУПРЕЖДЕНИЕ#";
+"Tran_Shot_Msg_Des1" = "Будьте выпускник#";
+"Tran_Shot_Msg_Des2" = "учебный центр.#";
+
+"NoGold_Shot_Msg_Des1" = "Это из золота.#";
+"NoGold_Shot_Msg_Des2" = ".#";
+
+"World_Shop" = "магазин";
+
+"Tran_Com_Msg_Des1" = "Карта будет заблокирована.#";
+"Tran_Com_Msg_Des2" = "Выберите другую карту.#";
+
+
+"Menu_Comp_Msg_T1" = "Поздравляю.   ";
+"Menu_Comp_Msg_T2" = "Все двери были уничтожены. Мир пришел.";
+"Menu_Comp_Msg_T3" = "Но, спустя 10 лет ...";
+"Menu_Comp_Msg_T4" = "Был вторжение инопланетян, более мощный.";
+
+
+//"Rating_Report" = "Hellow.\nI will try to make a better game.\nYour ratings are required.\nThank you.";
+"Rating_Report_T" = "Ваши отзывы необходимы";
+"Rating_Report_R" = "Я дам вам пункт радар.\n----------------------------\nЯ постараюсь сделать лучшую игру.\nСпасибо.";
+"Rating_Report_G" = "Я дам вам пункт золото 2000.\n----------------------------\nЯ постараюсь сделать лучшую игру.\nСпасибо.";
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "Ник";
+"B_LeaveMessage" = "Пожалуйста, оставьте поговорки.";
+"B_Save" = "экономить";
+"B_BestScore" = "Лучший Счет";
+//--
+
+"Completed Rng Upgrade" = " была завершена.";
+"Completed Repare"  = " была восстановлена​​.";
+"Completed Level Upgrade" = "+5 Уровень была улучшена.";
+
+
+"MNoRecPurchase" = "Там ​​нет записи покупки.";
+"MRestoreTitle" = "Покупка (Восстановление)";
+"MResotreMessage" = "Хотите купить?";
+"MRestore" = "Восстановить";
+
+"Multi_MLoginT" = "Войти";
+"Multi_MLoginDes1" = "VВы должны войти в систему,";
+"Multi_MLoginDes2" = " чтобы Game Center.";
+
+"Multi_MMatchT" = "соответствия";
+"Multi_MMatchDes1" = "Найдено Игроки. ";
+"Multi_MMatchDes2" = "Пожалуйста, подождите.";
+
+"AlianceBox_Msg" = "Я прошу в альянс. ";
+"AlianceBox_Msg2" = "Вы хотите союз?";
+
+"MulPlay_Start" = "looking for players.";
+"MulPlay_Start2" = "start after %d sec";
+
+"NewViewTitle" = "Существует новая версия. ";
+"NewViewMSG" = "Вы хотите обновить?";
+
+"IsHackedMsg" = "Я не могу купить продукт с трещины терминала.";

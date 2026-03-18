@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, AlienInvasion!</string>
+    <string name="app_name">Alien Invasion(AD)</string>
+
+    <string name="unpackmsg">Unpack.Please wait a moment.</string>
+    <string name="local_dir">en.lproj</string>
+    
+    <string name="nickname">NickName.</string>
+    <string name="leavemessage">Please leave sayings.</string>
+    <string name="save">Save</string>
+    
+    <string name="ratingreportT">Your reviews are required</string>
+    <string name="ratingreportR">I will give you the item Magnet.\n----------------------------\nI will try to make a better game.\nThank you.</string>
+    <string name="ratingreportG">I will give you the item Gold 2000.\n----------------------------\nI will try to make a better game.\nThank you.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="resourceversion" translatable="false">4.00</string>
+    <string name="app_id" translatable="false">955430893082</string>
+    <string name="sign_in_failed" translatable="false">Failed to sign in. Please check your network connection and try again.</string>
+    <string name="app_misconfigured" translatable="false">The application is incorrectly configured. Check that the package name and signing certificate match the client ID created in Developer Console. Also, if the application is not yet published, check that the account you are trying to sign in with is listed as a tester account. See logs for more information.</string>
+    <string name="license_failed" translatable="false">License check failed.</string>
+    <string name="unknown_error" translatable="false">Unknown error.</string>
+    <string name="SNSContents" translatable="false">Let\'s together game.</string>
+    <string name="SNSMsgTitle" translatable="false">Share</string>
+    <!-- 버블릭키. -->
+    <string name="inapp_key" translatable="false">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsep4tNccsr8FlTd/j33u1Bn/f4B4AF4ttv7zsq1j/+8M0Tg2ph5ZQARIco9F+UMgRrPyhCSqpvkSH222dwJoiFENPnNRRMVkWrUaF0T/FwsONSmVOV5sEJLkGuEjxfLGAOOH1JstyLzZQ88EOKRSZQo/N7qjroWBA752qLhVxFrSOtrCJ5tskp2OhuGFH0ihuTnixRugdV6kOuSTLRAvXeOZ1x97JETsp2pUpYoRjdkr/w4mKvE2ZNWRI8lZ7/Z3A8Um20vtMfhxLKgp518BBajiuepKU1+TfKgIbETBomNMhlODvjRkaIUDcfYZbsoH7/mTtcR2K0M3lFT5EXX0WQIDAQAB</string>
+</resources>

@@ -1,0 +1,407 @@
+/*
+ Localizable.strings
+ AlienInvasion
+ 
+ Created by itsme on 12. 10. 24..
+ Copyright (c) 2012년 itsme. All rights reserved.
+ */
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "取消";
+"MBuy"              = "购买(%@)";
+"MError"            = "错误";
+"MOK"               = "确认";
+"MErrorRequest"     = "无法连接到网络，或不相匹配的产品";
+"MFailRequest"      = "%@请求不能";
+"MFailBuy"          = "购买失败";
+"MNo"               = "没有";
+"MYes"              = "例子";
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"                 = "菜单";
+"M_Menu_Map"             = "地图";
+"M_Menu_Tank"            = "坦克";
+//"M_Menu_BombItem"        = "炸弹/项目";
+"M_Menu_BombItem"        = "最佳 分数";
+"M_Menu_Shop"            = "商店";
+//"M_Rank_Title"           = "你的等级";
+"M_Menu_Multi1"          = "登录";
+"M_Menu_Multi2"          = "登录 ...";
+"M_Menu_Multi3"          = "多人";
+"M_Menu_Multi4"          = "单人";
+
+
+"M_Tap_Item"             = "项目";
+"M_Tap_Bomb"             = "炸弹";
+"M_Start"                = "开 始";
+"M_Map_Desc_Title"            = "选定的地图";
+"M_Map_Desc_Dificulty"   = "困难";
+"M_Tank_Desc_Title"            = "选定的坦克";
+"M_Tank_Desc_Level" = "等级";
+"M_Tank_Desc_Seed"      = "速度";
+"M_Tank_Desc_Power"      = "攻击力";
+"M_Tank_Desc_Defense"      = "防御力";
+
+"M_Tank_Desc_Select" = "选 择";
+"M_Tank_Desc_Buy" = "购 买";
+"M_Tank_Desc_Requested" = "权限等级";
+"M_Tank_Desc_Rank" = "";
+
+
+"M_IB_BUY"          = "收购";
+"M_IB_OK"           = "确认";
+"M_IB_CANCEL"       = "取消";
+"M_IB_SAVE"         = "存储";
+"M_IB_YES"          = "是的";
+
+"M_IB_Power"        = "攻击";
+"M_IB_Range"        = "范围";
+"M_IB_Ammo"        = "束";
+
+"M_Slot_Bomb" = "炸弹";
+"M_Slot_Item" = "项目";
+"M_Slot_BLZ" = "大厦";
+
+
+
+"B_GDDesc" = "表面对空导弹";
+"B_HEDesc" = "高弹";
+"B_HEGDDesc" = "高弹+表面对空导弹";
+"B_DIV2Des" = "离散x2";
+"B_DIV4Des" = "离散x4";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "金";
+
+"I_Radia" = "雷达";
+"I_RadiaDesc1" = "自动攻击";
+"I_RadiaDesc2" = "   当您单击的雷达。";
+
+"I_A-PWD Cap." = "A-PWD Cap.";
+"I_A-PWD Cap.Desc1" = "增加的攻击力。";
+"I_A-PWD Cap.Desc2" = "    %02d%% 改善";
+
+"I_D-PWD Cap." = "D-PWD Cap.";
+"I_D-PWD Cap.Desc1" = "提高防御力。";
+"I_D-PWD Cap.Desc2" = "    %02d%% 改善";
+
+"I_Life Cap." = "Life Cap.";
+"I_Life Cap.Desc1" = "生命的尽头";
+"I_Life Cap.Desc2" = "     可能会再次上升。";
+
+"I_Magnet" = "Magnetic";
+"I_MagnetDesc1" = "拉离该项目。";
+"I_MagnetDesc2" = " ";
+
+"I_DTowerUP" = "守卫塔";
+"I_DTowerUPDesc1" = "守卫塔升级";
+"I_DTowerUPDesc2" = "至%d%%。";
+
+"I_DMTowerUP" = "导弹塔";
+"I_DMTowerUPDesc1" = "导弹塔升级";
+"I_DMTowerUPDesc2" = "至%d%%。";
+
+
+"I_Gold4000" = "黄金4000";
+"I_Gold4000Desc1" = "我給你一個千";
+"I_Gold4000Desc2" = "載難逢的4000。";
+
+"I_Gold9000" = "黄金9000";
+"I_Gold9000Desc1" = "我給你一個千";
+"I_Gold9000Desc2" = "載難逢的9000。";
+
+"I_FastGold" = "赚金币快";
+"I_FastGoldDesc1" = "使得黄金更快的速度。";
+"I_FastGoldDesc2" = "更快的赚取金币。";
+
+"I_FastBlz" = "快速构建 ";
+"I_FastBlzDesc1" = "建设建筑更迅速。";
+"I_FastBlzDesc2" = "..";
+
+"I_UpPack1" = "升级包";
+"I_UpPack1Desc1" = "防御和攻击力";
+"I_UpPack1Desc2" = "上升到第3步。";
+
+"I_Ambu"              = "修复";
+"I_Ambu_Des1"          = "恢复损坏的区域。";
+"I_Ambu_Des2"          = "";
+"I_ArmC"              = "装甲";
+"I_ArmC_Des1"          = "机枪的攻击。";
+"I_ArmC_Des2"          = "";
+"I_ArmT"              = "自走式";
+"I_ArmT_Des1"          = "攻击敌人的同时移动。";
+"I_ArmT_Des2"          = "";
+"I_Mis"              = "导弹";
+"I_Mis_Des1"          = "您可以启动多个导弹。";
+"I_Mis_Des2"          = "";
+
+"I_RAD" = "删除广告";
+"I_RADDesc1" = "有很多不适的广告，";
+"I_RADDesc2" = "对吧？删除〜〜";
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       坦克";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     配备有机枪。";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       装备有机枪和2桶。";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1      配备了一个激光枪。";
+"T_L3"              = "L3";
+"T_L3_Des"            = "L3     最好的坦克。호";
+"T_Ambu"              = "修复";
+"T_Ambu_Des"          = "       恢复损坏的区域。";
+"T_ArmC"              = "装甲";
+"T_ArmC_Des"          = "       机枪的攻击。";
+"T_ArmT"              = "自走式";
+"T_ArmT_Des"          = "       攻击敌人的同时移动。";
+"T_Mis"              = "导弹";
+"T_Mis_Des"          = "       您可以启动多个导弹。";
+
+
+"T_T001"            = "守卫塔";
+"T_T001_Des"        = "这只能攻击敌方地面。";
+"T_T002"            = "导弹塔";
+"T_T002_Des"        = "这可以通过导弹攻击敌方地面或战机";
+"T_T003"            = "机枪";
+"T_T003_Des"        = "这可以通过机枪攻击敌方地面或战机";
+"T_T004"            = "能源塔";
+"T_T004_Des"        = "您可以修复周围盟友。";
+"R_Upgrade"         = "级别升级";
+"R_Upgrade_Des"         = "升级你的护甲和伤害力。";
+"R_Rng_Upgrade"     = "范围升级";
+"R_Rng_Upgrade_Des" = "更远处的炮火。";
+"R_Repaire"         = "修复";
+"R_Repaire_Des"     = "修复和补充你的能量。";
+"R_Remove"         = "切除";
+"R_Remove_Des"     = "取出塔。黄金将被退回。";
+"R_Amor_Upgrade"         = "屏蔽";
+"R_Amor_Upgrade_Des"     = "由20％提升你的护甲。";
+"R_Raser_Upgrade"         = "激光";
+"R_Raser_Upgrade_Des"     = "由30％提高激光功率";
+"R_MGun_Upgrade"         = "机枪";
+"R_MGun_Upgrade_Des"     = "安装机枪。";
+"R_Po_Upgrade"         = "升级桶";
+"R_Po_Upgrade_Des"     = "使其更万桶。";
+
+
+"Map_Training Center" = "培训学校";
+"Map_Coast Defense" = "保护海岸线";
+"Map_Mountain Terrain" = "多山的地形";
+"Map_The Sahara" = "撒哈拉大沙漠";
+"Map_Heavy SnowFall" = "雪风暴";
+
+"Map_Training Center_Des" = "培训...";
+"Map_Coast Defense_Des" = "海边...";
+"Map_Mountain Terrain_Des" = "多山的...";
+"Map_The Sahara_Des" = "撒哈拉...";
+"Map_Heavy SnowFall_Des" = "雪风暴";
+
+
+"Map_Swamp" = "沼泽";
+"Map_Swamp_Des" = "沼泽";
+
+"Map_Ruins" = "废墟";
+"Map_Ruins_Des" = "废墟";
+
+"Map_Town" = "一个小镇";
+"Map_Town_Des" = "一个小镇";
+
+"Map_Maze" = "迷宫";
+"Map_Maze_Des" = "迷宫";
+
+"Map_Moon" = "月亮";
+"Map_Moon_Des" = "月亮";
+
+
+"S_Title" = "游戏设置";
+"S_Music" = "背景音乐";
+"S_SoundFX" = "效果";
+"S_Vibration" = "振动";
+
+
+
+
+"HMove" = "运 动";
+"HAttack" = "攻 击";
+"HBomb" = "炸 弹";
+"HItem" = "项 目";
+"HMission" = "任 务";
+
+"HMoveDesc"         = "把您尝试移动的标志。";
+"HDes_1"            = "外星文明的尺寸,";
+"HAttackDesc"       = "点击你要攻击的地方。";
+"HDes_2"            = "有一天,";
+"HDes_2_1"          = "门开了。";
+"HBombDesc"         = "如何改变武器.";
+"HDes_3"            = "为了获得全球性危机";
+"HItemDesc"         = "项目变更";
+"HDes_4"            = "门的尺寸必须关闭。";
+"HMissionDesc"      = "破坏门的尺寸。";
+"HMissionDesc2"     = "任务成功";
+
+"PSCORE"            = "得分";
+
+
+"MissBox_Title_S"       = "任务 成功!!";
+"MissBox_Title_E"       = "任务 失败!!";
+"MissBox_Score"         = "得 分";
+"MissBox_Bonus"         = "奖 金";
+"MissBox_Gold"          = "金";
+"MissBox_Total"         = "总成绩";
+"MissBox_OK"            = "确认";
+
+
+"ExitBox_Msg"           = "你确定要退出的使命吗？";
+
+
+"Prom_Title"           = "恭喜你升官。";
+"Prom_Msg1"            = "攻击&防御,收购金率";
+"Prom_Msg2"            = "%d%%升级戴德";
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+"Trn_Introduce_Msg_T1" = "   欢迎来到营门。";
+"Trn_Introduce_Msg_T2" = "   先生们，";
+"Trn_Introduce_Msg_T3" = "   你们必须完成每个任务。";
+"Trn_Introduce_Msg_T4" = "   毕业生将获得4000金币。";
+
+
+"Tran_Step1_MoveT" = "移动";
+"Tran_Step1_MoveDes1" = "把你的手指坦克。";
+"Tran_Step1_MoveDes2" = "将手指移至目标点";
+"Tran_Step1_MoveDes3" = "要停止移动，点击坦克。";
+
+"Tran_Step2_AttackT" = "攻击训练";
+"Tran_Step2_AttackDes1" = "点击敌人的坦克";
+"Tran_Step2_AttackDes2" = "点击坦克出现在雷达";
+
+"Tran_Step2_ChSlotT" = "更改插槽";
+"Tran_Step2_ChSlotTDes1" = "当您单击按钮时，炸弹发生了变化。";
+"Tran_Step2_ChSlotTDes2" = "当你按一下按钮，该项目发生更改。";
+"Tran_Step2_ChSlotTDes3" = "当您单击按钮时，该建筑已被更改为。";
+
+
+"Tran_Step3_MissionT" = "完成训练任务";
+"Tran_Step3_MissionDes1" = "攻击的维度门";
+
+"Tran_Step3_END" = "祝贺您";
+"Tran_Step3_ENDDes1" = "享受游戏的乐趣。";
+
+
+"Tran_Step6_MakeTowerT" = "建立建筑";
+"Tran_Step6_MakeTowerDes1" = "点击该图标。和 在那里你要放置的图标。";
+"Tran_Step6_MakeTowerDes2" = "该建筑是在绘图";
+
+"Tran_Step6_Upgrade" = "升级损伤";
+"Tran_Step6_UpgradeDes1" = "点击建筑物。";
+"Tran_Step6_UpgradeDes2" = "点击升级按钮。";
+
+
+"Tran_Shot_Msg_T" = "警 告#";
+"Tran_Shot_Msg_Des1" = "学员必须是一所培#";
+"Tran_Shot_Msg_Des2" = "训学校的毕业生。#";
+
+"NoGold_Shot_Msg_Des1" = "这是出了黄金。#";
+"NoGold_Shot_Msg_Des2" = ".#";
+
+"World_Shop" = "存储";
+
+"Tran_Com_Msg_Des1" = "在地图上被锁定。#";
+"Tran_Com_Msg_Des2" = "选择不同的地图。#";
+
+
+"Menu_Comp_Msg_T1" = "              恭喜。.   ";
+"Menu_Comp_Msg_T2" = "来到和平门被破坏。";
+"Menu_Comp_Msg_T3" = "但是，10年后...";
+"Menu_Comp_Msg_T4" = "有外星人入侵，功能更强大。";
+
+//"Rating_Report" = "你好\n我会尽力做出更好的游戏。\n你的评级是必需的。";
+"Rating_Report_T" = "你的评级是必需的。";
+"Rating_Report_R" = "我会给你的项目的雷达。\n----------------------------\n我会努力做出更好的游戏。\n谢谢";
+"Rating_Report_G" = "我会给你的项目金2000。\n----------------------------\n我会努力做出更好的游戏。\n谢谢";
+
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "昵称";
+"B_LeaveMessage" = "我想说的";
+"B_Save" = "存储";
+"B_BestScore" = "最佳分數";
+//--
+
+"Completed Rng Upgrade" = "已经完成。";
+"Completed Repare"  = "已经修好了。";
+"Completed Level Upgrade" = "+5级得到了提高。";
+
+
+"MNoRecPurchase"="有购买记录。";
+"MRestoreTitle"="购买（还原）";
+"MResotreMessage"="你愿意买？";
+"MRestore"="恢复";
+
+"Multi_MLoginT" = "登录 ";
+"Multi_MLoginDes1" = "您必须登录到游戏";
+"Multi_MLoginDes2" = "中心。";
+
+
+
+"Multi_MMatchT" = "匹配";
+"Multi_MMatchDes1" = "玩家发现。";
+"Multi_MMatchDes2" = "请耐心等待";
+
+"AlianceBox_Msg" = "我要求的联盟。 ";
+"AlianceBox_Msg2" = "你想要一个联盟？";
+
+"MulPlay_Start" = "我们寻找的球员。";
+"MulPlay_Start2" = "%d秒后启动。";
+
+"NewViewTitle" = "有一个新的版本。";
+"NewViewMSG" = "你想升级？";
+
+"IsHackedMsg" = "I can not buy a product with a cracked iOS.";

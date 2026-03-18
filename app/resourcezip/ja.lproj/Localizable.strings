@@ -1,0 +1,402 @@
+/*
+ Localizable.strings
+ AlienInvasion
+ 
+ Created by itsme on 12. 10. 24..
+ Copyright (c) 2012년 itsme. All rights reserved.
+ */
+/*
+ 텍스트#Font#이미지사이즈(200(200*200))#OffsetX#OffsetY#U#V
+ U : -1무시
+ V : -1무시 자동계산.
+ */
+//Message
+"MCancel"           = "キャンセル";
+"MBuy"              = "購買する(%@)";
+"MError"            = "エラー";
+"MOK"               = "確認";
+"MErrorRequest"     = "Unable to connect to the network, or Not found matching products";
+"MFailRequest"      = "%@を要請することはできません。";
+"MFailBuy"          = "購買 失敗";
+"MNo"               = "いいえ";
+"MYes"              = "はい";
+
+//새로운 메뉴
+"0"                 = "0";
+"1"                 = "1";
+"2"                 = "2";
+"3"                 = "3";
+"4"                 = "4";
+"5"                 = "5";
+"6"                 = "6";
+"7"                 = "7";
+"8"                 = "8";
+"9"                 = "9";
+"+"                 = "+";
+"("                 = "(";
+")"                 = ")";
+"%"                 = "%";
+"."                 = ".";
+
+"b0"                 = "b0";
+"b1"                 = "b1";
+"b2"                 = "b2";
+"b3"                 = "b3";
+"b4"                 = "b4";
+"b5"                 = "b5";
+"b6"                 = "b6";
+"b7"                 = "b7";
+"b8"                 = "b8";
+"b9"                 = "b9";
+"b+"                 = "b+";
+"b("                 = "b(";
+"b)"                 = "b)";
+"b%"                 = "b%";
+"b."                 = "b.";
+
+"M_Menu"                 = "メニュー";
+"M_Menu_Map"             = "指導";
+"M_Menu_Tank"            = "タンク";
+//"M_Menu_BombItem"        = "폭탄/아이템";
+"M_Menu_BombItem"        = "   最高 点数";
+"M_Menu_Shop"            = "商店";
+"M_Menu_Multi1"          = "ログイン";
+"M_Menu_Multi2"          = "ログイン中...";
+"M_Menu_Multi3"          = "マルチプレイ";
+"M_Menu_Multi4"          = "シングルプレイヤー";
+//"M_Rank_Title"           = "당신의 계급";
+
+
+"M_Tap_Item"             = "アイテム";
+"M_Tap_Bomb"             = "爆弾";
+"M_Start"                = "市 作";
+"M_Map_Desc_Title"            = "選択された地図";
+"M_Map_Desc_Dificulty"   = "ナンウィド";
+"M_Tank_Desc_Title"            = "選択されたタンク";
+"M_Tank_Desc_Level" = "レベル";
+"M_Tank_Desc_Seed"      = "スピード";
+"M_Tank_Desc_Power"      = "攻撃力";
+"M_Tank_Desc_Defense"      = "防御力";
+
+"M_Tank_Desc_Select" = "選 択";
+"M_Tank_Desc_Buy" = "買 う";
+"M_Tank_Desc_Requested" = "要求される階級";
+"M_Tank_Desc_Rank" = "階級";
+
+
+"M_IB_BUY"          = "購買";
+"M_IB_OK"           = "確認";
+"M_IB_CANCEL"       = "キャンセル";
+"M_IB_SAVE"         = "保存";
+"M_IB_YES"          = "はい";
+
+"M_IB_Power"        = "力";
+"M_IB_Range"        = "範囲";
+"M_IB_Ammo"        = "束";
+
+"M_Slot_Bomb" = "爆弾";
+"M_Slot_Item" = "アイテム";
+"M_Slot_BLZ" =  "タワー";
+
+
+"B_GDDesc" = "誘導弾";
+"B_HEDesc" = "砲弾";
+"B_HEGDDesc" = "高濃縮誘導弾";
+"B_DIV2Des" = "分散爆弾x2";
+"B_DIV4Des" = "分散爆弾x4";
+
+
+
+"B_HE.610A" = "HE.610A";
+"B_GD.623C" = "GD.623C";
+"B_HGD.625A+" = "HGD.625A+";
+"B_BP.7001-1" = "BP.7001-1";
+"B_BP.800-99" = "BP.800-99";
+"B_RGD.456"   = "RGD.456";
+
+"B_Dlg_Gold" = "金";
+
+"I_Radia" = "レーダー";
+"I_RadiaDesc1" = "攻撃する地点をクリックすると、";
+"I_RadiaDesc2" = "   攻撃すること。";
+
+"I_A-PWD Cap." = "A-PWD Cap.";
+"I_A-PWD Cap.Desc1" = "攻撃力の向上に";
+"I_A-PWD Cap.Desc2" = "攻撃パワー%d%%アップ";
+
+"I_D-PWD Cap." = "D-PWD Cap.";
+"I_D-PWD Cap.Desc1" = "防御力の向上に";
+"I_D-PWD Cap.Desc2" = "防御パワー%d%%アップ";
+
+"I_Life Cap." = "Life Cap.";
+"I_Life Cap.Desc1" = "生命が切れると";
+"I_Life Cap.Desc2" = "復活することができる.";
+
+"I_Magnet" = "磁石";
+"I_MagnetDesc1" = "遠く離れている";
+"I_MagnetDesc2" = "アイテムを集めて引く。";
+
+"I_DTowerUP" = "ガードタワー";
+"I_DTowerUPDesc1" = "ガードタワーを";
+"I_DTowerUPDesc2" = "%d%% アップ";
+
+"I_DMTowerUP" = "ミサイルタワー";
+"I_DMTowerUPDesc1" = "ミサイルタワーを";
+"I_DMTowerUPDesc2" = "%d%% アップ";
+
+"I_Gold4000" = "金 4000";
+"I_Gold4000Desc1" = "金 4000を";
+"I_Gold4000Desc2" = "満たしてくれます。.";
+
+"I_Gold9000" = "金 9000";
+"I_Gold9000Desc1" = "金 9000を";
+"I_Gold9000Desc2" = "満たしてくれます。.";
+
+"I_FastGold" = "速く金を稼ぐ ";
+"I_FastGoldDesc1" = "速度は、";
+"I_FastGoldDesc2" = "金がはるかに速くなる。 ";
+
+"I_FastBlz" = "素早く構築 ";
+"I_FastBlzDesc1" = "より迅速に";
+"I_FastBlzDesc2" = "   建物を建てる。";
+
+"I_UpPack1" = "アップパッケージ";
+"I_UpPack1Desc1" = "防衛と攻撃力は、";
+"I_UpPack1Desc2" = "ステップ3に上昇します。";
+
+"I_Ambu"              = "修理";
+"I_Ambu_Des1"          = "破損部分を修復する。";
+"I_Ambu_Des2"          = "";
+"I_ArmC"              = "装甲";
+"I_ArmC_Des1"          = "機関銃攻撃。";
+"I_ArmC_Des2"          = "";
+"I_ArmT"              = "自走砲";
+"I_ArmT_Des1"          = "移動しながら敵を攻撃する。";
+"I_ArmT_Des2"          = "";
+"I_Mis"              = "ミサイル";
+"I_Mis_Des1"          = "あなたは、複数のミサ";
+"I_Mis_Des2"          = "イルを発射することができます。";
+
+"I_RAD" = "広告除去";
+"I_RADDesc1" = "広告がいてたくさん不便";
+"I_RADDesc2" = "ですよね? 除去してください。";
+
+
+"T_A513"            = "A513";
+"T_A513_Des"        = "A513       タンク";
+"T_A513-2"          = "A513-2";
+"T_A513-2_Des"      = "A513-2     機関銃が装着されています。";
+"T_B303"            = "B303";
+"T_B303_Des"        = "B303       機関銃と砲身が二つです。";
+"T_L1"              = "L1";
+"T_L1_Des"          = "L1     は、レーザー銃を備えている。";
+"T_L3"              = "L3";
+"T_L3_Des"            = "L3     最高のタンク。";
+"T_Ambu"              = "修理";
+"T_Ambu_Des"          = "       破損部分を修復する。";
+"T_ArmC"              = "装甲";
+"T_ArmC_Des"          = "       機関銃攻撃。";
+"T_ArmT"              = "自走砲";
+"T_ArmT_Des"          = "       移動しながら敵を攻撃する。";
+"T_Mis"              = "ミサイル";
+"T_Mis_Des"          = "あなたは、^複数のミサイルを発射することができます。";
+
+
+"T_T001"            = "ガードタワー";
+"T_T001_Des"        = "地上の敵を攻撃します。";
+"T_T002"            = "ミサイルタワー";
+"T_T002_Des"        = "戦闘機及び地上の敵を誘導ミサイルで攻撃します。";
+"T_T003"            = "機関銃発射台";
+"T_T003_Des"        = "戦闘機及び地上の敵を機関銃で攻撃します。";
+"T_T004"            = "エネルギータワー";
+"T_T004_Des"        = "周囲の味方を受理します。";
+"R_Upgrade"         = "レベルアップグレード";
+"R_Upgrade_Des"         = "攻撃力+防御力をアップグレードします。";
+"R_Rng_Upgrade"     = "防御範囲アップグレード";
+"R_Rng_Upgrade_Des" = "もっと遠く砲を発射します。";
+"R_Repaire"         = "修理";
+"R_Repaire_Des"     = "修理してエネルギーを補足します。";
+"R_Remove"         = "除去";
+"R_Remove_Des"     = "タワーを除去します。ゴールドがリターンなります。";
+
+"R_Amor_Upgrade"         = "シールド";
+"R_Amor_Upgrade_Des"     = "20％あなたの鎧をアップグレードしてください。";
+"R_Raser_Upgrade"         = "レーザー ";
+"R_Raser_Upgrade_Des"     = "30％のレーザーパワーをアップグレード";
+"R_MGun_Upgrade"         = "機関銃";
+"R_MGun_Upgrade_Des"     = "機関銃をインストールしてください。";
+"R_Po_Upgrade"         = "バレルのアップグレード";
+"R_Po_Upgrade_Des"     = "それをより多くの樽を作る。";
+
+
+"Map_Training Center" = "訓練所";
+"Map_Coast Defense" = "海岸線防御";
+"Map_Mountain Terrain" = "山岳地形";
+"Map_The Sahara" = "サハラ砂漠";
+"Map_Heavy SnowFall" = "暴風雪原";
+
+"Map_Training Center_Des" = "訓練所";
+"Map_Coast Defense_Des" = "海岸線..";
+"Map_Mountain Terrain_Des" = "山岳地形";
+"Map_The Sahara_Des" = "サハラ..";
+"Map_Heavy SnowFall_Des" = "暴風雪原";
+
+"Map_Swamp" = "沼地";
+"Map_Swamp_Des" = "沼地";
+
+"Map_Ruins" = "廃 墟";
+"Map_Ruins_Des" = "廃 墟";
+
+"Map_Town" = "小都市";
+"Map_Town_Des" = "小都市";
+
+"Map_Maze" = "水路";
+"Map_Maze_Des" = "水路";
+
+"Map_Moon" = "月面基地";
+"Map_Moon_Des" = "月面基地";
+
+
+
+"S_Title" = "ゲーム設定";
+"S_Music" = "背景音楽";
+"S_SoundFX" = "効果音";
+"S_Vibration" = "なった東";
+
+
+
+
+"HMove" = "この東";
+"HAttack" = "ボール格";
+"HBomb" = "幅乗った";
+"HItem" = "アイテム";
+"HMission" = "ミッション";
+
+"HMoveDesc"         = "移動しようとする位置に旗を移してください。";
+"HDes_1"            = "ある日のこと ";
+"HAttackDesc"       = "攻撃しようとする会社をクリックしてください。";
+"HDes_2"            = "次元の宇宙文明のドアが";
+"HDes_2_1"          = "開かれた。.";
+"HBombDesc"         = "武器変更方法。";
+"HDes_3"            = "地球の危機を救うためには…";
+"HItemDesc"         = "アイテムの変更方法。";
+"HDes_4"            = "レベルのドアを閉めなければならない。";
+"HMissionDesc"      = "次元の扉を破壊せよ。";
+"HMissionDesc2"     = "ミッション成功";
+"PSCORE"            = "点数";
+
+
+"MissBox_Title_S"       = "ミッション成功!!";
+"MissBox_Title_E"       = "ミッション失敗。";
+"MissBox_Score"         = "点の数";
+"MissBox_Bonus"         = "ボーナス";
+"MissBox_Gold"          = "金";
+"MissBox_Total"         = "総点";
+"MissBox_OK"            = "確認";
+"ExitBox_Msg"           = "ミッションを終了しますか。";
+
+"Prom_Title"           = "進級をおめでとうございます。";
+"Prom_Msg1"            = "攻撃&防御力、ゴールド獲得率";
+"Prom_Msg2"            = "%d%%オプグデイドゥドェプ";
+
+"Shot_Msg_Title" = "%s";
+"Shot_Msg_Desc" = "%s";
+
+
+"Trn_Introduce_Msg_T1" = "訓練所入所を祝う。";
+"Trn_Introduce_Msg_T2" = "諸君はそれぞれのミッションを";
+"Trn_Introduce_Msg_T3" = "完成しなければならない。";
+"Trn_Introduce_Msg_T4" = "卒業生はゴールド4000を受ける。";
+
+"Tran_Step1_MoveT" = "移動訓練";
+"Tran_Step1_MoveDes1" = "戦車の上に指をおいてください。";
+
+"Tran_Step1_MoveDes2" = "目標地点に指を移動する。";
+"Tran_Step1_MoveDes3" = "移動を中止するには、タンクをクリック。";
+
+
+"Tran_Step2_AttackT" = "攻撃訓練";
+"Tran_Step2_AttackDes1" = "ジョクテンクをクリックします。";
+"Tran_Step2_AttackDes2" = "レーダーに現れたタンクをクリック。";
+
+"Tran_Step2_ChSlotT" = "スロット変更";
+"Tran_Step2_ChSlotTDes1" = "ボタンをクリックすると、爆弾に変更される。";
+"Tran_Step2_ChSlotTDes2" = "ボタンをクリックすると、アイテムに変更される。";
+"Tran_Step2_ChSlotTDes3" = "ボタンをクリックすると、建物に変更される。";
+
+"Tran_Step3_MissionT" = "任務完成訓練";
+"Tran_Step3_MissionDes1" = "次元の扉を攻撃してください。";
+
+"Tran_Step3_END" = "おめでとうございます";
+"Tran_Step3_ENDDes1" = "ゲームをお楽しみください。";
+
+
+"Tran_Step6_MakeTowerT" = "建物建設する";
+"Tran_Step6_MakeTowerDes1" = "建物アイコンをドラッグドロップしてください。";
+"Tran_Step6_MakeTowerDes2" = "建物を立てているところ。";
+
+"Tran_Step6_Upgrade" = "被害をアップグレードします。";
+"Tran_Step6_UpgradeDes1" = "建物をクリックしてください。";
+"Tran_Step6_UpgradeDes2" = "[アップグレード]ボタンをクリックしてください。";
+
+"Tran_Shot_Msg_T" = "景と#";
+"Tran_Shot_Msg_Des1" = "訓練兵は訓練所を #";
+"Tran_Shot_Msg_Des2" = "卒業しなければなりません。#";
+
+"NoGold_Shot_Msg_Des1" = "それは金が不足#";
+"NoGold_Shot_Msg_Des2" = "しています。#";
+
+"World_Shop" = "商店";
+
+"Tran_Com_Msg_Des1" = "マップはロックされています。#";
+"Tran_Com_Msg_Des2" = "別のマップを選択します。#";
+
+
+"Menu_Comp_Msg_T1" = "        おめでとうございます.   ";
+"Menu_Comp_Msg_T2" = "全てのドアが破壊されて平和が訪れた。";
+"Menu_Comp_Msg_T3" = "しかし、10年後...";
+"Menu_Comp_Msg_T4" = "より強力な宇宙が侵攻した。";
+
+
+//"Rating_Report" = "こんにちは.\nもっといいゲームを作るために努力します。\n貴下のピョンガクカ必要です。";
+"Rating_Report_T" = "貴下の評価が必要です。";
+"Rating_Report_R" = "レーダーアイテムを差し上げます。\n----------------------------\n良いゲームを作るために努力します。\nありがとうございます";
+"Rating_Report_G" = "ゴールド2000アイテムを差し上げます。\n----------------------------\n良いゲームを作るために努力します。\nありがとうございます";
+
+
+//베스트 스코어 테이블에서 사용
+"B_NickName" = "ニックネーム";
+"B_LeaveMessage" = "名言を残してください";
+"B_Save" = "保存";
+"B_BestScore" = "最高点数";
+//--
+
+"Completed Rng Upgrade" = "が完了しました。";
+"Completed Repare"  = "を修理しました。";
+"Completed Level Upgrade" = "+5・向上されました。";
+
+
+"MNoRecPurchase"="購入した記録がありません。";
+"MRestoreTitle"="購買(復元)";
+"MResotreMessage"="製品を購入しますか。";
+"MRestore"="復元(購買確認)";
+
+
+"Multi_MLoginT" = "ログイン";
+"Multi_MLoginDes1" = "あなたがゲームセンター";
+"Multi_MLoginDes2" = "にログインする必要があります。";
+
+"Multi_MMatchT" = "整合 ";
+"Multi_MMatchDes1" = "プレイヤーのデータが見つかりました.";
+"Multi_MMatchDes2" = "しばらくお待ちください。";
+
+"AlianceBox_Msg" = "私は同盟を要求します。 ";
+"AlianceBox_Msg2" = "あなたは同盟をしたいですか？";
+
+"MulPlay_Start" = "私たちは選手を探して。";
+"MulPlay_Start2" = "%d秒後に開始されます。";
+
+"NewViewTitle" = "新しいバージョンがあります。 ";
+"NewViewMSG" = "あなたがアップグレードしたいですか？";
+
+"IsHackedMsg" = "I can not buy a product with a cracked iOS.";

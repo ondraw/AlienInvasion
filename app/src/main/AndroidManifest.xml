@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- android:installLocation="preferExternal" 프로요부터 확장메모리에 저장하게 한다. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="kr.co.songs.android.AlienInvasion"
+      android:installLocation="preferExternal" >
+     
+    <!-- VERY IMPORTANT! Don't forget this permission, or in-app billing won't work. -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    
+    <!-- 확장 메모리에 정보 저장 할 수 있게 허용한다.
+      android:versionCode="550"
+      android:versionName="5.50"-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <!-- 진동  -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    
+    <!-- Required permission to use in-app billing. -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    
+    <!-- so this is OpenGL ES 1.1 -->
+	<uses-feature android:glEsVersion="0x00010001" />
+	
+	<!-- Internet -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	
+	<!--uses-sdk android:minSdkVersion="15"  android:targetSdkVersion="27" /-->
+	
+    <application android:icon="@drawable/icon"
+        android:requestLegacyExternalStorage="true"
+        android:label="@string/app_name"
+		android:allowBackup="true"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/app_id" />
+        
+        <!-- 파워 Off시 회전을 하기 때문에 onDestory함수가 콜된다. 
+        		android:configChanges="orientation|keyboardHidden" 재실행되지 않게 막자. -->
+        
+        <activity android:name=".AlienInvasion"
+                  android:label="@string/app_name"
+                  android:screenOrientation="landscape"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        
+         <activity android:name=".BestScore"
+             	   android:screenOrientation="landscape"
+                   android:configChanges="orientation|keyboardHidden|screenSize"
+                   android:label="test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        
+        <!-- AddMob Publisher ID -->
+		<meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2468045858112255~2953424669"/>
+
+		
+		<activity android:name="com.google.android.gms.ads.AdActivity"
+              android:configChanges=
+              "keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+    </application>
+    
+</manifest> 
