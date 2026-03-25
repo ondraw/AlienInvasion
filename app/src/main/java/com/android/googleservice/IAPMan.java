@@ -1,310 +1,343 @@
 package com.android.googleservice;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.util.Log;
+
+import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ConsumeParams;
+import com.android.billingclient.api.ConsumeResponseListener;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesResponseListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryPurchasesParams;
+import com.android.billingclient.api.ProductDetailsResponseListener;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import kr.co.songs.android.AlienInvasion.AlienInvasion;
 import kr.co.songs.android.AlienInvasion.SongGLLib;
-import kr.co.songs.android.AlienInvasion.iap.util.IabHelper;
-import kr.co.songs.android.AlienInvasion.iap.util.IabResult;
-import kr.co.songs.android.AlienInvasion.iap.util.Inventory;
-import kr.co.songs.android.AlienInvasion.iap.util.Purchase;
-import kr.co.songs.android.AlienInvasion.iap.util.SkuDetails;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 
-public class IAPMan 
-{
-	ArrayList<String> mQueryLists = null;
-	public static final int RC_REQUEST = 10002;
-	private static final String TAG = "SongsJavaIAP";
-	IabHelper mHelper;
-    Activity mActivity;
-    boolean   mbWaiting = false;//연속해서 요청하지 않게 한다.
-    //0 : 영구
-    //1 : 구
-    Map<String,Integer> mPermenent = new HashMap<String,Integer>();
-    public IAPMan(Activity actvity) 
-    {
-    	mActivity = actvity;
+public class IAPMan {
+    public static final int RC_REQUEST = 10002;
+    private static final String TAG = "SongsJavaIAP";
+
+    private final Activity mActivity;
+    private BillingClient mBillingClient;
+    private boolean mbWaiting = false;
+    private final Map<String, Integer> mPermanent = new HashMap<String, Integer>();
+    private ArrayList<String> mQueryLists = null;
+    private Runnable mPendingAction = null;
+
+    public IAPMan(Activity activity) {
+        mActivity = activity;
     }
-    
-    public void InitIAP(String base64EncodedPublicKey)
-    {
-    	mHelper = new IabHelper(mActivity, base64EncodedPublicKey);
-    	mHelper.enableDebugLogging(true);
-    	//초기화를 하면서 상품구매내역을 쿼리한다.
-    	mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() 
-    	{
-            public void onIabSetupFinished(IabResult result) 
-            {
-                if (!result.isSuccess()) 
-                {
-                    // Oh noes, there was a problem.
-                    complain("Problem setting up in-app billing: " + result);
-                    return;
-                }
 
-                // Have we been disposed of in the meantime? If so, quit.
-                if (mHelper == null) return;
+    public void InitIAP(String base64EncodedPublicKey) {
+        mBillingClient = BillingClient.newBuilder(mActivity)
+                .enablePendingPurchases()
+                .setListener(mPurchasesUpdatedListener)
+                .build();
+        startConnection(null);
+    }
+
+    public void Buy(String productId, boolean countable) {
+        if (mbWaiting) {
+            return;
+        }
+        mbWaiting = true;
+        mPermanent.clear();
+        if (!countable) {
+            addPermanentProducts(productId);
+        }
+        QueryProducts(productId);
+    }
+
+    public void addPermanentProducts(String productId) {
+        mPermanent.put(productId, 0);
+    }
+
+    public void addSubscribeProducts(String productId) {
+        mPermanent.put(productId, 1);
+    }
+
+    public void setQueryProducts(ArrayList<String> listProducts) {
+        mQueryLists = listProducts;
+    }
+
+    public void QueryProducts(final String productId) {
+        runWhenReady(new Runnable() {
+            @Override
+            public void run() {
+                mQueryLists = new ArrayList<String>();
+                mQueryLists.add(productId);
+
+                QueryProductDetailsParams.Product product =
+                        QueryProductDetailsParams.Product.newBuilder()
+                                .setProductId(productId)
+                                .setProductType(getProductType(productId))
+                                .build();
+
+                QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
+                        .setProductList(java.util.Collections.singletonList(product))
+                        .build();
+
+                mBillingClient.queryProductDetailsAsync(params, mProductDetailsListener);
             }
         });
     }
-    
-    public void Buy(String sProductID,boolean bCountable)
-	{	
-    	if(mbWaiting == true) return; //이미요청중에 있다.
-    	mbWaiting = true;
-		mPermenent.clear();
-		if(bCountable == false)
-			addPermanentProducts(sProductID);
-		QueryProducts(sProductID);
-	}
-    
-    public void addPermanentProducts(String sProdcutID)
-    {
-    	mPermenent.put(sProdcutID, 0);
-    }
-    
-   public void addSubscribeProducts(String sProdcutID)
-   {
-	   mPermenent.put(sProdcutID, 1);
-   }
-    
-    
-    public void setQueryProducts(ArrayList<String> listProducts)
-    {
-    	mQueryLists = listProducts;
-    }
-    
-    public Handler mIAP = new Handler() {
-		public void handleMessage(Message msg) {
-			int nID = msg.getData().getInt("id");
-			if (nID == 0) //프러덕트 쿠리를 날린다.
-			{
-				String sID = msg.getData().getString("sku");
-				mQueryLists = new ArrayList<String>();
-		    	mQueryLists.add(sID);
-		        mHelper.queryInventoryAsync(true, mQueryLists, mGotInventoryListener);
-			}
-		}
-    };
-   
-    public void QueryProducts(String sID)
-    {
-    	Message msg = mIAP.obtainMessage();
-		Bundle b = new Bundle();
-		b.putInt("id", 0);
-		b.putString("sku", sID);
-		msg.setData(b);
-		mIAP.sendMessage(msg);
-    }
-    
-    protected void Buy(String sID)
-    {
-    	if(mHelper != null)
-    	{
-    		String payload = "";
-    		Integer nType = mPermenent.get(sID);
-    		if(nType != null && nType == 1) //구독.
-    			mHelper.launchPurchaseFlow(mActivity, sID, IabHelper.ITEM_TYPE_SUBS,RC_REQUEST, mPurchaseFinishedListener,payload);
-    		else
-    			mHelper.launchPurchaseFlow(mActivity, sID, RC_REQUEST, mPurchaseFinishedListener,payload);
-    	}
-    }
-    
-    
-    
-    public void Resore()
-    {
-    	//구매내역을 가져온다. IabHelper.QueryInventoryFinishedListener
-    	mHelper.queryInventoryAsync(mGotInventoryListener);
-    }
-    
- // 구매내역을 쿼리한후에...
-    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventory) 
-        {   
-        	try
-        	{
-        		if (mHelper == null) return;
-        		// Is it a failure?
-        		if (result.isFailure()) {
-        			complain("Failed to query inventory: " + result);
-        			mbWaiting = false;
-        			return;
-        		}
 
-        		//Org Source
-        		String[] rowData = null;
-        		
-        		int nCnt = mQueryLists.size();
-        		for(int i = 0; i < nCnt; i++)
-        		{
-        			String sProdID = mQueryLists.get(i);
-        			SkuDetails detail = inventory.getSkuDetails(sProdID);
-        			if(detail == null)
-        			{
-        				Log.e(TAG, "getSkuDetails null Error: " + sProdID);
-        				continue;
-        			}
-        			
-        			rowData = new String[5];
+    public void Resore() {
+        queryExistingPurchases(BillingClient.ProductType.INAPP);
+        queryExistingPurchases(BillingClient.ProductType.SUBS);
+    }
 
-        			rowData[0] = detail.getSku();
-        			rowData[1] = detail.getTitle();
-        			rowData[2] = detail.getDescription();
-        			rowData[3] = detail.getType();
-        			rowData[4] = detail.getPrice();
-
-
-        			//SongGLLib.sglAddProductsList(rowData);
-        			Purchase purchase = inventory.getPurchase(sProdID);
-        			if(purchase != null)
-        			{
-        				Integer nType = mPermenent.get(sProdID);
-        				if(nType == null) //소모성인데 상품은 샀지만 적용이 안되었다면 다시 클리어 해준다.
-        				{	
-        					mHelper.consumeAsync(purchase, mConsumeFinishedListener);
-        				}
-        			}
-        		}
-
-        		if(rowData != null)
-        		{
-        			Buy(rowData[0]);
-        		}
-        	}
-        	catch(Exception e)
-        	{
-        		Log.e(TAG, " onQueryInventoryFinished " + e.getLocalizedMessage());
-        	}
-        	finally
-        	{
-        		mbWaiting = false; //요청을푼다.
-        	}
-        }
-    };
-    
-    
     public void onDestroy() {
-        // very important:
-        Log.d(TAG, "Destroying helper.");
-        if (mHelper != null) {
-            mHelper.dispose();
-            mHelper = null;
+        Log.d(TAG, "Destroying billing client.");
+        if (mBillingClient != null) {
+            mBillingClient.endConnection();
+            mBillingClient = null;
         }
     }
-    
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-        try
-        {
-	        // Pass on the activity result to the helper for handling
-	        if(mHelper != null)
-	        	mHelper.handleActivityResult(requestCode, resultCode, data);
-        }
-        catch(Exception e)
-        {
-        	Log.e(TAG, "onActivityResult " + e.getLocalizedMessage());
-        }
-    }
-    
-    void ResultPurchase(String itemId,boolean bSuccess,String sMessage)
-    {
-    	// 정보파일을 보낸다.
-    	if(bSuccess)
-    	{
-			if (SongGLLib.WriteCacheProduct(itemId)) {
-				AlienInvasion.gGLView.SendMessage(
-						SongGLLib.SGL_BUY_PRODUCT_GOLDTTYPE_FOR_ANDROID, 0,
-						0);
-			}
-    	}
-    	else
-    	{
-    		Log.e("JavaSongs", "상품 요청 에러입니다 (ID=" +itemId +")" + sMessage);
-    	}
-    }
-    
- // Callback for when a purchase is finished
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
 
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
+    public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data + ")");
+    }
 
-            if (result.isFailure()) {
-                //complain("Error purchasing: " + result);
-            	//실패.
-            	if(purchase != null)
-            	{
-            		ResultPurchase(purchase.getSku(),false, result.getMessage());
-            	}
-            	else
-            	{
-            		ResultPurchase("", false, result.getMessage());
-            	}
+    private void startConnection(final Runnable onConnected) {
+        if (mBillingClient == null) {
+            return;
+        }
+        if (mBillingClient.isReady()) {
+            if (onConnected != null) {
+                onConnected.run();
+            }
+            return;
+        }
+
+        mPendingAction = onConnected;
+        mBillingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    Runnable pending = mPendingAction;
+                    mPendingAction = null;
+                    if (pending != null) {
+                        pending.run();
+                    }
+                } else {
+                    mbWaiting = false;
+                    complain("Problem setting up in-app billing: " + billingResult.getDebugMessage());
+                }
+            }
+
+            @Override
+            public void onBillingServiceDisconnected() {
+                Log.w(TAG, "Billing service disconnected.");
+            }
+        });
+    }
+
+    private void runWhenReady(Runnable action) {
+        if (mBillingClient != null && mBillingClient.isReady()) {
+            action.run();
+        } else {
+            startConnection(action);
+        }
+    }
+
+    private String getProductType(String productId) {
+        Integer type = mPermanent.get(productId);
+        return type != null && type == 1
+                ? BillingClient.ProductType.SUBS
+                : BillingClient.ProductType.INAPP;
+    }
+
+    private final ProductDetailsResponseListener mProductDetailsListener = new ProductDetailsResponseListener() {
+        @Override
+        public void onProductDetailsResponse(BillingResult billingResult, List<ProductDetails> productDetailsList) {
+            if (billingResult.getResponseCode() != BillingClient.BillingResponseCode.OK) {
+                mbWaiting = false;
+                complain("Failed to query products: " + billingResult.getDebugMessage());
                 return;
             }
-            
-        	Integer nType = mPermenent.get(purchase.getSku());
-    		if(nType == null) //소모성인데 상품은 샀지만 적용이 안되었다면 다시 클리어 해준다.
-    		{	
-    			mHelper.consumeAsync(purchase, mConsumeFinishedListener);
-    		}
-    		else if(nType == 0) //영구
-    		{
-    			ResultPurchase(purchase.getSku(), true, "");
-    		}
-    		else if(nType == 1) //구독
-    		{
-    			ResultPurchase(purchase.getSku(), true, "");
-    		}
+
+            if (productDetailsList == null || productDetailsList.isEmpty()) {
+                mbWaiting = false;
+                complain("Product not found in Play Billing.");
+                return;
+            }
+
+            launchPurchase(productDetailsList.get(0));
         }
     };
-    
-    
-    
- // Called when consumption is complete
-    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() 
-    {
-        public void onConsumeFinished(Purchase purchase, IabResult result) {
-            Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
 
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
+    private void launchPurchase(ProductDetails productDetails) {
+        BillingFlowParams.ProductDetailsParams.Builder detailsParamsBuilder =
+                BillingFlowParams.ProductDetailsParams.newBuilder()
+                        .setProductDetails(productDetails);
 
-            // We know this is the "gas" sku because it's the only one we consume,
-            // so we don't check which sku was consumed. If you have more than one
-            // sku, you probably should check...
-            if (result.isSuccess()) {
-                //성공.
-            	ResultPurchase(purchase.getSku(), true, "");
+        if (BillingClient.ProductType.SUBS.equals(productDetails.getProductType())
+                && productDetails.getSubscriptionOfferDetails() != null
+                && !productDetails.getSubscriptionOfferDetails().isEmpty()) {
+            detailsParamsBuilder.setOfferToken(
+                    productDetails.getSubscriptionOfferDetails().get(0).getOfferToken());
+        }
+
+        BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                .setProductDetailsParamsList(
+                        java.util.Collections.singletonList(detailsParamsBuilder.build()))
+                .build();
+
+        BillingResult billingResult = mBillingClient.launchBillingFlow(mActivity, billingFlowParams);
+        if (billingResult.getResponseCode() != BillingClient.BillingResponseCode.OK) {
+            mbWaiting = false;
+            ResultPurchase("", false, billingResult.getDebugMessage());
+        }
+    }
+
+    private final PurchasesUpdatedListener mPurchasesUpdatedListener = new PurchasesUpdatedListener() {
+        @Override
+        public void onPurchasesUpdated(BillingResult billingResult, List<Purchase> purchases) {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
+                handlePurchases(purchases);
+                return;
             }
-            else 
-            {
-                //실패.
-            	if(purchase != null)
-            		ResultPurchase(purchase.getSku(), false, result.getMessage());
-            	else
-            		ResultPurchase("", false, result.getMessage());
+
+            mbWaiting = false;
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+                ResultPurchase("", false, "User canceled.");
+                return;
             }
+
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED
+                    && mQueryLists != null && !mQueryLists.isEmpty()) {
+                queryExistingPurchases(getProductType(mQueryLists.get(0)));
+                return;
+            }
+
+            ResultPurchase("", false, billingResult.getDebugMessage());
         }
     };
-    
+
+    private void queryExistingPurchases(final String productType) {
+        runWhenReady(new Runnable() {
+            @Override
+            public void run() {
+                QueryPurchasesParams params = QueryPurchasesParams.newBuilder()
+                        .setProductType(productType)
+                        .build();
+                mBillingClient.queryPurchasesAsync(params, new PurchasesResponseListener() {
+                    @Override
+                    public void onQueryPurchasesResponse(BillingResult billingResult, List<Purchase> purchases) {
+                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
+                            handlePurchases(purchases);
+                        } else {
+                            mbWaiting = false;
+                            complain("Failed to query purchases: " + billingResult.getDebugMessage());
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void handlePurchases(List<Purchase> purchases) {
+        for (Purchase purchase : purchases) {
+            if (purchase.getPurchaseState() != Purchase.PurchaseState.PURCHASED) {
+                continue;
+            }
+
+            List<String> products = purchase.getProducts();
+            if (products == null || products.isEmpty()) {
+                continue;
+            }
+
+            for (String productId : products) {
+                Integer type = mPermanent.get(productId);
+                if (type == null) {
+                    consumePurchase(productId, purchase);
+                } else {
+                    acknowledgePurchase(productId, purchase);
+                }
+            }
+        }
+    }
+
+    private void consumePurchase(final String productId, Purchase purchase) {
+        String purchaseToken = purchase.getPurchaseToken();
+        if (purchaseToken == null || purchaseToken.length() == 0) {
+            mbWaiting = false;
+            ResultPurchase(productId, false, "Missing purchase token.");
+            return;
+        }
+
+        ConsumeParams params = ConsumeParams.newBuilder()
+                .setPurchaseToken(purchaseToken)
+                .build();
+
+        mBillingClient.consumeAsync(params, new ConsumeResponseListener() {
+            @Override
+            public void onConsumeResponse(BillingResult billingResult, String purchaseToken) {
+                mbWaiting = false;
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    ResultPurchase(productId, true, "");
+                } else {
+                    ResultPurchase(productId, false, billingResult.getDebugMessage());
+                }
+            }
+        });
+    }
+
+    private void acknowledgePurchase(final String productId, Purchase purchase) {
+        if (purchase.isAcknowledged()) {
+            mbWaiting = false;
+            ResultPurchase(productId, true, "");
+            return;
+        }
+
+        AcknowledgePurchaseParams params = AcknowledgePurchaseParams.newBuilder()
+                .setPurchaseToken(purchase.getPurchaseToken())
+                .build();
+
+        mBillingClient.acknowledgePurchase(params, new com.android.billingclient.api.AcknowledgePurchaseResponseListener() {
+            @Override
+            public void onAcknowledgePurchaseResponse(BillingResult billingResult) {
+                mbWaiting = false;
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    ResultPurchase(productId, true, "");
+                } else {
+                    ResultPurchase(productId, false, billingResult.getDebugMessage());
+                }
+            }
+        });
+    }
+
+    void ResultPurchase(String itemId, boolean success, String message) {
+        if (success) {
+            if (SongGLLib.WriteCacheProduct(itemId)) {
+                AlienInvasion.gGLView.SendMessage(
+                        SongGLLib.SGL_BUY_PRODUCT_GOLDTTYPE_FOR_ANDROID, 0, 0);
+            }
+        } else {
+            Log.e("JavaSongs", "상품 요청 에러입니다 (ID=" + itemId + ")" + message);
+        }
+    }
+
     void complain(String message) {
-        Log.e(TAG, "**** TrivialDrive Error: " + message);
+        Log.e(TAG, "Billing error: " + message);
         alert("Error: " + message);
     }
-    
+
     void alert(String message) {
         AlertDialog.Builder bld = new AlertDialog.Builder(mActivity);
         bld.setMessage(message);

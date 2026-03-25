@@ -36,7 +36,6 @@ import android.provider.Settings.Secure;
 import android.util.Log;
 
 import com.android.googleservice.GameHelper;
-import com.google.android.gms.games.Games;
 
 public class SongGLLib {
     public final static String LEADERBOARDID = "CgkImuz5oOcbEAIQAw";
@@ -907,20 +906,7 @@ public class SongGLLib {
                                           String sMessage) {
         Log.i("JAVA", "sglShowBestScoreDlg");
         if (nType == 0) {
-            // Intent intent = new
-            // Intent(AlienInvasion.gMainActivity,BestScore.class);
-            // intent.putExtra("USERID", sUserID);
-            // intent.putExtra("MESSAGE", sMessage);
-            // AlienInvasion.gMainActivity.startActivity(intent);
-
-            if(AlienInvasion.gMainActivity.getApiClient() != null && AlienInvasion.gMainActivity.getApiClient().isConnected())
-            {
-                // Added Google LeaderBoard
-                AlienInvasion.gMainActivity.startActivityForResult(
-                        Games.Leaderboards.getLeaderboardIntent(
-                                AlienInvasion.gMainActivity.getApiClient(),
-                                LEADERBOARDID), GameHelper.RC_LEADERBOARD);
-            }
+            Log.i("JAVA", "Best score dialog disabled with Play Games v1 removal.");
         } else // nType == 1 평점. (골드)
         {
             Message msg = AlienInvasion.gMainActivity.mAppHandler

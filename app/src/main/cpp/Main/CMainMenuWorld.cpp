@@ -38,6 +38,11 @@ extern "C" const char* sglReadCacheProduct();
 
 char* gsNewAppVersion = NULL;
 
+static bool IsPaidShopItemType(int nType)
+{
+    return nType == 4 || nType == 5;
+}
+
 CMainMenuWorld::CMainMenuWorld(CScenario* pScenario) : CWorld(pScenario)
 {
 
@@ -494,52 +499,7 @@ void CMainMenuWorld::InitMenuBar()
     mpMenuBar->AddControl(pFactoryMenu);
     
 
-    //상점
-    lstImage.clear();
-    lstImage.push_back(IMG_MAINMENU_BACK);
-    lstImage.push_back("M_Menu_BombItem");
-    CButtonCtl *pShopMenu = new CButtonCtl(mpMenuBar,m_pTextureMan,BUTTON_NORMAL);
-    layout.clear();
-    PROPERTYI::GetPropertyFloatList("Menu_ShopMenu", layout);
-    pShopMenu->Initialize(BTN_MENU_BESTSCORE, layout[0], layout[1], layout[2], layout[3], lstImage,
-                           0.162109375, 0.8876953125, 0.3583984375, 0.9326171875,
-                           0.162109375, 0.833984375, 0.3583984375, 0.87890625
-                           );
-    pShopMenu->SetTextColor(fWhite);
-    mpMenuBar->AddControl(pShopMenu);
-    
-    
-    
-    //멀티플레이
-    lstImage.clear();
-    lstImage.push_back(IMG_MAINMENU_BACK);
-    lstImage.push_back("M_Menu_Multi1");
-    mpMultiplayButton = new CButtonCtl(mpMenuBar,m_pTextureMan,BUTTON_NORMAL);
-    layout.clear();
-    PROPERTYI::GetPropertyFloatList("Menu_MultiplayMenu", layout);
-    ((CButtonCtl*)mpMultiplayButton)->Initialize(BTN_MENU_MULTIPLAY, layout[0], layout[1], layout[2], layout[3], lstImage,
-                          0.162109375, 0.8876953125, 0.3583984375, 0.9326171875,
-                          0.162109375, 0.833984375, 0.3583984375, 0.87890625
-                          );
-    mpMultiplayButton->SetTextColor(fWhite);
-    
-    //멀티플레이
-    lstImage.clear();
-    lstImage.push_back("wifi.png");
-    lstImage.push_back("none");
-    CLabelCtl *pWifiIcon = new CLabelCtl(mpMultiplayButton,m_pTextureMan);
-    layout.clear();
-    PROPERTYI::GetPropertyFloatList("Menu_MultiplayMenuWIFI", layout);
-    pWifiIcon->Initialize(CTL_MENU_WIFIICON, layout[0], layout[1], layout[2], layout[3], lstImage,
-                          0.f, 0.f, 1.f, 1.f);
-    pWifiIcon->SetEnable(false);
-    pWifiIcon->SetHide(true);
-    mpMultiplayButton->AddControl(pWifiIcon);
-    
-    mpMenuBar->AddControl(mpMultiplayButton);
-    
-    
-    
+    mpMultiplayButton = NULL;
     mControlList.push_back(mpMenuBar);
 }
 
@@ -2025,9 +1985,8 @@ void CMainMenuWorld::InitFrameItemTable(CControl* pTableBack,float fX,float fY)
     for (int i = 0; i < nCnt; i++)
     {
         PROPERTY_ITEM* prop = list[i];
-        //if(prop->nType == 3 || prop->nType == 6) continue;
-        if(prop->nType == 3) continue;
-        else if(prop->nType == 1 || prop->nType == 5) //영구사용물을 이미 샀으면 리스트에 추가하지 말자.
+        if(prop->nType == 3 || IsPaidShopItemType(prop->nType)) continue;
+        else if(prop->nType == 1) //영구사용물을 이미 샀으면 리스트에 추가하지 말자.
         {
             if(pUserInfo)
             {
@@ -2112,7 +2071,7 @@ void CMainMenuWorld::InitFrameItemTable(CControl* pTableBack,float fX,float fY)
             pCell->AddControl(pCellValue);
             
             //GoldICon
-            if(!(prop->nType == 4 || prop->nType == 5))
+            if(!IsPaidShopItemType(prop->nType))
             {
                 lstImage.clear();
                 lstImage.push_back("gold.png");
@@ -2179,7 +2138,7 @@ void CMainMenuWorld::InitFrameItemTable(CControl* pTableBack,float fX,float fY)
         {
             
             //GoldICon
-            if(!(prop->nType == 4 || prop->nType == 5))
+            if(!IsPaidShopItemType(prop->nType))
             {
                 lstImage.clear();
                 lstImage.push_back("gold.png");
@@ -2404,6 +2363,8 @@ int CMainMenuWorld::Initialize(void* pResource)
     
     //화면에 적용해준다.
     CUserInfo* pUserInfo = mpScenario->GetUserInfo();
+    pUserInfo->SetMultiplayOn(false);
+    pUserInfo->Save();
     OnSelectedTank(pUserInfo->GetLastSelectedTankID(),false);
     OnSelectedTank(pUserInfo->GetLastSelectedTankID(),true);
     
@@ -2938,7 +2899,10 @@ void CMainMenuWorld::ShowBuyDlg(int nID,int nType)
                 delete mpBuyDlg;
                 mpBuyDlg = NULL;
             }
-            
+
+            if(IsPaidShopItemType(Prop.nType))
+                return;
+
 #if defined(APPSTOREKIT) || defined(ANDROIDAPPSTOREKIT)
             string sID = GetBundleID();
             sID.append(".");
@@ -3643,6 +3607,9 @@ bool CMainMenuWorld::OnPurchasedProductItem(int nID)
 {
     PROPERTY_ITEM Prop;
     PROPERTY_ITEM::GetPropertyItem(nID, Prop);
+
+    if(IsPaidShopItemType(Prop.nType))
+        return false;
     
     //Android 에서 살때.
     if(mpScenario == NULL) return false;
@@ -4570,56 +4537,6 @@ int CMainMenuWorld::RenderBegin()
     
     
     
-    //-----------------------------------------------------------------------------------------------------------------------
-    CUserInfo* pUserInfo = GetUserInfo();
-    int nGS = pUserInfo->GetGameCenterAuthStatus();
-    if(nGS == 0) //로그인이고 로그인 중에 있다면 싱글플레이로 해준다.
-    {
-        vector<string>  lstImage;
-        lstImage.push_back(IMG_MAINMENU_BACK);
-        lstImage.push_back("M_Menu_Multi4");
-        mpMultiplayButton->SetImageData(lstImage);
-        
-        CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-        pIcon->SetHide(true);
-    }
-    else if(nGS == 1)
-    {
-        vector<string>  lstImage;
-        lstImage.push_back(IMG_MAINMENU_BACK);
-        lstImage.push_back("M_Menu_Multi2");
-        mpMultiplayButton->SetImageData(lstImage);
-        CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-        pIcon->SetHide(true);
-    }
-    else if(nGS == 2) //로그인 됨.
-    {
-        //메뉴
-        //싱글플레이 멀티 플레이.
-        if(pUserInfo->GetMultiplayOn())
-        {
-            vector<string>  lstImage;
-            lstImage.push_back(IMG_MAINMENU_BACK);
-            lstImage.push_back("M_Menu_Multi3");
-            mpMultiplayButton->SetImageData(lstImage);
-            CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-            pIcon->SetHide(false);
-        }
-        else
-        {
-            vector<string>  lstImage;
-            lstImage.push_back(IMG_MAINMENU_BACK);
-            lstImage.push_back("M_Menu_Multi4");
-            mpMultiplayButton->SetImageData(lstImage);
-
-            CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-            pIcon->SetHide(true);
-        }
-    }
-    //-----------------------------------------------------------------------------------------------------------------------
-    
-    
-    
     //Animation 중이면 애니매니션으 끝날을때 다음 액션을 해준다.
     if(mAniStep != MENUANI_NONE)
     {
@@ -4631,7 +4548,7 @@ int CMainMenuWorld::RenderBegin()
             if(mAniStep == MENUANI_MAP_TO_WORLD || mAniStep == MENUANI_TANK_TO_WORLD || mAniStep == MENUANI_FACTORY_TO_WORLD)
             {
                 //현재 User정보를 저장한다.
-                
+                CUserInfo* pUserInfo = GetUserInfo();
                 if(pUserInfo)
                 {
                     PROPERTY_TANK prop;
@@ -5008,67 +4925,6 @@ int CMainMenuWorld::OnEvent(SGLEvent *pEvent)
                     if(mpSoundMan) mpSoundMan->PlaySystemSound(SOUND_ID_Click);
                 }
                     break;
-
-                case BTN_MENU_BESTSCORE:
-                {
-                    
-                    if(gShowBestScoreDlg) gShowBestScoreDlg((void*)GetUserInfo());
-                    
-                    if(mpSoundMan) mpSoundMan->PlaySystemSound(SOUND_ID_Click);
-                }
-                    break;
-                case BTN_MENU_MULTIPLAY:
-                {
-                    CUserInfo* pUserInfo =  GetUserInfo();
-                    int nGS = pUserInfo->GetGameCenterAuthStatus();
-                    if(nGS == 2) //로그인 되어 있다면
-                    {
-                        if(pUserInfo->GetMultiplayOn()) //멀티플레이에서 => 싱글플레이로
-                        {
-                            vector<string>  lstImage;
-                            lstImage.push_back(IMG_MAINMENU_BACK);
-                            lstImage.push_back("M_Menu_Multi4");
-                            mpMultiplayButton->SetImageData(lstImage);
-                            CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-                            pIcon->SetHide(true);
-                            pUserInfo->SetMultiplayOn(false);
-                            pUserInfo->Save();
-                        }
-                        else //싱글플레이로 => 멀티플레이에서
-                        {
-                            vector<string>  lstImage;
-                            lstImage.push_back(IMG_MAINMENU_BACK);
-                            lstImage.push_back("M_Menu_Multi3");
-                            mpMultiplayButton->SetImageData(lstImage);
-                            CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-                            pIcon->SetHide(false);
-                            pUserInfo->SetMultiplayOn(true);
-                            pUserInfo->Save();
-                        }
-                        
-                    }
-                    else if(nGS == 1) //로그인 중입니다. 잠시만 기다려주세요.
-                    {
-                        vector<string>  lstImage;
-                        lstImage.push_back(IMG_MAINMENU_BACK);
-                        lstImage.push_back("M_Menu_Multi2");
-                        mpMultiplayButton->SetImageData(lstImage);
-                        CControl* pIcon = mpMultiplayButton->FindControl(CTL_MENU_WIFIICON);
-                        pIcon->SetHide(true);
-                        
-                        //언어 해주어야 한다. NoGold_Shot_Msg_Des1
-                        ShowShotMessageBox("Game Center","Waiting ...","...");
-                    }
-                    else
-                    {
-                        //언어 해주어야 한다. NoGold_Shot_Msg_Des1
-                        ShowShotMessageBox("Multi_MLoginT","Multi_MLoginDes1","Multi_MLoginDes2");
-                    }
-                    
-                    if(mpSoundMan) mpSoundMan->PlaySystemSound(SOUND_ID_Click);
-                }
-                    break;
-
 
                 case BTN_NEXT:
                 {
@@ -5621,6 +5477,11 @@ int CMainMenuWorld::OnEvent(SGLEvent *pEvent)
                     sID = sID + strlen(slogBundle) + 1;
                     PROPERTY_ITEM item;
                     PROPERTY_ITEM::GetPropertyItem(sID, item); //대문자 소문자 구분하지 않고 찾아옴
+                    if(IsPaidShopItemType(item.nType))
+                    {
+                        sTok = strtok(NULL,"\n");
+                        continue;
+                    }
                     CScenario::SendMessage(SGL_SHOP_PRODUCT_GOLDTTYPE,item.nID,item.nType,0,0);
                 }
                 sTok = strtok(NULL,"\n");
@@ -6005,8 +5866,3 @@ void CMainMenuWorld::CompletedMapDlg()
     mpCompletedDlg->SetAni(CONTROLANI_LIN,1.6f);
     
 }
-
-
-
-
-

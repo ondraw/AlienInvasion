@@ -86,6 +86,11 @@ extern unsigned int mEscapeT;
 extern "C" const char* sglReadCacheProduct();
 #endif
 
+static bool IsPaidShopItemType(int nType)
+{
+    return nType == 4 || nType == 5;
+}
+
 CHWorld::CHWorld(CScenario* pScenario) : CWorld(pScenario)
 {
     
@@ -4199,6 +4204,11 @@ int CHWorld::OnEvent(SGLEvent *pEvent)
                 sID = sID + strlen(slogBundle) + 1;
                 PROPERTY_ITEM item;
                 PROPERTY_ITEM::GetPropertyItem(sID, item); //대문자 소문자 구분하지 않고 찾아옴
+                if(IsPaidShopItemType(item.nType))
+                {
+                    sTok = strtok(NULL,"\n");
+                    continue;
+                }
                 CScenario::SendMessage(SGL_SHOP_PRODUCT_GOLDTTYPE,item.nID,item.nType,0,0);
             }
             sTok = strtok(NULL,"\n");
@@ -5351,8 +5361,8 @@ void CHWorld::InitFrameItemTable(CControl* pTableBack,float fX,float fY)
     for (int i = 0; i < nCnt; i++)
     {
         PROPERTY_ITEM* prop = list[i];
-        if(prop->nType == 3) continue;
-        else if(prop->nType == 1 || prop->nType == 5) //영구사용물을 이미 샀으면 리스트에 추가하지 말자.
+        if(prop->nType == 3 || IsPaidShopItemType(prop->nType)) continue;
+        else if(prop->nType == 1) //영구사용물을 이미 샀으면 리스트에 추가하지 말자.
         {
             if(pUserInfo)
             {
@@ -5437,7 +5447,7 @@ void CHWorld::InitFrameItemTable(CControl* pTableBack,float fX,float fY)
             pCell->AddControl(pCellValue);
             
             //GoldICon
-            if(!(prop->nType == 4 || prop->nType == 5))
+            if(!IsPaidShopItemType(prop->nType))
             {
                 lstImage.clear();
                 lstImage.push_back("gold.png");
@@ -5504,7 +5514,7 @@ void CHWorld::InitFrameItemTable(CControl* pTableBack,float fX,float fY)
         {
             
             //GoldICon
-            if(!(prop->nType == 4 || prop->nType == 5))
+            if(!IsPaidShopItemType(prop->nType))
             {
                 lstImage.clear();
                 lstImage.push_back("gold.png");
@@ -6209,7 +6219,10 @@ void CHWorld::ShowBuyDlg(int nID,int nType)
                 delete mpBuyDlg;
                 mpBuyDlg = NULL;
             }
-            
+
+            if(IsPaidShopItemType(Prop.nType))
+                return;
+
 #if defined(APPSTOREKIT) || defined(ANDROIDAPPSTOREKIT)
             //직접 돈주고 사게 해준다.
             //#ifdef ANDROIDAPPSTOREKIT
@@ -6242,6 +6255,10 @@ bool CHWorld::OnPurchasedProductItem(int nID)
 {
     PROPERTY_ITEM Prop;
     PROPERTY_ITEM::GetPropertyItem(nID, Prop);
+
+    if(IsPaidShopItemType(Prop.nType))
+        return false;
+
     CUserInfo* pUserInfo = mpScenario->GetUserInfo();
     
     pUserInfo->SetLastBombItemSwitch(1);

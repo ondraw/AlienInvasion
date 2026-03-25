@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
@@ -35,9 +36,11 @@ import com.android.googleservice.IAPMan;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
 
 public class AlienInvasion extends Activity implements
 		SensorEventListener,
@@ -157,54 +160,7 @@ public class AlienInvasion extends Activity implements
 				alert.show();
 			} else if (nID == 6) // BestScore에 올려준다.
 			{
-				// -----------------------------------------------------------------------------------------------------
-				// Added Google LeaderBoard
-				// -----------------------------------------------------------------------------------------------------
-				try {
-					GoogleApiClient apiClient = AlienInvasion.gMainActivity
-							.getApiClient();
-					if (apiClient == null
-							|| (apiClient != null && !apiClient.isConnected()))
-						return;
-
-					int nBestScore = msg.getData().getInt(
-							SongGLLib.LEADERBOARDID);
-					int nARate = msg.getData().getInt(
-							SongGLLib.ATACHID_UPGRADE_ATTACK);
-					int nDRate = msg.getData().getInt(
-							SongGLLib.ATACHID_UPGRADE_DEFENCE);
-					int nTRate = msg.getData().getInt(
-							SongGLLib.ATACHID_UPGRADE_TOWER);
-					int nMTRate = msg.getData().getInt(
-							SongGLLib.ATACHID_UPGRADE_MISSTOWER);
-					int nWinner = msg.getData().getInt(
-							SongGLLib.ATACHID_YOUAREWINNER);
-
-					if (nBestScore != 0)
-						Games.Leaderboards.submitScore(apiClient,
-								SongGLLib.LEADERBOARDID, nBestScore);
-					if (nARate != 0)
-						Games.Achievements.increment(apiClient,
-								SongGLLib.ATACHID_UPGRADE_ATTACK, nARate);
-					if (nDRate != 0)
-						Games.Achievements.increment(apiClient,
-								SongGLLib.ATACHID_UPGRADE_DEFENCE, nDRate);
-					if (nTRate != 0)
-						Games.Achievements.increment(apiClient,
-								SongGLLib.ATACHID_UPGRADE_TOWER, nTRate);
-					if (nMTRate != 0)
-						Games.Achievements.increment(apiClient,
-								SongGLLib.ATACHID_UPGRADE_MISSTOWER, nMTRate);
-					if (nWinner > 1)
-						Games.Achievements.unlock(apiClient,
-								SongGLLib.ATACHID_YOUAREWINNER);
-				} catch (Exception ex) {
-					Log.i("JAVA",
-							"sglSendBestScore: Exception %s"
-									+ ex.getLocalizedMessage());
-				}
-				
-				// -----------------------------------------------------------------------------------------------------
+				Log.i("JAVA", "Google Play Games integration removed; score sync skipped.");
 			}
 			else if(nID == 7) //SNS에 데이터를 올려준다.
 			{
@@ -343,28 +299,37 @@ public class AlienInvasion extends Activity implements
 		mIAPMan.InitIAP(getString(R.string.inapp_key));
 
 		//2019.02 광고 수정함.
-		MobileAds.initialize(this);
+		MobileAds.initialize(this, new OnInitializationCompleteListener() {
+			@Override
+			public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+				Log.i("JAVA", "MobileAds onInitializationComplete");
+			}
+		});
 		
 		
 		mADView.setAdListener(new AdListener() {
 			// Modified 2014.12.08 이베트 변경됨.
+			@Override
 			public void onAdLoaded() {
 				Log.i("JAVA", "onAdLoaded");
 				if(mbHideAd == false)
 					mADView.setVisibility(View.VISIBLE);
 			}
 
-			public void onAdFailedToLoad(int errorCode) {
-				Log.i("JAVA", "onAdFailedToLoad");
+			@Override
+			public void onAdFailedToLoad(@NonNull LoadAdError adError) {
+				Log.i("JAVA", "onAdFailedToLoad: " + adError.getMessage());
 				mADView.setVisibility(View.GONE);
 			}
 
+			@Override
 			public void onAdOpened() {
 				Log.i("JAVA", "onAdOpened");
 				AlienInvasion.gGLView.SendMessage(
 						SongGLLib.SGL_CLICKED_ADMOB_ANDROID, 0, 0);
 			}
 
+			@Override
 			public void onAdClosed() {
 				Log.i("JAVA", "onAdClosed");
 				mADView.setVisibility(View.GONE);

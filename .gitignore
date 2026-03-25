@@ -7,3 +7,4 @@ product/release/*
 app/src/main/libs/*
 gradle/wrapper/*
 .idea/*
+app/release/*
