@@ -21,8 +21,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -32,16 +32,12 @@ import android.widget.Toast;
 
 import com.android.googleservice.GameHelper;
 import com.android.googleservice.IAPMan;
-import com.android.googleservice.Multiplay;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.model.people.Person;
 
 public class AlienInvasion extends Activity implements
 		SensorEventListener,
@@ -63,14 +59,12 @@ public class AlienInvasion extends Activity implements
     private Sensor accSensor;
     
 //	protected GameHelper mHelper = null; //2019.02 Deleted GameHelper
-	protected Multiplay	mMultiplay = null;
 	public GoogleApiClient getApiClient() {
 //		if (mHelper != null) {
 //			return mHelper.getApiClient();
 //		}
 		return null;
 	}
-	public Multiplay getMultiplay() { return mMultiplay;}
 	public SongGLLib getSongGLLib() { return mGLView.mRender.mSongGL;}
 	// UnZip 웨인팅 커셔....
 	public ProgressDialog mProDlg;
@@ -103,8 +97,7 @@ public class AlienInvasion extends Activity implements
 			{
 				// Modified 2014.12.08 구글 플레이로 애드몹 서비스.
 				// mADView.loadAd(new AdRequest()); //광고를 다시 로딩한다.
-				mADView.loadAd(new AdRequest.Builder().addTestDevice(
-						AdRequest.DEVICE_ID_EMULATOR).build());// 광고를 다시 로딩한다.
+				mADView.loadAd(new AdRequest.Builder().build());// 광고를 다시 로딩한다.
 				mbHideAd = false;
 			} else if (nID == 1) // 프로그레스바를 움직인다.
 			{
@@ -231,58 +224,6 @@ public class AlienInvasion extends Activity implements
 				mg.setType("text/plain");    
 				startActivity(Intent.createChooser(mg, getResources().getString(R.string.SNSMsgTitle)));
 			}
-			else if(nID == 8) //sglFindPlayer
-			{
-				try {
-					GoogleApiClient apiClient = AlienInvasion.gMainActivity
-							.getApiClient();
-					if (apiClient == null
-							|| (apiClient != null && !apiClient.isConnected()))
-						return;
-					
-					int arr[] = msg.getData().getIntArray("ArrData");
-					
-					mMultiplay.FindPlyer(arr[0], arr[1], arr[2]);
-				}
-				catch( Exception ex)
-				{
-					Log.e("JAVA", ex.getLocalizedMessage());
-				}
-			}
-			else if(nID == 9) //sglPlayOut
-			{
-				try {
-					GoogleApiClient apiClient = AlienInvasion.gMainActivity
-							.getApiClient();
-					if (apiClient == null
-							|| (apiClient != null && !apiClient.isConnected()))
-						return;
-					mMultiplay.LogOut();
-				}
-				catch( Exception ex)
-				{
-					Log.e("JAVA", ex.getLocalizedMessage());
-				}
-			}
-			else if(nID == 10) //matching중에 다시 find해버리면 roomID에서 나가주어야 한다.
-			{
-				
-				try {
-					GoogleApiClient apiClient = AlienInvasion.gMainActivity
-							.getApiClient();
-					if (apiClient == null
-							|| (apiClient != null && !apiClient.isConnected()))
-						return;
-					
-					String roomID = msg.getData().getString("roomid");
-					Games.RealTimeMultiplayer.leave(apiClient,AlienInvasion.gMainActivity.getMultiplay(), roomID);
-					Log.i("Multiplay", "RealTimeMultiplayer leav = roomid " + roomID);
-				}
-				catch( Exception ex)
-				{
-					Log.e("JAVA", ex.getLocalizedMessage());
-				}
-			}
 			else if(nID == 11) //새로운 앱이 존재 한다.
 			{
 				SongGLLib.sglSetAppNewVersion(true);
@@ -347,11 +288,6 @@ public class AlienInvasion extends Activity implements
 
 	static final int REQUEST_CODE_RECOVER_PLAY_SERVICES = 1001;
 
-	void showErrorDialog(int code) {
-		GooglePlayServicesUtil.getErrorDialog(code, this,
-				REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
-	}
-
 	// private boolean checkPlayServices() {
 	// int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 	// if (status != ConnectionResult.SUCCESS) {
@@ -374,6 +310,7 @@ public class AlienInvasion extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		gMainActivity = this;
 
 		Log.i("JAVA", "Activity onCreate");
 
@@ -400,14 +337,13 @@ public class AlienInvasion extends Activity implements
 //		mHelper.setup(this);
 
 		gGLView = mGLView;
-		gMainActivity = this;
 
 		// IAP Start
 		mIAPMan = new IAPMan(this);
 		mIAPMan.InitIAP(getString(R.string.inapp_key));
 
 		//2019.02 광고 수정함.
-		MobileAds.initialize(this,"ca-app-pub-2468045858112255~2953424669");
+		MobileAds.initialize(this);
 		
 		
 		mADView.setAdListener(new AdListener() {
@@ -434,14 +370,9 @@ public class AlienInvasion extends Activity implements
 				mADView.setVisibility(View.GONE);
 			}
 
-			public void onAdLeftApplication() {
-				Log.i("JAVA", "onAdClosed");
-			}
 		});
 		
 		
-		mMultiplay = new Multiplay(this);
-		mMultiplay.enableDebugLog(true);
 		//센서 매니저 얻기
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         //엑셀러로미터 센서(가속)
@@ -455,21 +386,7 @@ public class AlienInvasion extends Activity implements
 	private void checkPermission() {
 		try
 		{
-			if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-			{
-				SongGLLib.sglUnzip3DResource();
-			}
-			else if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-			{
-
-				// Should we show an explanation?
-				if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-				}
-				//Location정보를 추가한다.
-				ActivityCompat.requestPermissions(this,new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
-						MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-			}
+			SongGLLib.sglUnzip3DResource();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -483,14 +400,6 @@ public class AlienInvasion extends Activity implements
 		{
 			switch (requestCode) {
 				case MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE:
-					if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-						SongGLLib.sglUnzip3DResource();
-					}
-					else
-					{
-
-						Log.d("JavaSongs", "onRequestPermissionsResult Permission always deny");
-					}
 					break;
 			}
 		}
@@ -512,25 +421,26 @@ public class AlienInvasion extends Activity implements
 	    }
 	}
 	
-	private boolean isNewVersion(){
-	    try
-	    {
-	        String curVersion = getPackageManager().getPackageInfo(SongGLLib.GetBundleID(), 0).versionName;
-	        String newVersion = curVersion;
-	        newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + SongGLLib.GetBundleID() + "&hl=en")
-	                .timeout(30000)
-	                .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
-	                .referrer("http://www.google.com")
-	                .get()
-	                .select("div[itemprop=softwareVersion]")
-	                .first()
-	                .ownText();
-	        return (value(curVersion) < value(newVersion)) ? true : false;
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return false;
-	    }
-
+	private boolean isNewVersion() {
+		try
+		{
+			String curVersion = getPackageManager().getPackageInfo(SongGLLib.GetBundleID(), 0).versionName;
+			String newVersion = curVersion;
+			newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + SongGLLib.GetBundleID() + "&hl=en")
+					.timeout(30000)
+					.userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+					.referrer("http://www.google.com")
+					.get()
+					.select("div[itemprop=softwareVersion]")
+					.first()
+					.ownText();
+			return value(curVersion) < value(newVersion);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 	private void CheckNewVersion()
 	{
@@ -540,15 +450,15 @@ public class AlienInvasion extends Activity implements
             {	
                 synchronized(AlienInvasion.class) 
                 {
-                	if(isNewVersion())
-                	{
-                		try {
-							Message msg = AlienInvasion.gMainActivity.mAppHandler.obtainMessage();
-							Bundle b = new Bundle();
-							b.putInt("id", 11);
-							msg.setData(b);
-							AlienInvasion.gMainActivity.mAppHandler.sendMessage(msg);
-						}
+	                if(isNewVersion())
+	                {
+	                	try {
+	                		Message msg = AlienInvasion.gMainActivity.mAppHandler.obtainMessage();
+	                		Bundle b = new Bundle();
+	                		b.putInt("id", 11);
+	                		msg.setData(b);
+	                		AlienInvasion.gMainActivity.mAppHandler.sendMessage(msg);
+	                	}
 						catch(Exception e)
 						{
 							Log.e("JavaSongs","CheckNewVierion " + e.getLocalizedMessage());
@@ -597,9 +507,7 @@ public class AlienInvasion extends Activity implements
 				// 다른 것을 해제 하기전에 뷰를 먼저 포즈시켜야 rendering할때 에러가 안난다.
 				mGLView.onPause();
 
-				//2018.02.12
-				if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-					SongGLLib.sglPlayBgSoundOnAcitvity(false);
+				SongGLLib.sglPlayBgSoundOnAcitvity(false);
 
 			}
 			// Moidfied 2014.12.08 애드
@@ -760,12 +668,6 @@ public class AlienInvasion extends Activity implements
 		
 		if(gGLView != null && gGLView.mRender != null && gGLView.mRender.mSongGL != null)
 			gGLView.mRender.mSongGL.OnSigned(true);
-		
-		if (Plus.PeopleApi.getCurrentPerson(getApiClient()) != null) {
-	        final Person currentPerson = Plus.PeopleApi.getCurrentPerson(getApiClient());
-	        String personName = currentPerson.getDisplayName();
-	        getSongGLLib().SetMyID(personName);
-	    }
 		
 	}
 	// ---------------------------------------------------------------

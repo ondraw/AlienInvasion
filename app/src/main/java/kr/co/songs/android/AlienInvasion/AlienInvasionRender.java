@@ -111,11 +111,15 @@ public class AlienInvasionRender implements GLSurfaceView.Renderer
 		Log.i("JAVA","Render Destory After");
 	}
 	public long getGLContext() {
-		 return mSongGL.getGLContext();
+		 return mSongGL != null ? mSongGL.getGLContext() : 0;
 	}	
 	
 	public boolean SendMessage(int nEventID,long param1,long param2)
 	{
+		if (mSongGL == null) {
+			Log.w("JAVA", "SendMessage ignored because mSongGL is null. event=" + nEventID);
+			return false;
+		}
 		return mSongGL.Event(nEventID, (int)param1, (int)param2);
 	}
 	

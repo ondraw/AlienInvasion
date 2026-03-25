@@ -2,9 +2,8 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := songgl
 
-#절대경로를 맞추어주자 안그러면 안드로이드 스튜디오에서 에러가 난다.
-#SONGGL_PATH := /Users/songs/Project/MyDream/IOS/SongGL
-SONGGL_PATH := /home/songs/Extension/MyDream/IOS/SongGL
+# Updated paths to be relative to the project structure
+SONGGL_PATH := $(LOCAL_PATH)/../cpp
 
 XML2SRC_PATH := $(SONGGL_PATH)/LibXML2
 XML2INC_PATH := $(XML2SRC_PATH)/include
@@ -21,7 +20,6 @@ WEB_PATH := $(SONGGL_PATH)/WebProtocol
 
 
 LOCAL_C_INCLUDES := \
-				$(NDK_ROOT)/sources/cxx-stl/stlport/stlport \
 				$(LOCAL_PATH) \
 				$(ANDROID_PATH) \
 				$(ZIP_PATH) \

@@ -595,30 +595,26 @@ public class SongGLLib {
     static String gPath = null;
 
     public static String getPath() {
-        // String Path = "";
-
         if (gPath != null)
             return gPath;
 
-        String cacheExtra = "/AlienInvasion";
-        String extMode = Environment.getExternalStorageState();
-
         File f = null;
-        if (Environment.MEDIA_MOUNTED.equals(extMode)) {
-            gPath = Environment.getExternalStorageDirectory().getPath()
-                    + cacheExtra;
-            f = new File(gPath);
-            if (!f.exists()) {
-                f.mkdirs();
-            }
-        } else {
-            // Added By Song 2013.05.08 sd카드가 존재 하지 않으면...
-            gPath = Environment.getDataDirectory().getPath() + cacheExtra;
-            f = new File(gPath);
-            if (!f.exists()) {
-                f.mkdirs();
+        if (AlienInvasion.gMainActivity != null) {
+            f = AlienInvasion.gMainActivity.getExternalFilesDir(null);
+            if (f == null) {
+                f = AlienInvasion.gMainActivity.getFilesDir();
             }
         }
+
+        if (f == null) {
+            f = new File(Environment.getDataDirectory().getPath(), "AlienInvasion");
+        }
+
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+
+        gPath = f.getAbsolutePath();
         return gPath;
     }
 
@@ -964,16 +960,8 @@ public class SongGLLib {
 
     static public int sglFindPlyer(int nResetFindTime,int nMatchFilter,int nMatchGroup)
     {
-        Message msg = AlienInvasion.gMainActivity.mAppHandler.obtainMessage();
-        Bundle b = new Bundle();
-        b.putInt("id", 8);
-        b.putIntArray("ArrData", new int[] { nResetFindTime,nMatchFilter,nMatchGroup});
-        msg.setData(b);
-        AlienInvasion.gMainActivity.mAppHandler.sendMessage(msg);
-
-        //플레이어를 찾는다라고 마크를 해준다.
         if(AlienInvasion.gMainActivity.mGLView.mRender != null&& AlienInvasion.gMainActivity.mGLView.mRender.mSongGL != null)
-            AlienInvasion.gMainActivity.mGLView.mRender.mSongGL.SetMultiplayState(SongGLLib.SYNC_FINDPLAYER);
+            AlienInvasion.gMainActivity.mGLView.mRender.mSongGL.SetMultiplayState(SongGLLib.SYNC_MATCHINGERROR);
         return 0;
     }
 
@@ -988,26 +976,11 @@ public class SongGLLib {
     {
         if(AlienInvasion.gMainActivity.mGLView.mRender != null&& AlienInvasion.gMainActivity.mGLView.mRender.mSongGL != null)
             AlienInvasion.gMainActivity.mGLView.mRender.mSongGL.SetMultiplayState(SongGLLib.SYNC_NONE);
-
-        Message msg = AlienInvasion.gMainActivity.mAppHandler.obtainMessage();
-        Bundle b = new Bundle();
-        b.putInt("id", 9); //로그 아웃 해준다.
-        msg.setData(b);
-        AlienInvasion.gMainActivity.mAppHandler.sendMessage(msg);
         return 0;
     }
 
     static public int sglSendMultiplayData(byte[] btData,int bReliable)
     {
-        try
-        {
-            if(AlienInvasion.gMainActivity.mGLView.mRender != null&& AlienInvasion.gMainActivity.mGLView.mRender.mSongGL != null)
-                AlienInvasion.gMainActivity.getMultiplay().SendData(btData, bReliable != 0 ? true : false);
-        }
-        catch(Exception e)
-        {
-            Log.e("Java", "sglSendMultiplayData " + e.getLocalizedMessage());
-        }
         return 0;
     }
 

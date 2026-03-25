@@ -72,7 +72,9 @@ public class AlienInvasionView extends GLSurfaceView {
 			final long param2) {
 		queueEvent(new Runnable() {
 			public void run() {
-				mRender.SendMessage(nEventID, param1, param2);
+				if (mRender != null) {
+					mRender.SendMessage(nEventID, param1, param2);
+				}
 			}
 		});
 
