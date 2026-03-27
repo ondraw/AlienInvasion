@@ -26,9 +26,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.googleservice.GameHelper;
@@ -48,9 +51,21 @@ public class AlienInvasion extends Activity implements
 										// GoogleApiClient.OnConnectionFailedListener
 {
 	static final int PROGRESS_DIALOG = 0;
+	private static final int MSG_AD_SHOW = 0;
+	private static final int MSG_AD_HIDE = 1;
+	private static final int MSG_OPEN_MARKET = 2;
+	private static final int MSG_RATING_DIALOG = 3;
+	private static final int MSG_SYNC_SCORE = 6;
+	private static final int MSG_SHARE_SNS = 7;
+	private static final int MSG_NEW_VERSION = 11;
+	private static final int MSG_AD_LAYOUT_MODE = SongGLLib.JAVA_AD_LAYOUT_MODE;
 	protected AlienInvasionView mGLView = null;
 	protected AdView mADView = null;
+	protected FrameLayout mGLContainer = null;
+	protected FrameLayout mAdContainer = null;
 	protected boolean mbHideAd = false;
+	protected boolean mbAdLoaded = false;
+	protected int mAdLayoutMode = SongGLLib.AD_LAYOUT_BOTTOM_DOCKED;
 	boolean mFinish = false; // 종료일때는 Pause를 하지 말자.
 	public static AlienInvasion gMainActivity = null;
 	public static AlienInvasionView gGLView = null;
@@ -96,25 +111,18 @@ public class AlienInvasion extends Activity implements
 		// final int GSL_PROGRESS_START=0x010001; //시작
 		public void handleMessage(Message msg) {
 			int nID = msg.getData().getInt("id");
-			if (nID == 0) // 다이얼로그를 보이게 한다.
+			if (nID == MSG_AD_SHOW) // 다이얼로그를 보이게 한다.
 			{
-				// Modified 2014.12.08 구글 플레이로 애드몹 서비스.
-				// mADView.loadAd(new AdRequest()); //광고를 다시 로딩한다.
-				mADView.loadAd(new AdRequest.Builder().build());// 광고를 다시 로딩한다.
-				mbHideAd = false;
-			} else if (nID == 1) // 프로그레스바를 움직인다.
+				requestBannerVisibility(true);
+			} else if (nID == MSG_AD_HIDE) // 프로그레스바를 움직인다.
 			{
-				// Modified 2014.12.08 구글 플레이로 애드몹 서비스.
-				// mADView.stopLoading(); //광고로딩을 스톱한다.
-				mADView.setVisibility(View.GONE);
-				mbHideAd = true;
-				// SongGLLib.sglSendMessage(GSL_PROGRESS_START, 0, 0, 0, 0);
-			} else if (nID == 2) {
+				requestBannerVisibility(false);
+			} else if (nID == MSG_OPEN_MARKET) {
 				Intent intent = new Intent(
 						Intent.ACTION_VIEW,
 						Uri.parse("market://details?id=" + SongGLLib.GetBundleID()));
 				startActivity(intent);
-			} else if (nID == 3) {
+			} else if (nID == MSG_RATING_DIALOG) {
 				String sMsg = getResources().getString(R.string.ratingreportR);
 				String sTitle = getResources()
 						.getString(R.string.ratingreportT);
@@ -158,11 +166,11 @@ public class AlienInvasion extends Activity implements
 
 				AlertDialog alert = alert_confirm.create();
 				alert.show();
-			} else if (nID == 6) // BestScore에 올려준다.
+			} else if (nID == MSG_SYNC_SCORE) // BestScore에 올려준다.
 			{
 				Log.i("JAVA", "Google Play Games integration removed; score sync skipped.");
 			}
-			else if(nID == 7) //SNS에 데이터를 올려준다.
+			else if(nID == MSG_SHARE_SNS) //SNS에 데이터를 올려준다.
 			{
 				Intent mg = new Intent(Intent.ACTION_SEND);
 				String sContents = getResources().getString(R.string.app_name);
@@ -180,12 +188,88 @@ public class AlienInvasion extends Activity implements
 				mg.setType("text/plain");    
 				startActivity(Intent.createChooser(mg, getResources().getString(R.string.SNSMsgTitle)));
 			}
-			else if(nID == 11) //새로운 앱이 존재 한다.
+			else if(nID == MSG_NEW_VERSION) //새로운 앱이 존재 한다.
 			{
 				SongGLLib.sglSetAppNewVersion(true);
 			}
+			else if (nID == MSG_AD_LAYOUT_MODE)
+			{
+				SetAdLayoutMode(msg.getData().getInt("param"));
+			}
 		}
 	};
+
+	private void requestBannerVisibility(boolean show) {
+		mbHideAd = !show;
+		if (mADView == null) {
+			return;
+		}
+		if (show) {
+			if (!mbAdLoaded) {
+				mADView.loadAd(new AdRequest.Builder().build());
+			}
+			applyAdLayout();
+		} else {
+			applyAdLayout();
+		}
+	}
+
+	private boolean shouldShowAdContainer() {
+		return !mbHideAd && mbAdLoaded;
+	}
+
+	private void applyAdLayout() {
+		if (mGLContainer == null || mAdContainer == null || mADView == null) {
+			return;
+		}
+
+		final boolean showAd = shouldShowAdContainer();
+		mAdContainer.setVisibility(showAd ? View.VISIBLE : View.GONE);
+		mADView.setVisibility(showAd ? View.VISIBLE : View.GONE);
+
+		final int adHeight = showAd ? Math.max(mAdContainer.getHeight(), mADView.getHeight()) : 0;
+		FrameLayout.LayoutParams glParams = (FrameLayout.LayoutParams) mGLContainer.getLayoutParams();
+		glParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+		glParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+		glParams.gravity = Gravity.TOP;
+		glParams.bottomMargin = (showAd && mAdLayoutMode == SongGLLib.AD_LAYOUT_BOTTOM_DOCKED) ? adHeight : 0;
+		mGLContainer.setLayoutParams(glParams);
+
+		FrameLayout.LayoutParams adParams = (FrameLayout.LayoutParams) mAdContainer.getLayoutParams();
+		adParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+		adParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+		adParams.gravity = Gravity.BOTTOM;
+		mAdContainer.setLayoutParams(adParams);
+
+		mAdContainer.bringToFront();
+		mADView.bringToFront();
+		mGLContainer.requestLayout();
+		mAdContainer.requestLayout();
+	}
+
+	private void refreshAdLayoutAsync() {
+		if (mAdContainer == null) {
+			return;
+		}
+		mAdContainer.post(new Runnable() {
+			@Override
+			public void run() {
+				applyAdLayout();
+			}
+		});
+	}
+
+	public void SetAdLayoutMode(int mode) {
+		if (mode != SongGLLib.AD_LAYOUT_BOTTOM_OVERLAY) {
+			mode = SongGLLib.AD_LAYOUT_BOTTOM_DOCKED;
+		}
+		if (mAdLayoutMode == mode) {
+			refreshAdLayoutAsync();
+			return;
+		}
+		mAdLayoutMode = mode;
+		refreshAdLayoutAsync();
+	}
 
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -281,9 +365,12 @@ public class AlienInvasion extends Activity implements
 
 		setContentView(R.layout.main);
 
+		mGLContainer = (FrameLayout) findViewById(R.id.glContainer);
+		mAdContainer = (FrameLayout) findViewById(R.id.adContainer);
 		mGLView = (AlienInvasionView) findViewById(R.id.glViewMine);
 		mADView = (AdView) findViewById(R.id.adView);
-		mADView.setVisibility(View.VISIBLE); // 광고를 미리 보여지게 하여야 지엘뷰어가 자리를 잡는다.
+		mADView.setVisibility(View.GONE);
+		mAdContainer.setVisibility(View.GONE);
 
 		//2019.02 Deleted GameHelper
 //		if (mHelper == null)
@@ -312,14 +399,26 @@ public class AlienInvasion extends Activity implements
 			@Override
 			public void onAdLoaded() {
 				Log.i("JAVA", "onAdLoaded");
-				if(mbHideAd == false)
-					mADView.setVisibility(View.VISIBLE);
+				mbAdLoaded = true;
+				refreshAdLayoutAsync();
+				mAdContainer.post(new Runnable() {
+					@Override
+					public void run() {
+						applyAdLayout();
+					}
+				});
 			}
 
 			@Override
 			public void onAdFailedToLoad(@NonNull LoadAdError adError) {
-				Log.i("JAVA", "onAdFailedToLoad: " + adError.getMessage());
-				mADView.setVisibility(View.GONE);
+				Log.i("JAVA", "onAdFailedToLoad: code=" + adError.getCode()
+						+ ", domain=" + adError.getDomain()
+						+ ", message=" + adError.getMessage());
+				if (adError.getResponseInfo() != null) {
+					Log.i("JAVA", "onAdFailedToLoad responseInfo=" + adError.getResponseInfo());
+				}
+				mbAdLoaded = false;
+				refreshAdLayoutAsync();
 			}
 
 			@Override
@@ -332,7 +431,7 @@ public class AlienInvasion extends Activity implements
 			@Override
 			public void onAdClosed() {
 				Log.i("JAVA", "onAdClosed");
-				mADView.setVisibility(View.GONE);
+				refreshAdLayoutAsync();
 			}
 
 		});
@@ -343,6 +442,7 @@ public class AlienInvasion extends Activity implements
         //엑셀러로미터 센서(가속)
         accSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
+		requestBannerVisibility(true);
 		checkPermission();
 	}
 
@@ -495,10 +595,9 @@ public class AlienInvasion extends Activity implements
 			SongGLLib.sglPlayBgSoundOnAcitvity(true);
 			mGLView.onResume();
 
-			if (mADView.getVisibility() == View.VISIBLE) {
+			if (mADView != null && shouldShowAdContainer()) {
 				// Moidfied 2014.12.08 애드
-				if (mADView != null)
-					mADView.resume();
+				mADView.resume();
 			}
 
 			Log.i("JAVA",
@@ -591,14 +690,14 @@ public class AlienInvasion extends Activity implements
 			Message msg = AlienInvasion.gMainActivity.mAppHandler
 					.obtainMessage();
 			Bundle b = new Bundle();
-			b.putInt("id", 0);
+			b.putInt("id", MSG_AD_SHOW);
 			msg.setData(b);
 			AlienInvasion.gMainActivity.mAppHandler.sendMessage(msg);
 		} else {
 			Message msg = AlienInvasion.gMainActivity.mAppHandler
 					.obtainMessage();
 			Bundle b = new Bundle();
-			b.putInt("id", 1);
+			b.putInt("id", MSG_AD_HIDE);
 			msg.setData(b);
 			AlienInvasion.gMainActivity.mAppHandler.sendMessage(msg);
 		}

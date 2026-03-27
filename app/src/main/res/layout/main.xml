@@ -61,29 +61,37 @@
 admob 은 http://schemas.android.com/apk/lib/com.google.ads
 gogole service 는 http://schemas.android.com/apk/res-auto 
 -->
-<RelativeLayout 
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    
-    <com.google.android.gms.ads.AdView      
-        android:id="@+id/adView"
+
+    <FrameLayout
+        android:id="@+id/glContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <kr.co.songs.android.AlienInvasion.AlienInvasionView
+            android:id="@+id/glViewMine"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/adContainer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-2468045858112255/8860357461"
-        ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        />
-        
-	<kr.co.songs.android.AlienInvasion.AlienInvasionView
-	    android:id="@+id/glViewMine"    
-	    android:layout_width="fill_parent" 
-	    android:layout_height="fill_parent"
-	    android:layout_alignParentTop="true"
-    	android:layout_above="@id/adView"/>
+        android:layout_gravity="bottom"
+        android:visibility="gone">
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-2468045858112255/8860357461"
+            ads:adSize="BANNER" />
+    </FrameLayout>
 
-</RelativeLayout>
+</FrameLayout>

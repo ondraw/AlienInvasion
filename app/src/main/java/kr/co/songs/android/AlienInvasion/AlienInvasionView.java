@@ -19,7 +19,8 @@ public class AlienInvasionView extends GLSurfaceView {
 		// Stencil Buffer
 		setEGLConfigChooser(8, 8, 8, 8, 16, 8);
 		getHolder().setFormat(PixelFormat.RGBA_8888);
-		setZOrderOnTop(true);
+		// Keep the GL surface below regular Android views so AdMob banners can render above it.
+		setZOrderOnTop(false);
 		// setEGLConfigChooser(5,6,5,0,16,8);
 		setRenderer(mRender);
 	}
@@ -32,7 +33,8 @@ public class AlienInvasionView extends GLSurfaceView {
 		// Stencil Buffer
 		setEGLConfigChooser(8, 8, 8, 8, 16, 8);
 		getHolder().setFormat(PixelFormat.RGBA_8888);
-		setZOrderOnTop(true);
+		// Keep the GL surface below regular Android views so AdMob banners can render above it.
+		setZOrderOnTop(false);
 		// setEGLConfigChooser(5,6,5,0,16,8);
 		setRenderer(mRender);
 	}

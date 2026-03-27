@@ -67,6 +67,9 @@ public class SongGLLib {
     // 다시
     // 활용하자.
     public final static int SGL_CLICKED_ADMOB_ANDROID = 0x020033;
+    public final static int JAVA_AD_LAYOUT_MODE = 12;
+    public final static int AD_LAYOUT_BOTTOM_DOCKED = 0;
+    public final static int AD_LAYOUT_BOTTOM_OVERLAY = 1;
     static public final int DISPLAY_IPAD = 1;
     static public final int DISPLAY_IPHONE = 2;
     public static int gDisplayType = SongGLLib.DISPLAY_IPAD;

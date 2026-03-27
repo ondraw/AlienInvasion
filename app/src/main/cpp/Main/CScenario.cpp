@@ -24,6 +24,20 @@
 
 bool CScenario::gbNeedCompletedMap = false;
 
+#ifdef ANDROIDADMOB
+static const int JAVA_AD_LAYOUT_MODE = 12;
+static const int JAVA_AD_LAYOUT_BOTTOM_DOCKED = 0;
+static const int JAVA_AD_LAYOUT_BOTTOM_OVERLAY = 1;
+
+static void SendAdLayoutModeToJava(CSCENARIO_STEP step)
+{
+    int mode = JAVA_AD_LAYOUT_BOTTOM_DOCKED;
+    if(step == CSCENARIO_SINGLEGAME || step == CSCENARIO_TRAININGCENTER)
+        mode = JAVA_AD_LAYOUT_BOTTOM_OVERLAY;
+    sglSendMessageToJava(JAVA_AD_LAYOUT_MODE, mode);
+}
+#endif
+
 HQueue<SGLEvent>  CScenario::gEventQue;
 pthread_mutex_t   CScenario::gEventQueMutex;
 CScenario::CScenario()
@@ -506,6 +520,9 @@ void CScenario::GoToWorld(IHWorld *pWorld,CSCENARIO_STEP goScen)
     {
         case CSCENARIO_MAINMENU:  //메뉴 => 플레이
             mNextWorld = new CMainMenuWorld(this);
+#ifdef ANDROIDADMOB
+            SendAdLayoutModeToJava(goScen);
+#endif
             if(pUserInfo->GetCntByIDWithItem(ID_ITEM_REMOVE_AD) == 0)
             {
                 sglShowAD(true);
@@ -527,8 +544,20 @@ void CScenario::GoToWorld(IHWorld *pWorld,CSCENARIO_STEP goScen)
             CControl::gLastSelControl = NULL;
 #endif
             mNextWorld = new CHWorld(this);
+#ifdef ANDROIDADMOB
+            SendAdLayoutModeToJava(goScen);
+#endif
 #if ALWAYSAD == 0
             if(pUserInfo->GetCntByIDWithItem(ID_ITEM_REMOVE_AD) == 0)
+            {
+                sglShowAD(false);
+            }
+#else
+            if(pUserInfo->GetCntByIDWithItem(ID_ITEM_REMOVE_AD) == 0)
+            {
+                sglShowAD(true);
+            }
+            else
             {
                 sglShowAD(false);
             }
@@ -540,7 +569,14 @@ void CScenario::GoToWorld(IHWorld *pWorld,CSCENARIO_STEP goScen)
             CControl::gLastSelControl = NULL;
 #endif
             mNextWorld = new CTrainingWorld(this);
+#ifdef ANDROIDADMOB
+            SendAdLayoutModeToJava(goScen);
+#endif
             if(pUserInfo->GetCntByIDWithItem(ID_ITEM_REMOVE_AD) == 0)
+            {
+                sglShowAD(true);
+            }
+            else
             {
                 sglShowAD(false);
             }
