@@ -10,6 +10,52 @@
 #include "CParticleEmitterMan.h"
 #include "CFighter.h"
 
+namespace {
+void NormalizeHorizontalDirection(float x, float z, float* pOutX, float* pOutZ)
+{
+    float len = sqrtf(x * x + z * z);
+    if(len < 0.0001f)
+    {
+        *pOutX = 1.0f;
+        *pOutZ = 0.0f;
+        return;
+    }
+    *pOutX = x / len;
+    *pOutZ = z / len;
+}
+
+void DistortTrailQuad(float* pQuadVertex,
+                      float dirX,
+                      float dirZ,
+                      float sideX,
+                      float sideZ,
+                      float wobbleSide,
+                      float wobbleBack,
+                      float wobbleLift)
+{
+    const int topLeft = 0;
+    const int bottomLeft = 3;
+    const int bottomRight = 6;
+    const int topRight = 9;
+
+    pQuadVertex[topLeft + 0] += sideX * (wobbleSide * 0.25f);
+    pQuadVertex[topLeft + 1] += wobbleLift * 0.2f;
+    pQuadVertex[topLeft + 2] += sideZ * (wobbleSide * 0.25f);
+
+    pQuadVertex[topRight + 0] -= sideX * (wobbleSide * 0.25f);
+    pQuadVertex[topRight + 1] += wobbleLift * 0.2f;
+    pQuadVertex[topRight + 2] -= sideZ * (wobbleSide * 0.25f);
+
+    pQuadVertex[bottomLeft + 0] += sideX * wobbleSide - dirX * wobbleBack;
+    pQuadVertex[bottomLeft + 1] -= wobbleLift;
+    pQuadVertex[bottomLeft + 2] += sideZ * wobbleSide - dirZ * wobbleBack;
+
+    pQuadVertex[bottomRight + 0] -= sideX * wobbleSide - dirX * wobbleBack;
+    pQuadVertex[bottomRight + 1] -= wobbleLift;
+    pQuadVertex[bottomRight + 2] -= sideZ * wobbleSide - dirZ * wobbleBack;
+}
+}
+
 CFighterTailParticle::CFighterTailParticle(IHWorld* pWorld,CSprite* pSprite,int nIndex) : CBombTailParticle()
 {
     mpBomb = pSprite;
@@ -29,6 +75,9 @@ int CFighterTailParticle::Initialize(SPoint *pPosition,SVector *pvDirection)
     mState = SPRITE_RUN;
     mnNowTime = 0;
     mTailTextureID = mpWorld->GetTextureMan()->GetTextureID((const char*)"NormalBombET1Tail.tga");
+    mLayerCount = 4;
+    for(int i = 0; i < 4; i++)
+        mLayerAlpha[i] = 1.0f;
     return E_SUCCESS;
 }
 
@@ -64,6 +113,8 @@ int CFighterTailParticle::RenderBegin(int nTime)
     int nIndex = 0;
     GLfloat mWorldMatrix[16];
     GLfloat mWorldMatrix1[16];
+    GLfloat mWorldMatrix2[16];
+    GLfloat mWorldMatrix3[16];
     float color[4];
     float *fFront=NULL,*fBack=NULL;
     SPoint ptNow;
@@ -107,6 +158,11 @@ int CFighterTailParticle::RenderBegin(int nTime)
         dvDir.x = -dvDir.x;
         dvDir.y = -dvDir.y;
         dvDir.z = -dvDir.z;
+        float dirX = 0.0f;
+        float dirZ = 0.0f;
+        NormalizeHorizontalDirection(dvDir.x, dvDir.z, &dirX, &dirZ);
+        float sideX = -dirZ;
+        float sideZ = dirX;
         emitter->NewBomTail(&ptNow, &dvDir,color);
         
         
@@ -114,8 +170,6 @@ int CFighterTailParticle::RenderBegin(int nTime)
         
         //이동을 먼저한후에
         sglTranslateMatrixf(mWorldMatrix,ptNow.x,ptNow.y,ptNow.z);
-        
-        memcpy(mWorldMatrix1, mWorldMatrix, sizeof(mWorldMatrix));
         
 #if OBJMilkShape
         CMS3DModel*	pModel = (CMS3DModel*)mpBomb->GetModel();
@@ -135,11 +189,26 @@ int CFighterTailParticle::RenderBegin(int nTime)
                                0.f,
                                90.f,
                                0.f);
-        
-        sglMultMatrixf(mWorldMatrix1, mWorldMatrix1, rotationMatrix);
-        sglAngleToQuaternionf(quaternion0, 0.f, 90.f, 90.f);
-        sglQuaternionToMatrixf(rotationMatrix, quaternion0);
-        sglMultMatrixf(mWorldMatrix1, mWorldMatrix1, rotationMatrix);
+
+        memcpy(mWorldMatrix1, mWorldMatrix, sizeof(mWorldMatrix));
+        memcpy(mWorldMatrix2, mWorldMatrix, sizeof(mWorldMatrix));
+        memcpy(mWorldMatrix3, mWorldMatrix, sizeof(mWorldMatrix));
+
+        float phase = (float)mnNowTime * 0.028f + (float)mIndex * 0.9f;
+        float pulse = 0.5f + 0.5f * sinf(phase);
+        float pulse2 = 0.5f + 0.5f * cosf(phase * 1.21f);
+        float mainScale = 0.75f + pulse * 0.28f;
+        float wingScale = 0.6f + pulse2 * 0.22f;
+        float sway = sinf(phase * 1.6f) * 0.1f;
+        float drift = 0.14f + pulse * 0.18f;
+
+        sglScaleMatrixf(mWorldMatrix, mainScale, mainScale, mainScale);
+        sglScaleMatrixf(mWorldMatrix1, wingScale, mainScale * 0.95f, wingScale);
+        sglScaleMatrixf(mWorldMatrix2, wingScale * 0.88f, mainScale * 0.82f, wingScale * 0.88f);
+        sglScaleMatrixf(mWorldMatrix3, wingScale * 0.88f, mainScale * 0.82f, wingScale * 0.88f);
+
+        sglTranslateMatrixf(mWorldMatrix2, sideX * (0.16f + sway), 0.0f, sideZ * (0.16f + sway));
+        sglTranslateMatrixf(mWorldMatrix3, -sideX * (0.16f - sway), 0.0f, -sideZ * (0.16f - sway));
         
         //sglScaleMatrixf(mWorldMatrix, mBombProperty.fBombTailScale, mBombProperty.fBombTailScale, mBombProperty.fBombTailScale);
         
@@ -149,8 +218,20 @@ int CFighterTailParticle::RenderBegin(int nTime)
             
             sglMultMatrixVectorf(mWorldVertex[0] + nIndex, mWorldMatrix,m_gBombTailParticleVertex + nIndex);
             sglMultMatrixVectorf(mWorldVertex[1] + nIndex, mWorldMatrix1,m_gBombTailParticleVertex + nIndex);
+            sglMultMatrixVectorf(mWorldVertex[2] + nIndex, mWorldMatrix2,m_gBombTailParticleVertex + nIndex);
+            sglMultMatrixVectorf(mWorldVertex[3] + nIndex, mWorldMatrix3,m_gBombTailParticleVertex + nIndex);
             
         }
+
+        DistortTrailQuad(mWorldVertex[0], dirX, dirZ, sideX, sideZ, sway * 0.3f, drift * 0.6f, 0.04f + pulse * 0.06f);
+        DistortTrailQuad(mWorldVertex[1], dirX, dirZ, sideX, sideZ, -sway * 0.35f, drift * 0.48f, 0.03f + pulse2 * 0.05f);
+        DistortTrailQuad(mWorldVertex[2], dirX, dirZ, sideX, sideZ, 0.08f + sway * 0.45f, drift * 0.8f, 0.05f + pulse2 * 0.05f);
+        DistortTrailQuad(mWorldVertex[3], dirX, dirZ, sideX, sideZ, -0.08f + sway * 0.45f, drift * 0.8f, 0.05f + pulse * 0.05f);
+
+        mLayerAlpha[0] = 0.95f;
+        mLayerAlpha[1] = 0.5f + pulse2 * 0.1f;
+        mLayerAlpha[2] = 0.25f + pulse * 0.08f;
+        mLayerAlpha[3] = 0.25f + pulse2 * 0.08f;
     }
     else
         return E_SUCCESS;
