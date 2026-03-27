@@ -46,7 +46,9 @@ public:
     static unsigned short g_shBombTailIndicesCnt;
     
 protected:
-    GLfloat mWorldVertex[2][12];
+    GLfloat mWorldVertex[4][12];
+    GLfloat mLayerAlpha[4];
+    int             mLayerCount;
 //    SPoint  mPosition;
     SPRITE_STATE	mState;
     int             mnNowTime;

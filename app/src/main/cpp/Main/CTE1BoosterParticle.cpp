@@ -14,6 +14,25 @@
 #include "sGLTrasform.h"
 #include "CTextureMan.h"
 
+namespace {
+float BoosterPulse(int nTime, float speed, float phase)
+{
+    return 0.5f + 0.5f * sinf((float)nTime * speed + phase);
+}
+
+void NormalizeHorizontalDirection(float x, float z, float* pOutX, float* pOutZ)
+{
+    float len = sqrtf(x * x + z * z);
+    if(len < 0.0001f)
+    {
+        *pOutX = 1.0f;
+        *pOutZ = 0.0f;
+        return;
+    }
+    *pOutX = x / len;
+    *pOutZ = z / len;
+}
+}
 
 
 //부스터
@@ -61,6 +80,11 @@ GLuint CTE1BoosterParticle::g_BoosterTextureID3 = 0;
 CTE1BoosterParticle::CTE1BoosterParticle()
 {
     m_bIsVisibleRender = true;
+    mCoreAlpha = 0.9f;
+    mGlowAlpha = 0.35f;
+    mCoreScale = 1.0f;
+    mGlowScale = 1.0f;
+    mYOffset = -0.55f;
 }
 
 CTE1BoosterParticle::~CTE1BoosterParticle()
@@ -89,6 +113,14 @@ int CTE1BoosterParticle::Initialize(SPoint *pPosition,SVector *pvDirection)
 
 int CTE1BoosterParticle::RenderBegin(int nTime)
 {
+    float pulse = BoosterPulse(nTime, 0.02f, 0.0f);
+    float shimmer = BoosterPulse(nTime, 0.033f, 1.3f);
+    mCoreAlpha = 0.55f + pulse * 0.35f;
+    mGlowAlpha = 0.16f + shimmer * 0.18f;
+    mCoreScale = 0.88f + pulse * 0.44f;
+    mGlowScale = 0.85f + shimmer * 0.35f;
+    mYOffset = -0.45f - pulse * 0.35f;
+
     if(mWorldTextureID == g_BoosterTextureID3)
         mWorldTextureID = g_BoosterTextureID2;
     else if(mWorldTextureID == g_BoosterTextureID2)
@@ -103,11 +135,7 @@ int CTE1BoosterParticle::Render()
     
     if(mState != SPRITE_RUN) return E_SUCCESS;
     if(m_bIsVisibleRender == false) return E_SUCCESS;
-    int nB = rand() % 3;
-
-    if(nB == 1)      glColor4f(1.0f,1.0f,1.0f,1.0f);
-    else if(nB == 2) glColor4f(1.0f,1.0f,1.0f,.5f);
-    else        glColor4f(1.0f,1.0f,1.0f,0.1f);
+    glColor4f(1.0f,1.0f,1.0f,mCoreAlpha);
     
 //    glColor4f(1.0f,1.0f,1.0f,0.5f);
     glBindTexture(GL_TEXTURE_2D, mWorldTextureID);
@@ -124,9 +152,7 @@ int CTE1BoosterParticle::Render()
     }
     
 //    glColor4f(1.0f,1.0f,1.0f,0.08f);
-    if(nB == 1)      glColor4f(1.0f,1.0f,1.0f,0.27f);
-    else if(nB == 2) glColor4f(1.0f,1.0f,1.0f,0.4f);
-    else        glColor4f(1.0f,1.0f,1.0f,0.24f);
+    glColor4f(1.0f,0.95f,0.9f,mGlowAlpha);
 
     for(int i = 0; i < 4; i++)
     {
@@ -144,6 +170,11 @@ void CTE1BoosterParticle::CalBooster(SVector* pModelDir,SPoint *mPSRightBP,SPoin
     
     //SVector *pDir = GetModelDirection();
     float fAngle = atan2(pModelDir->z,pModelDir->x) * 180.0 / PI;
+    float dirX = 0.0f;
+    float dirZ = 0.0f;
+    NormalizeHorizontalDirection(pModelDir->x, pModelDir->z, &dirX, &dirZ);
+    float sideX = -dirZ;
+    float sideZ = dirX;
 
     for(int z = 0; z < 4; z++)
     {
@@ -151,47 +182,83 @@ void CTE1BoosterParticle::CalBooster(SVector* pModelDir,SPoint *mPSRightBP,SPoin
         {
             sglLoadIdentityf(mWorldMatrix);
             sglLoadIdentityf(mWorldMatrix2);
+
+            float phase = (float)GetClockDeltaConst() * 0.03f + (float)z * 0.85f + (float)j * 1.35f;
+            float sway = sinf(phase) * 0.08f;
+            float lift = cosf(phase * 0.73f) * 0.05f;
+            float backDrift = 0.12f + (0.12f * (0.5f + 0.5f * sinf(phase + 0.9f)));
+            float localCoreScaleY = mCoreScale * (0.86f + 0.32f * (0.5f + 0.5f * sinf(phase + 0.4f)));
+            float localCoreScaleX = 0.82f + 0.16f * (0.5f + 0.5f * cosf(phase * 1.2f));
+            float localGlowScale = mGlowScale * (0.88f + 0.18f * (0.5f + 0.5f * cosf(phase + 0.5f)));
+            float twist = sinf(phase * 0.7f) * 6.0f;
             
             if(z == 0)
             {
                 //sglLog("x=%f,y=%f,z=%f\n",mPSRightBP[0].x, mPSRightBP[0].y, mPSRightBP[0].z);
                 //이동을 먼저한후에
-                sglTranslateMatrixf(mWorldMatrix,mPSRightBP[0].x,mPSRightBP[0].y+ ET1_GROUND_HEIGHT - 0.3,mPSRightBP[0].z );
+                sglTranslateMatrixf(mWorldMatrix,
+                                    mPSRightBP[0].x - dirX * backDrift + sideX * sway,
+                                    mPSRightBP[0].y + ET1_GROUND_HEIGHT - 0.3f + mYOffset + lift,
+                                    mPSRightBP[0].z - dirZ * backDrift + sideZ * sway );
                 
                 //이동을 먼저한후에
-                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,mPSRightBP[0].x,mPSRightBP[0].y + 0.3,mPSRightBP[0].z);
+                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,
+                                               mPSRightBP[0].x - dirX * (backDrift * 0.4f) + sideX * (sway * 0.4f),
+                                               mPSRightBP[0].y + 0.3f + lift * 0.3f,
+                                               mPSRightBP[0].z - dirZ * (backDrift * 0.4f) + sideZ * (sway * 0.4f));
             }
             else if(z == 1)
             {
-                sglTranslateMatrixf(mWorldMatrix,mPSRightBP[4].x,mPSRightBP[4].y + ET1_GROUND_HEIGHT - 0.3,mPSRightBP[4].z);
+                sglTranslateMatrixf(mWorldMatrix,
+                                    mPSRightBP[4].x - dirX * backDrift + sideX * sway,
+                                    mPSRightBP[4].y + ET1_GROUND_HEIGHT - 0.3f + mYOffset + lift,
+                                    mPSRightBP[4].z - dirZ * backDrift + sideZ * sway);
                 
-                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,mPSRightBP[4].x,mPSRightBP[4].y + 0.3,mPSRightBP[4].z);
+                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,
+                                               mPSRightBP[4].x - dirX * (backDrift * 0.4f) + sideX * (sway * 0.4f),
+                                               mPSRightBP[4].y + 0.3f + lift * 0.3f,
+                                               mPSRightBP[4].z - dirZ * (backDrift * 0.4f) + sideZ * (sway * 0.4f));
             }
             else if(z == 2)
             {
                 //이동을 먼저한후에
-                sglTranslateMatrixf(mWorldMatrix,mPSLeftBP[0].x,mPSLeftBP[0].y + ET1_GROUND_HEIGHT - 0.3,mPSLeftBP[0].z);
+                sglTranslateMatrixf(mWorldMatrix,
+                                    mPSLeftBP[0].x - dirX * backDrift + sideX * sway,
+                                    mPSLeftBP[0].y + ET1_GROUND_HEIGHT - 0.3f + mYOffset + lift,
+                                    mPSLeftBP[0].z - dirZ * backDrift + sideZ * sway);
                 
-                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,mPSLeftBP[0].x,mPSLeftBP[0].y + 0.3,mPSLeftBP[0].z);
+                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,
+                                               mPSLeftBP[0].x - dirX * (backDrift * 0.4f) + sideX * (sway * 0.4f),
+                                               mPSLeftBP[0].y + 0.3f + lift * 0.3f,
+                                               mPSLeftBP[0].z - dirZ * (backDrift * 0.4f) + sideZ * (sway * 0.4f));
             }
             else if(z == 3)
             {
-                sglTranslateMatrixf(mWorldMatrix,mPSLeftBP[4].x,mPSLeftBP[4].y + ET1_GROUND_HEIGHT- 0.3,mPSLeftBP[4].z);
+                sglTranslateMatrixf(mWorldMatrix,
+                                    mPSLeftBP[4].x - dirX * backDrift + sideX * sway,
+                                    mPSLeftBP[4].y + ET1_GROUND_HEIGHT - 0.3f + mYOffset + lift,
+                                    mPSLeftBP[4].z - dirZ * backDrift + sideZ * sway);
                 
-                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,mPSLeftBP[4].x,mPSLeftBP[4].y + 0.3,mPSLeftBP[4].z);
+                if(j == 0) sglTranslateMatrixf(mWorldMatrix2,
+                                               mPSLeftBP[4].x - dirX * (backDrift * 0.4f) + sideX * (sway * 0.4f),
+                                               mPSLeftBP[4].y + 0.3f + lift * 0.3f,
+                                               mPSLeftBP[4].z - dirZ * (backDrift * 0.4f) + sideZ * (sway * 0.4f));
             }
+            
+            sglScaleMatrixf(mWorldMatrix, localCoreScaleX, localCoreScaleY, localCoreScaleX);
             
             //회전을 해야 한다.
             sglRotateRzRyRxMatrixf(mWorldMatrix,
                                              0,
-                                             fAngle + j * 60, 
+                                             fAngle + j * 60 + twist,
                                              0);
             
             //회전을 해야 한다.
             if(j == 0) sglRotateRzRyRxMatrixf(mWorldMatrix2,
                                              0,
-                                             fAngle, 
+                                             fAngle + twist * 0.35f,
                                              0);
+            if(j == 0) sglScaleMatrixf(mWorldMatrix2, localGlowScale, 1.0f, localGlowScale);
             
             nIndexj = j * 12;
             

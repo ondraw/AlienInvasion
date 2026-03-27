@@ -40,6 +40,11 @@ protected:
     int     mnBoosterCnt;
     GLfloat **mppWorldVertex;
     GLfloat **mppWorldVertex2;
+    float   mCoreAlpha;
+    float   mGlowAlpha;
+    float   mCoreScale;
+    float   mGlowScale;
+    float   mYOffset;
     
     SPRITE_STATE	mState;
     CSprite         *mpOwner;

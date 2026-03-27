@@ -48,6 +48,11 @@ public:
 protected:
     SPRITE_STATE	mState;
     bool            m_bIsVisibleRender;
+    float           mCoreAlpha;
+    float           mGlowAlpha;
+    float           mCoreScale;
+    float           mGlowScale;
+    float           mYOffset;
     
     
     GLfloat mWorldVertex[4][36];
