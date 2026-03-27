@@ -27,14 +27,11 @@ bool CScenario::gbNeedCompletedMap = false;
 #ifdef ANDROIDADMOB
 static const int JAVA_AD_LAYOUT_MODE = 12;
 static const int JAVA_AD_LAYOUT_BOTTOM_DOCKED = 0;
-static const int JAVA_AD_LAYOUT_BOTTOM_OVERLAY = 1;
 
 static void SendAdLayoutModeToJava(CSCENARIO_STEP step)
 {
-    int mode = JAVA_AD_LAYOUT_BOTTOM_DOCKED;
-    if(step == CSCENARIO_SINGLEGAME || step == CSCENARIO_TRAININGCENTER)
-        mode = JAVA_AD_LAYOUT_BOTTOM_OVERLAY;
-    sglSendMessageToJava(JAVA_AD_LAYOUT_MODE, mode);
+    // Always reserve space for the banner so gameplay never renders under it.
+    sglSendMessageToJava(JAVA_AD_LAYOUT_MODE, JAVA_AD_LAYOUT_BOTTOM_DOCKED);
 }
 #endif
 
