@@ -15,7 +15,7 @@
 #include "sGLUtils.h"
 #include "CAICore.h"
 #include "CStrategyBlzAI.h"
-#include "CFireParticle.h"
+#include "CParticleEmitterMan.h"
 #include "CBombTailParticle.h"
 #include "CAniRuntimeEnergyUP.h"
 #include "CCircleUpgradeMark.h"
@@ -851,7 +851,6 @@ void  CDTower::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,bool b
     CSGLCore* pCore = ((CHWorld*)mpWorld)->GetSGLCore();
 
     CBomb *pNewBomb = NULL;
-    CFireParticle *pNewFireParticle = NULL;
     CBombTailParticle *pNewBombTailParticle = NULL;
     
     //유도기능이 존재한다.면, 타겟이 없으면 타겟을
@@ -868,7 +867,6 @@ void  CDTower::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,bool b
     {
         float fIntervalToActor = GetIntervalToCamera();
         
-        pNewFireParticle = new CFireParticle(GetWorld());
         pNewBombTailParticle = new CBombTailParticle(mpWorld,pNewBomb);
         
     #ifdef ANDROID //JAVA의 터치시에 플래이가 JNI로 연결되어 잇어서 에러가 난다.
@@ -879,12 +877,11 @@ void  CDTower::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,bool b
             pCore->PlaySystemSound(mBombProperty.nSoundFilreID);
     #endif
         
-        //파티클을 추가한다.
-        if(pNewFireParticle)
-        {
-            pNewFireParticle->Initialize(&ptNow, &vtDir);
-            pCore->AddParticle(pNewFireParticle);
-        }
+        SPoint ptBombStart;
+        SVector vtBombDir;
+        pNewBomb->GetPosition(&ptBombStart);
+        pNewBomb->GetModelDirection(&vtBombDir);
+        ((CHWorld*)GetWorld())->GetParticleEmitterMan()->NewFireGas(&ptBombStart, &vtBombDir);
         //BombParticle을 추가한다.
         pNewBombTailParticle->Initialize(&ptNow, &vtDir);
         pCore->AddParticle(pNewBombTailParticle);

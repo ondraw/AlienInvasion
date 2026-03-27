@@ -12,7 +12,7 @@
 #include "CHWorld.h"
 #include "sGLTrasform.h"
 #include "CBomb.h"
-#include "CFireParticle.h"
+#include "CParticleEmitterMan.h"
 #include "CBombTailParticle.h"
 #include "sGLUtils.h"
 #include "CSGLCore.h"
@@ -1172,7 +1172,6 @@ void  CK9Sprite::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,bool
     CSGLCore* pCore = ((CHWorld*)mpWorld)->GetSGLCore();
 //    CSprite* pActor = pCore->GetActor();
     CBomb *pNewBomb = NULL;
-    CFireParticle *pNewFireParticle = NULL;
     CBombTailParticle *pNewBombTailParticle = NULL;
     
     
@@ -1200,17 +1199,15 @@ void  CK9Sprite::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,bool
             pCore->PlaySystemSound(mBombProperty.nSoundFilreID);
 #endif
         
-        pNewFireParticle = new CFireParticle(GetWorld());
         pNewBombTailParticle = new CBombTailParticle(mpWorld,pNewBomb);
         
         if(mpCurrentSelMissaileInfo)
         {
-            //파티클을 추가한다.
-            if(pNewFireParticle)
-            {
-                pNewFireParticle->Initialize(&ptNow, &vtDir);
-                pCore->AddParticle(pNewFireParticle);
-            }
+            SPoint ptBombStart;
+            SVector vtBombDir;
+            pNewBomb->GetPosition(&ptBombStart);
+            pNewBomb->GetModelDirection(&vtBombDir);
+            ((CHWorld*)GetWorld())->GetParticleEmitterMan()->NewFireGas(&ptBombStart, &vtBombDir);
         }
         
         //BombParticle을 추가한다.

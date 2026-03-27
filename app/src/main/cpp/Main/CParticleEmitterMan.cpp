@@ -169,6 +169,84 @@ void CParticleEmitterMan::NewBackGas(SPoint* pPosition,SVector *pvDirection)
     mlstPartice.push_back(pNewParticle);
 }
 
+void CParticleEmitterMan::NewFireGas(SPoint* pPosition,SVector *pvDirection)
+{
+    SVector fireDirection = *pvDirection;
+
+    CParticleEmitter *pFireCoreParticle = new CParticleEmitter();
+    CParticleEmitter *pFireParticle = new CParticleEmitter();
+    CParticleEmitter *pSmokeParticle = new CParticleEmitter();
+
+    float fireCoreStartColor[4] = {1.0f, 0.82f, 0.35f, 0.92f};
+    float fireCoreColorV[4] = {0.06f, 0.08f, 0.10f, 0.08f};
+
+    pFireCoreParticle->Initialize(
+                             CParticleEmitter_Point,
+                             pPosition,
+                             &fireDirection,
+                             320,
+                             110,
+                             7.0f,
+                             170,
+                             120,
+                             fireCoreStartColor,
+                             fireCoreColorV,
+                             fireCoreStartColor,
+                             1.45f,
+                             0.55f,
+                             0.0f,
+                             0.55f
+                             );
+
+    float fireStartColor[4] = {0.98f, 0.48f, 0.08f, 0.78f};
+    float fireColorV[4] = {0.12f, 0.16f, 0.10f, 0.14f};
+
+    pFireParticle->Initialize(
+                             CParticleEmitter_Point,
+                             pPosition,
+                             &fireDirection,
+                             520,
+                             150,
+                             8.5f,
+                             240,
+                             180,
+                             fireStartColor,
+                             fireColorV,
+                             fireStartColor,
+                             1.15f,
+                             0.70f,
+                             0.0f,
+                             1.05f
+                             );
+
+    SVector smokeDirection = fireDirection;
+
+    float smokeStartColor[4] = {0.26f, 0.26f, 0.26f, 0.32f};
+    float smokeColorV[4] = {0.10f, 0.10f, 0.10f, 0.08f};
+
+    pSmokeParticle->Initialize(
+                              CParticleEmitter_Point,
+                              pPosition,
+                              &smokeDirection,
+                              760,
+                              110,
+                              9.5f,
+                              340,
+                              240,
+                              smokeStartColor,
+                              smokeColorV,
+                              smokeStartColor,
+                              0.28f,
+                              0.14f,
+                              0.0f,
+                              1.20f
+                              );
+
+    mlstPartice.push_back(pFireCoreParticle);
+    mlstPartice.push_back(pFireParticle);
+    mlstPartice.push_back(pSmokeParticle);
+}
+
 
 void CParticleEmitterMan::NewRollTail(SPoint* pPosition,SVector *pvDirection)
 {
@@ -208,13 +286,3 @@ void CParticleEmitterMan::NewRollTail(SPoint* pPosition,SVector *pvDirection)
     
     mlstPartice.push_back(pNewParticle);
 }
-
-
-
-
-
-
-
-
-
-

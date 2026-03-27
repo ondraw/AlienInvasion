@@ -59,7 +59,7 @@ CParticleEmitter::~CParticleEmitter()
         delete [] mfArrColor;
         mfArrColor = NULL;
     }
-    
+
     if(mfArrAliveTime)
     {
         delete [] mfArrAliveTime;
@@ -127,7 +127,7 @@ int CParticleEmitter::Initialize(
 
 void CParticleEmitter::MakePartice(int nIndex)
 {
-
+    
     int n3i = nIndex * 3;
     
     //Vertex 
@@ -145,8 +145,6 @@ void CParticleEmitter::MakePartice(int nIndex)
     *(mfArrColor + n4i + 2) = mfColor[2] + mfColorVariance[2] * ParticleRanom();
     *(mfArrColor + n4i + 3) = mfColor[3] + mfColorVariance[3] * ParticleRanom();
     
-    
-
     //현재 시간 + 살아 있는 시간
     *(mfArrAliveTime + nIndex) = mnTotalTime + mnParticleLifespan + mnParticleLifespanVariance * ParticleRanom();
     
@@ -165,7 +163,6 @@ void RotateToDirection (GLfloat pitch, GLfloat azimuth, SVector *vector)
 	vector->y = sin(DEGREES_TO_RADIANS(pitch));
 	vector->z = cos(DEGREES_TO_RADIANS(pitch)) * cos(DEGREES_TO_RADIANS(azimuth));	
 }
-
 
 void CParticleEmitter::NextPartice(int nIndex,int nTime)
 {
@@ -186,6 +183,7 @@ void CParticleEmitter::NextPartice(int nIndex,int nTime)
     }
     
     
+
     //Vertex 
     //2.0 = 방향으로 리즈너블하게 시작 위치의 범위를 넓혀준다.
     float fMoveS = mfVecility + mfVecilityVariance * ParticleRanom() * (nTime / 1000.0f);

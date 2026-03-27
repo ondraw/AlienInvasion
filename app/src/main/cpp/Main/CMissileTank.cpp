@@ -15,7 +15,7 @@
 #include "CStrategyAssistanceAI.h"
 #include "CAICore.h"
 #include "CBombTailParticle.h"
-#include "CFireParticle.h"
+#include "CParticleEmitterMan.h"
 #include "CSGLCore.h"
 #include "CSpriteStatus.h"
 
@@ -275,7 +275,6 @@ void  CMissileTank::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,b
     CSGLCore* pCore = ((CHWorld*)mpWorld)->GetSGLCore();
     //    CSprite* pActor = pCore->GetActor();
     CBomb *pNewBomb = NULL;
-    CFireParticle *pNewFireParticle = NULL;
     CBombTailParticle *pNewBombTailParticle = NULL;
     
     pNewBomb = new CBomb(pTargetSprite,this,GetID(),GetTeamID(),mBombProperty.nID,mpAction,GetWorld(),&mBombProperty);
@@ -295,17 +294,15 @@ void  CMissileTank::NewMissile(SPoint& ptNow,SVector& vtDir,SVector& vDirAngle,b
             pCore->PlaySystemSound(mBombProperty.nSoundFilreID);
 #endif
         
-        pNewFireParticle = new CFireParticle(GetWorld());
         pNewBombTailParticle = new CBombTailParticle(mpWorld,pNewBomb);
         
         if(mpCurrentSelMissaileInfo)
         {
-            //파티클을 추가한다.
-            if(pNewFireParticle)
-            {
-                pNewFireParticle->Initialize(&ptNow, &vtDir);
-                pCore->AddParticle(pNewFireParticle);
-            }
+            SPoint ptBombStart;
+            SVector vtBombDir;
+            pNewBomb->GetPosition(&ptBombStart);
+            pNewBomb->GetModelDirection(&vtBombDir);
+            ((CHWorld*)GetWorld())->GetParticleEmitterMan()->NewFireGas(&ptBombStart, &vtBombDir);
         }
         
         //BombParticle을 추가한다.

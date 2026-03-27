@@ -30,6 +30,7 @@ public:
     
     void    NewBomTail(SPoint* pPosition,SVector *pvDirection,float* StartColor);
     void    NewBackGas(SPoint* pPosition,SVector *pvDirection);
+    void    NewFireGas(SPoint* pPosition,SVector *pvDirection);
     void    NewRollTail(SPoint* pPosition,SVector *pvDirection);
     
 protected:
