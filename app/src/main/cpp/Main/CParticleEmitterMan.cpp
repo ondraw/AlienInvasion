@@ -132,41 +132,85 @@ void CParticleEmitterMan::NewBomTail(SPoint* pPosition,SVector *pvDirection,floa
 
 void CParticleEmitterMan::NewBackGas(SPoint* pPosition,SVector *pvDirection)
 {
-    CParticleEmitter *pNewParticle = new CParticleEmitter();
-    
-    float StartColor[4];
-    StartColor[0] = 0.7f;
-    StartColor[1] = 0.7f;
-    StartColor[2] = 0.7f;
-    StartColor[3] = 0.5f;
+    SVector denseDirection = *pvDirection;
+    denseDirection.y += 0.10f;
 
-    
-    float colorV[4]; //파티클 변화값 랜덤값 (1~0) 사이값을 곱하기 때문에 더작아진다.
-    colorV[0] = 0.1f;
-    colorV[1] = 0.1f;
-    colorV[2] = 0.1f;
-    colorV[3] = 0.1f;
+    CParticleEmitter *pDenseSmoke = new CParticleEmitter();
+    CParticleEmitter *pMidSmoke = new CParticleEmitter();
+    CParticleEmitter *pLightSmoke = new CParticleEmitter();
 
-    pNewParticle->Initialize(
-                             CParticleEmitter_Point,
-                             pPosition,
-                             pvDirection,
-                             600,          //1초
-                             30,            //파티클 개수는 10개
-                             2.0f,          //파티클 사이즈
-                             300,           //하나의 파티클이 살아있는 시간 1초
-                             400,           //파티클이 살아 있는 시간의 변화값은 1초
-                             StartColor,         //파티클의 색
-                             colorV,        //색 변화량
-                             StartColor,         //색의 End ... (미적용)
-                             0.05,           //속도..
-                             0.05,          //속도 변화량
-                             0.0f,         //Roatate 변화량
-                             1.0f           //시작시 파티클 생성될수 잇는 범위 (반지름)
-                             );
-    
-    
-    mlstPartice.push_back(pNewParticle);
+    float denseStartColor[4] = {0.10f, 0.10f, 0.10f, 0.28f};
+    float denseColorV[4] = {0.04f, 0.04f, 0.04f, 0.08f};
+
+    pDenseSmoke->Initialize(
+                            CParticleEmitter_Point,
+                            pPosition,
+                            &denseDirection,
+                            420,
+                            3,
+                            7.5f,
+                            210,
+                            110,
+                            denseStartColor,
+                            denseColorV,
+                            denseStartColor,
+                            0.30f,
+                            0.12f,
+                            18.0f,
+                            0.45f
+                            );
+
+    SVector midDirection = *pvDirection;
+    midDirection.y += 0.20f;
+
+    float midStartColor[4] = {0.18f, 0.18f, 0.18f, 0.18f};
+    float midColorV[4] = {0.06f, 0.06f, 0.06f, 0.08f};
+
+    pMidSmoke->Initialize(
+                          CParticleEmitter_Point,
+                          pPosition,
+                          &midDirection,
+                          700,
+                          4,
+                          11.5f,
+                          320,
+                          180,
+                          midStartColor,
+                          midColorV,
+                          midStartColor,
+                          0.18f,
+                          0.10f,
+                          30.0f,
+                          1.05f
+                          );
+
+    SVector lightDirection = *pvDirection;
+    lightDirection.y += 0.34f;
+
+    float lightStartColor[4] = {0.28f, 0.28f, 0.28f, 0.10f};
+    float lightColorV[4] = {0.08f, 0.08f, 0.08f, 0.06f};
+
+    pLightSmoke->Initialize(
+                            CParticleEmitter_Point,
+                            pPosition,
+                            &lightDirection,
+                            900,
+                            2,
+                            15.0f,
+                            480,
+                            220,
+                            lightStartColor,
+                            lightColorV,
+                            lightStartColor,
+                            0.10f,
+                            0.08f,
+                            44.0f,
+                            1.65f
+                            );
+
+    mlstPartice.push_back(pDenseSmoke);
+    mlstPartice.push_back(pMidSmoke);
+    mlstPartice.push_back(pLightSmoke);
 }
 
 void CParticleEmitterMan::NewFireGas(SPoint* pPosition,SVector *pvDirection)
