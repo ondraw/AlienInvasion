@@ -10,7 +10,6 @@
 #include "CHWorld.h"
 #include "CBomb.h"
 #include "sGLTrasform.h"
-#include "CCompatFireParticle.h"
 #include "CSGLCore.h"
 #include "CModelBound.h"
 #include "CModelMan.h"
@@ -18,6 +17,21 @@
 #include "CK9Sprite.h"
 #include "CDMainTower.h"
 #include "CAniRuntimeBubble.h"
+#include "CParticleEmitterMan.h"
+#include "CElectricArcParticle.h"
+
+namespace {
+void SpawnElectricShell(CHWorld* pWorld,const SPoint& center,float radius)
+{
+    CElectricArcParticle *pShellMain = new CElectricArcParticle(pWorld);
+    pShellMain->Initialize((SPoint*)&center, radius);
+    pWorld->GetSGLCore()->AddParticle(pShellMain);
+
+    CElectricArcParticle *pShellInner = new CElectricArcParticle(pWorld);
+    pShellInner->Initialize((SPoint*)&center, radius * 0.90f);
+    pWorld->GetSGLCore()->AddParticle(pShellInner);
+}
+}
 CBomb::CBomb(CSprite* ptTarget,CSprite* pOwner,unsigned int nWhosBombID,unsigned char cTeamID,int nModelID,IAction *pAction,IHWorld* pWorld,PROPERTY_BOMB* pBombProperty) :
 CSprite(nWhosBombID,cTeamID,nModelID,pAction,pWorld,NULL,NETWORK_NONE)
 {
@@ -164,24 +178,45 @@ bool CBomb::VisibleByCamera()
 void CBomb::SetCompactBomb()
 {
     SPoint ptPos;
-    SVector vDir;
-    CSGLCore *pCore = ((CHWorld*)mpWorld)->GetSGLCore();
+    CHWorld *pWorld = (CHWorld*)mpWorld;
+    bool bAlienBomb = false;
     
-    //일단지우자 터지는 효과는 다음에 (BOMB_COMPACT)
-    //지울 폭탄이기때문에 다음에는 리스트에 포함되지 않게 한다.
     mState = SPRITE_READYDELETE;
     
-    if(mbRenderByCamera) //속도 향상 보이는 곳만 효과를 내자꾸나.
+    if(mbRenderByCamera)
     {
         GetPosition(&ptPos);
-        float MaxRng;
-        MaxRng = sqrtf(BOMBMAXRNG * mBombProperty.fMaxRadianDetect);
-        
-        //파니클을 추가한다.
-        CCompatFireParticle *pParticle = new CCompatFireParticle(mpWorld,MaxRng,mBombProperty.sBombBombImgPath);
-        GetModelDirection(&vDir);
-        pParticle->Initialize(&ptPos, &vDir);
-        pCore->AddParticle(pParticle);
+        float fExplosionScale = sqrtf(BOMBMAXRNG * mBombProperty.fMaxRadianDetect) / 18.0f;
+        SPoint ptGround = ptPos;
+        bool bGroundExplosion = false;
+
+        if(pWorld->GetPositionY(&ptGround) == E_SUCCESS)
+        {
+            float fGroundThreshold = 12.0f + fExplosionScale * 8.0f;
+            if(fabsf(ptPos.y - ptGround.y) <= fGroundThreshold)
+                bGroundExplosion = true;
+        }
+
+        if((mpOwner && mpOwner->GetModelID() >= ACTORID_ET1) ||
+           (mBombProperty.sModelPath && strstr(mBombProperty.sModelPath, "ET") != NULL))
+        {
+            bAlienBomb = true;
+        }
+
+        if(bGroundExplosion && bAlienBomb)
+        {
+            float shellRadius = 4.0f + fExplosionScale * 7.5f;
+            SpawnElectricShell(pWorld, ptPos, shellRadius);
+        }
+        else if(bGroundExplosion)
+            pWorld->GetParticleEmitterMan()->NewGroundExplosion(&ptPos,fExplosionScale);
+        else if(bAlienBomb)
+        {
+            float shellRadius = 4.8f + fExplosionScale * 8.5f;
+            SpawnElectricShell(pWorld, ptPos, shellRadius);
+        }
+        else
+            pWorld->GetParticleEmitterMan()->NewAirExplosion(&ptPos,fExplosionScale);
     }
 }
 

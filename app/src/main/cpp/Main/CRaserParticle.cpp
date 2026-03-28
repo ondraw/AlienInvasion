@@ -23,6 +23,7 @@ CRaserParticle::CRaserParticle(IHWorld* pWorld,CBombRaser* pSprite)
     mpModelStart = NULL;
     mpModelEnd = NULL;
     m_bIsVisibleRender = true;
+    mbElectricStyle = false;
     
 }
 
@@ -47,7 +48,8 @@ CRaserParticle::~CRaserParticle()
 
 int CRaserParticle::Initialize(CModelMan* pModelMan,const char* sModelPath,const char* sTexturePath,const char* sModelStartEndPath)
 {
-    
+    if(strstr(sModelStartEndPath, "ThunderBolt") != NULL || strstr(sTexturePath, "ThunderBolt") != NULL)
+        mbElectricStyle = true;
     
     pModelMan->getModelf(sModelPath, (CMyModel**)&mpModel,false);
     mpModel->pfinalmulMaxtix = new GLfloat[16];
@@ -151,7 +153,10 @@ int CRaserParticle::Render()
     sglMesh *arrMesh;
     sglMesh *arrWroldMesh;
     
-    glColor4f(1.0f,1.0f,1.0f,0.6f);
+    if(mbElectricStyle)
+        glColor4f(0.45f,0.82f,1.0f,0.78f);
+    else
+        glColor4f(1.0f,1.0f,1.0f,0.6f);
     
     nSize = mpModel->GetMeshSize();
     arrMesh = mpModel->GetMesh();
@@ -181,7 +186,10 @@ int CRaserParticle::Render()
     }
     
     
-    glColor4f(1.0f,1.0f,1.0f,0.4f);
+    if(mbElectricStyle)
+        glColor4f(0.75f,0.95f,1.0f,0.65f);
+    else
+        glColor4f(1.0f,1.0f,1.0f,0.4f);
     //End
     nSize = mpModelEnd->GetMeshSize();
     arrMesh = mpModelEnd->GetMesh();
@@ -262,4 +270,3 @@ int CRaserParticle::Arrange(float BombStartPosition,SPoint *pPosition,SPoint* pt
     }
     return E_SUCCESS;
 }
-

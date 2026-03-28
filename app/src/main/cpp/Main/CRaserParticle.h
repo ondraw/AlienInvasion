@@ -45,6 +45,7 @@ protected:
     CMS3DModelASCII* mpModelEnd;
     
     bool m_bIsVisibleRender;
+    bool mbElectricStyle;
 };
 
 #endif /* defined(__SongGL__CRaserParticle__) */

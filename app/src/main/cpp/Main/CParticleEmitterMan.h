@@ -32,6 +32,12 @@ public:
     void    NewBackGas(SPoint* pPosition,SVector *pvDirection);
     void    NewFireGas(SPoint* pPosition,SVector *pvDirection);
     void    NewRollTail(SPoint* pPosition,SVector *pvDirection);
+    void    NewGroundExplosion(SPoint* pPosition,float fScale);
+    void    NewAirExplosion(SPoint* pPosition,float fScale);
+    void    NewElectricGroundExplosion(SPoint* pPosition,float fScale);
+    void    NewElectricAirExplosion(SPoint* pPosition,float fScale);
+    void    NewElectricBeamImpact(SPoint* pPosition,float fScale,bool bGrounded);
+    void    NewElectricBodyShock(SPoint* pPosition,float fScale,float fRadius);
     
 protected:
     list<CParticleEmitter*> mlstPartice;

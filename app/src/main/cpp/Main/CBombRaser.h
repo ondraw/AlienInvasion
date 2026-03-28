@@ -37,6 +37,7 @@ public:
 protected:
     long mnAliveTime;
     long mnRecTargetPos; //타겟을 매번 알아오면 느려질것 같아. 0.5초이후에 가져오자.
+    long mnLastImpactEffectTime;
     int  mnResult; // 0: 명중 Not:비명중
     int  mnCompactIntervalTime; //CPU가 빠르면 CollidesBounding을 여러번 불러오기 때문에 100(0.1)초를 유지 할수 있게 해준다.
 

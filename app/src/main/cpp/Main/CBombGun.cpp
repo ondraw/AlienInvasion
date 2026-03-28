@@ -9,8 +9,6 @@
 #include <math.h>
 #include "CBombGun.h"
 #include "CHWorld.h"
-#include "CCompatFireParticle.h"
-#include "CSGLCore.h"
 
 CBombGun::CBombGun(CSprite* ptTarget,CSprite* pOwner,unsigned int nWhosBombID,unsigned char cTeamID,int nModelID,IAction *pAction,IHWorld* pWorld,PROPERTY_BOMB* pBombProperty):CBomb(ptTarget,pOwner,nWhosBombID,cTeamID,nModelID,pAction,pWorld,pBombProperty)
 {
@@ -111,23 +109,5 @@ int CBombGun::Initialize(SPoint *pPosition,SPoint* ptTargetPos,SVector *pvDirAng
 
 void CBombGun::SetCompactBomb()
 {
-    SPoint ptPos;
-    SVector vDir;
-    CSGLCore *pCore = ((CHWorld*)mpWorld)->GetSGLCore();
-    
-    //일단지우자 터지는 효과는 다음에 (BOMB_COMPACT)
-    //지울 폭탄이기때문에 다음에는 리스트에 포함되지 않게 한다.
-    mState = SPRITE_READYDELETE;
-    
-    if(mbRenderByCamera) //속도 향상 보이는 곳만 효과를 내자꾸나.
-    {
-        GetPosition(&ptPos);
-        float MaxRng;
-        MaxRng = sqrtf(BOMBMAXRNG * mBombProperty.fMaxRadianDetect);
-        //파니클을 추가한다.
-        CCompatFireParticle *pParticle = new CCompatFireParticle(mpWorld,MaxRng / 10.f,mBombProperty.sBombBombImgPath);
-        GetModelDirection(&vDir);
-        pParticle->Initialize(&ptPos, &vDir);
-        pCore->AddParticle(pParticle);
-    }
+    CBomb::SetCompactBomb();
 }

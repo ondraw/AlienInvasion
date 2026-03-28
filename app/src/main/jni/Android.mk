@@ -177,6 +177,7 @@ LOCAL_SRC_FILES := \
 				$(MAIN_PATH)/CBombTailParticle.cpp \
 				$(MAIN_PATH)/CBound.cpp \
 				$(MAIN_PATH)/CCompatFireParticle.cpp \
+				$(MAIN_PATH)/CElectricArcParticle.cpp \
 				$(MAIN_PATH)/CEMainBlzSprite.cpp \
 				$(MAIN_PATH)/CET1.cpp \
 				$(MAIN_PATH)/CET2.cpp \

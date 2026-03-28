@@ -11,6 +11,21 @@
 #include "CSGLCore.h"
 #include "CK9Sprite.h"
 #include "CRaserParticle.h"
+#include "CParticleEmitterMan.h"
+#include "CElectricArcParticle.h"
+
+namespace {
+void SpawnElectricShell(CHWorld* pWorld,const SPoint& center,float radius)
+{
+    CElectricArcParticle *pShellMain = new CElectricArcParticle(pWorld);
+    pShellMain->Initialize((SPoint*)&center, radius);
+    pWorld->GetSGLCore()->AddParticle(pShellMain);
+
+    CElectricArcParticle *pShellInner = new CElectricArcParticle(pWorld);
+    pShellInner->Initialize((SPoint*)&center, radius * 0.90f);
+    pWorld->GetSGLCore()->AddParticle(pShellInner);
+}
+}
 CBombRaser::CBombRaser(CSprite* ptTarget,CSprite* pOwner,unsigned int nWhosBombID,unsigned char cTeamID,int nModelID,IAction *pAction,IHWorld* pWorld,PROPERTY_BOMB* pBombProperty):CBomb(ptTarget,pOwner,nWhosBombID,cTeamID,nModelID,pAction,pWorld,pBombProperty)
 {
     mnAliveTime = GetGGTime() + pBombProperty->nBombTailMaxAliveTime; //1초후
@@ -18,6 +33,7 @@ CBombRaser::CBombRaser(CSprite* ptTarget,CSprite* pOwner,unsigned int nWhosBombI
     mpTarget = ptTarget;
     mParticle = NULL;
     mnRecTargetPos = 0;
+    mnLastImpactEffectTime = 0;
     mbCheckReset = true;
     mnCompactIntervalTime = 0;
 }
@@ -45,6 +61,7 @@ void CBombRaser::RenderBeginCore(int nTime)
     SVector vDirAngle;
     SPoint ptNow;
     SPoint ptTarget;
+    SPoint ptEffect;
     
     if(mState == SPRITE_RUN && mpOwner)
     {
@@ -97,6 +114,33 @@ void CBombRaser::RenderBeginCore(int nTime)
             ptNow.y += mpOwner->GetRadius() / 4.f;
         
         mParticle->Arrange(mBombProperty.fStartPosition, &ptNow, &ptTarget, &vDirAngle, &vtDir, nLen);
+
+        if(strstr(mBombProperty.sBombBombImgPath, "ThunderBolt") != NULL)
+        {
+            long lNow = GetGGTime();
+            if(lNow - mnLastImpactEffectTime >= 25)
+            {
+                if(mnResult == 0 && mpTarget)
+                {
+                    ptEffect = ptTarget;
+                    if(mpTarget->GetType() != ACTORTYPE_FIGHTER)
+                        ptEffect.y += mpTarget->GetRadius() * 0.25f;
+                    SpawnElectricShell((CHWorld*)mpWorld, ptEffect, mpTarget->GetRadius() * 1.35f);
+                }
+                else
+                {
+                    ptEffect = ptTarget;
+                    if(mnResult == 2)
+                    {
+                        SPoint ptGround = ptEffect;
+                        if(((CHWorld*)mpWorld)->GetPositionY(&ptGround) == E_SUCCESS)
+                            ptEffect.y = ptGround.y + 1.5f;
+                    }
+                    SpawnElectricShell((CHWorld*)mpWorld, ptEffect, 6.0f);
+                }
+                mnLastImpactEffectTime = lNow;
+            }
+        }
     }
 }
 
