@@ -51,6 +51,7 @@ CElectricArcParticle::CElectricArcParticle(IHWorld* pWorld)
     mpWorld = pWorld;
     mState = SPRITE_RUN;
     mfRadius = 1.0f;
+    mfThicknessScale = 1.0f;
     mnAliveTime = 190;
     mnElapsedTime = 0;
     memset(&mPosition, 0, sizeof(mPosition));
@@ -69,10 +70,18 @@ int CElectricArcParticle::Initialize(SPoint *pPosition,SVector *pvDirection)
 
 int CElectricArcParticle::Initialize(SPoint *pPosition,float fRadius)
 {
+    return Initialize(pPosition, fRadius, 1.0f);
+}
+
+int CElectricArcParticle::Initialize(SPoint *pPosition,float fRadius,float fThicknessScale)
+{
     mState = SPRITE_RUN;
     mnElapsedTime = 0;
     memcpy(&mPosition, pPosition, sizeof(mPosition));
     mfRadius = fRadius;
+    mfThicknessScale = fThicknessScale;
+    if(mfThicknessScale < 0.45f) mfThicknessScale = 0.45f;
+    if(mfThicknessScale > 1.4f) mfThicknessScale = 1.4f;
     if(mfRadius < 2.2f) mfRadius = 2.2f;
     if(mfRadius > 20.0f) mfRadius = 20.0f;
 
@@ -194,7 +203,7 @@ int CElectricArcParticle::Render()
                     CrossVector3(tangentX, tangentY, tangentZ, 0.0f, 1.0f, 0.0f, &sideX, &sideY, &sideZ);
                 NormalizeVector3(&sideX, &sideY, &sideZ);
 
-                float width = mfRadius * (nPass == 0 ? 0.052f : 0.022f);
+                float width = mfRadius * (nPass == 0 ? 0.052f : 0.022f) * mfThicknessScale;
                 width *= 0.88f + 0.14f * sinf(((float)j / (float)(mnVertexCount[i] - 1)) * PI);
 
                 int n6i = j * 6;

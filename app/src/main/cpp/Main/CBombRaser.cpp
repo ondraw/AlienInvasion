@@ -18,11 +18,11 @@ namespace {
 void SpawnElectricShell(CHWorld* pWorld,const SPoint& center,float radius)
 {
     CElectricArcParticle *pShellMain = new CElectricArcParticle(pWorld);
-    pShellMain->Initialize((SPoint*)&center, radius);
+    pShellMain->Initialize((SPoint*)&center, radius * 0.82f, 0.72f);
     pWorld->GetSGLCore()->AddParticle(pShellMain);
 
     CElectricArcParticle *pShellInner = new CElectricArcParticle(pWorld);
-    pShellInner->Initialize((SPoint*)&center, radius * 0.90f);
+    pShellInner->Initialize((SPoint*)&center, radius * 0.72f, 0.60f);
     pWorld->GetSGLCore()->AddParticle(pShellInner);
 }
 }

@@ -18,6 +18,7 @@ public:
 
     virtual int Initialize(SPoint *pPosition,SVector *pvDirection);
     int Initialize(SPoint *pPosition,float fRadius);
+    int Initialize(SPoint *pPosition,float fRadius,float fThicknessScale);
     virtual void RenderBeginCore(int nTime);
     virtual int RenderBegin(int nTime);
     virtual int Render();
@@ -35,6 +36,7 @@ protected:
     SPRITE_STATE    mState;
     SPoint          mPosition;
     float           mfRadius;
+    float           mfThicknessScale;
     int             mnAliveTime;
     int             mnElapsedTime;
     float           mArrVertices[6 * 14 * 3];
